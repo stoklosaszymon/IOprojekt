@@ -12,7 +12,7 @@ function App() {
         <div className="App">
             <Router history={history}>
                 <header>
-                    <NavBar {...useAuth0}/>
+                    <NavBar {...useAuth0() }/>
                 </header>
                 <Switch>
                     <Route path="/" exact />
