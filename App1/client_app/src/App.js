@@ -5,13 +5,14 @@ import Profile from "./components/Profile"
 import history from "./utils/history"
 import Home from "./components/Home"
 import PrivateRoute from './components/PrivateRoute'
+import { useAuth0 } from "./react-auth0-spa";
 
 function App() {
     return (
         <div className="App">
             <Router history={history}>
                 <header>
-                    <NavBar />
+                    <NavBar {...useAuth0}/>
                 </header>
                 <Switch>
                     <Route path="/" exact />

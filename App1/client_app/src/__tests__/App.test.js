@@ -6,7 +6,6 @@ import Adapter from 'enzyme-adapter-react-16'
 
 import NavBar from '../components/NavBar';
 
-
 configure({ adapter: new Adapter() });
 
 it('renders log in button', () => {
