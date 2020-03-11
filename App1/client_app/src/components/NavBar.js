@@ -2,8 +2,8 @@
 import { useAuth0 } from "../react-auth0-spa";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
-    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+const NavBar = (props) => {
+    const { isAuthenticated, loginWithRedirect, logout } = props;
 
     return (
         <>
@@ -16,10 +16,9 @@ const NavBar = () => {
 
         {
             isAuthenticated && (
-                <span>
-                    <Link to="/">Home</Link>&nbsp;
-                    <Link to="/profile">Profile</Link>
-                </span>
+                <>
+                    <h1>Zalogowano</h1>
+                </>
             )
         }
         </>
