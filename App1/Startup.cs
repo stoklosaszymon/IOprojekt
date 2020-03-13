@@ -35,6 +35,7 @@ namespace App1
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<UserType>();
             services.AddSingleton<InputUserType>();
+            services.AddScoped<RootMutation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
