@@ -14,6 +14,7 @@ using IOprojekt.Repositories;
 using IOprojekt.GraphQLTypes;
 using GraphQL;
 using GraphQL.Types;
+using GraphiQl;
 
 namespace App1
 {
@@ -43,8 +44,10 @@ namespace App1
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseGraphiQl("/graphql");
             app.UseRouting();
             app.UseSpaStaticFiles();
+
 
             app.UseEndpoints(endpoints =>
             {

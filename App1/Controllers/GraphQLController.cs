@@ -11,7 +11,8 @@ using IOprojekt.Models;
 namespace IOprojekt.Controllers
 {
     [Route("graphql")]
-    public class GraphQLController : Controller
+    [ApiController]
+    public class GraphQLController : ControllerBase
     {
         private readonly ISchema _schema;
         private readonly IDocumentExecuter _executer;
