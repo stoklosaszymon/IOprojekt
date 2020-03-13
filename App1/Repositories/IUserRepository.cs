@@ -8,6 +8,6 @@ namespace IOprojekt.Repositories
 {
         public interface IUserRepository
         {
-            List<User> GetAll();
+            public List<User> GetAll();
         }
 }
