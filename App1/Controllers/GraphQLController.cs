@@ -29,6 +29,7 @@ namespace IOprojekt.Controllers
             {
                 _.Schema = _schema;
                 _.Query = query.Query;
+                _.Inputs = query.Variables?.ToInputs();
             }).ConfigureAwait(false);
 
             if (result.Errors?.Count > 0)
