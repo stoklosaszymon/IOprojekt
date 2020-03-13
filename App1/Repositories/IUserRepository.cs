@@ -9,5 +9,6 @@ namespace IOprojekt.Repositories
         public interface IUserRepository
         {
             public List<User> GetAll();
+            public User AddUser(User user);
         }
 }
