@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using IOprojekt.Repositories;
 using IOprojekt.GraphQLTypes;
+using GraphQL;
+using GraphQL.Types;
 
 namespace App1
 {
@@ -27,6 +29,8 @@ namespace App1
             services.AddControllers();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<RootQuery>();
+            services.AddScoped<IDependencyResolver>(_ => new FuncDependencyResolver(_.GetRequiredService));
+            services.AddScoped<ISchema, RootSchema>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
