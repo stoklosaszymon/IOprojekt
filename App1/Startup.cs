@@ -31,6 +31,8 @@ namespace App1
             services.AddScoped<RootQuery>();
             services.AddScoped<IDependencyResolver>(_ => new FuncDependencyResolver(_.GetRequiredService));
             services.AddScoped<ISchema, RootSchema>();
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+            services.AddSingleton<UserType>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +45,6 @@ namespace App1
 
             app.UseRouting();
             app.UseSpaStaticFiles();
-
 
             app.UseEndpoints(endpoints =>
             {
