@@ -34,6 +34,7 @@ namespace App1
             services.AddScoped<ISchema, RootSchema>();
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<UserType>();
+            services.AddSingleton<InputUserType>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
