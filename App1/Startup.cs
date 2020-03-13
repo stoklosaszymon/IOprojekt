@@ -28,14 +28,18 @@ namespace App1
             });
 
             services.AddControllers();
+
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<RootQuery>();
             services.AddScoped<IDependencyResolver>(_ => new FuncDependencyResolver(_.GetRequiredService));
             services.AddScoped<ISchema, RootSchema>();
+            services.AddScoped<RootQuery>();
+            services.AddScoped<RootMutation>();
+
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<UserType>();
             services.AddSingleton<InputUserType>();
-            services.AddScoped<RootMutation>();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

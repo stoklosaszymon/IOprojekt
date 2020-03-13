@@ -9,11 +9,10 @@ namespace IOprojekt.GraphQLTypes
 
         public RootMutation(IUserRepository userRepository)
         {
-            Field<UserType>(
-                "addUser",
+            Field<UserType>( "addUser",
                 arguments: new QueryArguments
                 {
-                    new QueryArgument<InputUserType>(){ Name = "user" }
+                    new QueryArgument<InputUserType>() { Name = "user" }
                 },
                 resolve: context =>
                 {
@@ -21,6 +20,20 @@ namespace IOprojekt.GraphQLTypes
                     return userRepository.AddUser(user);
                 }
              );
+
+            Field<IntGraphType>( "deleteUser", 
+                arguments: new QueryArguments
+                {
+                    new QueryArgument<IntGraphType>() { Name = "user" }
+                },
+                resolve: context => 
+                {
+                    var id = context.GetArgument<int>("userId");
+                    return userRepository.RemoveUser(id);
+                }
+             );
+           
+
         }
     }
 }

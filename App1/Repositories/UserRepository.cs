@@ -30,5 +30,15 @@ namespace IOprojekt.Repositories
             _users.Add(user);
             return user;
         }
+
+        public User RemoveUser( int id )
+        {
+            var foundUser = _users.Find(user => user.Id == id);
+            if (foundUser != null)
+            {
+                _users.Remove(foundUser);
+            }
+            return foundUser;
+        }
     }
 }
