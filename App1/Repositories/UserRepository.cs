@@ -24,9 +24,9 @@ namespace IOprojekt.Repositories
             return _users;
         }
 
-        public User AddUser( User user)
+        public User AddUser( User user )
         {
-            user.Id = _users.Max(_ => _.Id) + 1;
+            user.CreatedAt = DateTime.Now;
             _users.Add(user);
             return user;
         }

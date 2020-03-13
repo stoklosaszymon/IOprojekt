@@ -8,14 +8,13 @@ namespace IOprojekt.GraphQLTypes
     {
         public InputUserType()
         {
-            Name = "InputPlayerType";
+            Name = "InputUserType";
             Field(_ => _.Id);
             Field(_ => _.FirstName);
             Field(_ => _.LastName);
-            Field(_ => _.Email);
-            Field(_ => _.Gender);
-            Field(_ => _.Locale);
-            Field(_ => _.CreatedAt).DefaultValue(DateTime.Now);
+            //Field(_ => _.Email);
+            //Field(_ => _.Gender);
+            //Field(_ => _.Locale);
         }
     }
 }
