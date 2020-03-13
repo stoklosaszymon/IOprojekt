@@ -8,12 +8,14 @@ namespace IOprojekt.GraphQLTypes
     {
         public RootQuery(IUserRepository _userRepository)
         {
-            Field<ListGraphType<UserType>>("users", resolve: context =>
+            Field<ListGraphType<UserType>>("users",
+            resolve: context =>
             {
                 return _userRepository.GetAll();
             });
 
-            Field<ListGraphType<UserType>>("users", arguments: new QueryArguments
+            Field<ListGraphType<UserType>>("userById",
+            arguments: new QueryArguments
             {
                new  QueryArgument<StringGraphType> { Name = "id"}
             },
