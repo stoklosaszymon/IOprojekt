@@ -1,9 +1,10 @@
-﻿using IOprojekt.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using IOprojekt.Models;
+using IOprojekt.Utils;
 
 namespace IOprojekt.Repositories
 {
@@ -46,10 +47,9 @@ namespace IOprojekt.Repositories
         {
            var foundUser = _users.FirstOrDefault(_ => _.Id == user.Id);
             if ( foundUser != null) {
-                Utilities.Assign(foundUser, user);
+                Utilities.Assing(foundUser, user);
             }
-
-            return foundUser
+            return foundUser;
         }
     }
 }
