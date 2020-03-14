@@ -38,6 +38,7 @@ namespace App1
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<UserType>();
             services.AddSingleton<InputUserType>();
+            services.AddSingleton<IntGraphType>();
 
             
         }

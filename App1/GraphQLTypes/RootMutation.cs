@@ -24,7 +24,7 @@ namespace IOprojekt.GraphQLTypes
             Field<IntGraphType>( "deleteUser", 
                 arguments: new QueryArguments
                 {
-                    new QueryArgument<IntGraphType>() { Name = "user" }
+                    new QueryArgument<IntGraphType>() { Name = "userId" }
                 },
                 resolve: context => 
                 {

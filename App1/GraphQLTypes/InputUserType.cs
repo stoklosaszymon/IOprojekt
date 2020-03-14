@@ -12,9 +12,9 @@ namespace IOprojekt.GraphQLTypes
             Field(_ => _.Id);
             Field(_ => _.FirstName);
             Field(_ => _.LastName);
-            Field(_ => _.Email);
-            Field(_ => _.Gender);
-            Field(_ => _.Locale);
+            Field(_ => _.Email, nullable: true);
+            Field(_ => _.Gender, nullable: true);
+            Field(_ => _.Locale, nullable: true);
         }
     }
 }
