@@ -32,7 +32,18 @@ namespace IOprojekt.GraphQLTypes
                     return userRepository.RemoveUser(id);
                 }
              );
-           
+
+            Field<UserType>("updateUser",
+               arguments: new QueryArguments
+               {
+                    new QueryArgument<InputUserType>() { Name = "userId" }
+               },
+               resolve: context =>
+               {
+                   var user = context.GetArgument<User>("user");
+                   return userRepository.UpdateUser(user);
+               }
+            );
 
         }
     }

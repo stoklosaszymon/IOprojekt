@@ -11,5 +11,6 @@ namespace IOprojekt.Repositories
             public List<User> GetAll();
             public User AddUser(User user);
             public User RemoveUser(int id);
+            public User UpdateUser(User user);
         }
 }

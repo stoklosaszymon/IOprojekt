@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace IOprojekt.Repositories
@@ -39,6 +40,16 @@ namespace IOprojekt.Repositories
                 _users.Remove(foundUser);
             }
             return foundUser;
+        }
+
+        public User UpdateUser( User user )
+        {
+           var foundUser = _users.FirstOrDefault(_ => _.Id == user.Id);
+            if ( foundUser != null) {
+                Utilities.Assign(foundUser, user);
+            }
+
+            return foundUser
         }
     }
 }
