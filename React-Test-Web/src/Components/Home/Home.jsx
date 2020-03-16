@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import HomeFollow from './HomeFollow'
+import HomeTrends from './HomeTrends'
 
 import {Paper, Avatar} from 'material-ui';
 
@@ -14,12 +15,13 @@ class Home extends Component {
       <div className="countainer main-content">
         <div className="row">
           <div className="col-sm-3">
-            
+          <HomeTrends/>
           </div>
           <div className="col-sm-6">
 
           </div>
           <div className="col-sm-3">
+          <HomeFollow/>
           </div>
         </div>
       </div>

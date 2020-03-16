@@ -13,7 +13,7 @@ class HomeFollow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      suggestions: window.Data.auth.suggestions
+      suggestions: window.data.auth.suggestions
     }
   }
   removeItem(e) {
