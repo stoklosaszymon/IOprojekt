@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import HomeUserProfile from './HomeUserProfile'
 import HomeFollow from './HomeFollow'
 import HomeTrends from './HomeTrends'
 
@@ -16,6 +17,7 @@ class Home extends Component {
         <div className="row">
           <div className="col-sm-3">
           <HomeTrends/>
+          <HomeUserProfile/>
           </div>
           <div className="col-sm-6">
 
