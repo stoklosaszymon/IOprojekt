@@ -62,7 +62,7 @@ describe('components/NavBar - logged out', () => {
     });
 
     afterEach(() => {
-        
+        jest.clearAllMocks();
     })
 
     it('Renders with required props', () => {
