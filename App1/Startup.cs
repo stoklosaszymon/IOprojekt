@@ -10,6 +10,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using IOprojekt.Repositories;
+using IOprojekt.GraphQLTypes;
+using GraphQL;
+using GraphQL.Types;
+using GraphiQl;
 
 namespace App1
 {
@@ -24,6 +29,18 @@ namespace App1
 
             services.AddControllers();
 
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDependencyResolver>(_ => new FuncDependencyResolver(_.GetRequiredService));
+            services.AddScoped<ISchema, RootSchema>();
+            services.AddScoped<RootQuery>();
+            services.AddScoped<RootMutation>();
+
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+            services.AddSingleton<UserType>();
+            services.AddSingleton<InputUserType>();
+            services.AddSingleton<IntGraphType>();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +51,7 @@ namespace App1
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseGraphiQl("/graphql");
             app.UseRouting();
             app.UseSpaStaticFiles();
 
