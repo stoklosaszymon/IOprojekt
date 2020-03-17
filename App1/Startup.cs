@@ -15,6 +15,7 @@ using IOprojekt.GraphQLTypes;
 using GraphQL;
 using GraphQL.Types;
 using GraphiQl;
+using MongoDB.Driver;
 
 namespace App1
 {
@@ -40,7 +41,6 @@ namespace App1
             services.AddSingleton<InputUserType>();
             services.AddSingleton<IntGraphType>();
 
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
