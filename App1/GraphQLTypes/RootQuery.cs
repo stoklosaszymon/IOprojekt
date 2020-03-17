@@ -17,7 +17,7 @@ namespace IOprojekt.GraphQLTypes
             Field<ListGraphType<UserType>>("userById",
             arguments: new QueryArguments
             {
-               new  QueryArgument<StringGraphType> { Name = "id"}
+               new  QueryArgument<IntGraphType> { Name = "id"}
             },
             resolve: context =>
             {

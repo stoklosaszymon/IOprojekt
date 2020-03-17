@@ -36,7 +36,7 @@ namespace IOprojekt.GraphQLTypes
             Field<UserType>("updateUser",
                arguments: new QueryArguments
                {
-                    new QueryArgument<InputUserType>() { Name = "userId" }
+                    new QueryArgument<InputUserType>() { Name = "user" }
                },
                resolve: context =>
                {

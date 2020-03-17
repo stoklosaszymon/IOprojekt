@@ -45,7 +45,7 @@ namespace IOprojekt.Repositories
 
         public User UpdateUser( User user )
         {
-           var foundUser = _users.FirstOrDefault(_ => _.Id == user.Id);
+           var foundUser = _users.First(_ => _.Id == user.Id);
             if ( foundUser != null) {
                 Utilities.Assing(foundUser, user);
             }
