@@ -5,47 +5,48 @@ using System.Reflection;
 using System.Threading.Tasks;
 using IOprojekt.Models;
 using IOprojekt.Utils;
+using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
 
 namespace IOprojekt.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        static private List<User> _users = new List<User> {
-                new User {
-                    Id = 1,
-                    FirstName = "Szymon",
-                    LastName = "Stokłosa",
-                    Locale = "Poland",
-                    Gender = "M",
-                    Email = "email@email.com",
-                    CreatedAt = DateTime.Now
-                }};
+
+        private readonly IMongoCollection<User> users;
+
+        public UserRepository( IConfiguration config)
+        {
+            MongoClient client = new MongoClient(config.GetConnectionString("UsersDb"));
+            IMongoDatabase database = client.GetDatabase("UsersDb");
+            users = database.GetCollection<User>("Users");
+        }
 
         public List<User> GetAll()
         {
-            return _users;
+            return users.Find(user => true).ToList();
         }
 
         public User AddUser( User user )
         {
             user.CreatedAt = DateTime.Now;
-            _users.Add(user);
+            users.InsertOne(user);
             return user;
         }
 
         public User RemoveUser( int id )
         {
-            var foundUser = _users.Find(user => user.Id == id);
+            var foundUser = users.Find(user => user.Id == id).FirstOrDefault();
             if (foundUser != null)
             {
-                _users.Remove(foundUser);
+                users.DeleteOne(user => user.Id == id);
             }
             return foundUser;
         }
 
         public User UpdateUser( User user )
         {
-           var foundUser = _users.First(_ => _.Id == user.Id);
+           var foundUser = users.Find(user => user.Id == user.Id).FirstOrDefault();
             if ( foundUser != null) {
                 Utilities.Assing(foundUser, user);
             }
