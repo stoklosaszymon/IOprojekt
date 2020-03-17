@@ -5,11 +5,11 @@ import Adapter from 'enzyme-adapter-react-16'
 
 import NavBar from '../components/NavBar';
 
-import { useAuth0 } from "../react-auth0-spa";
 
 configure({ adapter: new Adapter() });
 
 jest.mock('../react-auth0-spa');
+import { useAuth0 } from "../react-auth0-spa";
 
 const user = {
     email: 'johndoe@me.com',
@@ -19,7 +19,6 @@ const user = {
 
 describe('components/NavBar - logged in', () => {
     beforeEach(() => {
-        // Mock the Auth0 hook and make it return a logged in state
         useAuth0.mockReturnValue({
             isAuthenticated: true,
             user,
@@ -30,25 +29,31 @@ describe('components/NavBar - logged in', () => {
 
     it('Renders with required props', () => {
         const wrapper = mount(<NavBar />);
+        const { isAuthenticated } = useAuth0();
+
         expect(wrapper).toBeTruthy();
+        expect(isAuthenticated).toEqual(true);
     });
 
-    it('Renders with correct link in the menu', () => {
+    it('Renders Log out button', () => {
         const wrapper = mount(<NavBar />);
+
         expect(wrapper).toBeTruthy();
-        // should contain a button to be defined
         expect(wrapper.find('button')).toHaveLength(1);
-        // the button should be the "Log out" one since the user is logged in
         expect(wrapper.find('button').text()).toEqual('Log out');
-        // should contain a <h1>Zalogowano</h1>
         expect(wrapper.find('h1').text()).toEqual('Zalogowano');
 
+    });
+    it('Calls logout method once on button click', () => {
+        const wrapper = mount(<NavBar />)
+        wrapper.find('button').simulate('click');
+        const { logout } = useAuth0();
+        expect(logout).toHaveBeenCalledTimes(1);
     });
 });
 
 describe('components/NavBar - logged out', () => {
     beforeEach(() => {
-        // Mock the Auth0 hook and make it return a logged in state
         useAuth0.mockReturnValue({
             isAuthenticated: false,
             logout: jest.fn(),
@@ -56,17 +61,28 @@ describe('components/NavBar - logged out', () => {
         });
     });
 
+    afterEach(() => {
+        
+    })
+
     it('Renders with required props', () => {
-        const wrapper = mount(<NavBar />);
+        const wrapper = shallow(<NavBar />);
         expect(wrapper).toBeTruthy();
+        const { isAuthenticated } = useAuth0();
+        expect(isAuthenticated).toEqual(false);
     });
 
     it('Renders Log in button', () => {
         const wrapper = mount(<NavBar />);
         expect(wrapper).toBeTruthy();
-        // should contain a button to be defined
         expect(wrapper.find('button')).toHaveLength(1);
-        // the button should be the "Log out" one since the user is logged in
         expect(wrapper.find('button').text()).toEqual('Log in');
+    });
+
+    it('Calls loginWithRedirect method once on button click', () => {
+        const wrapper = mount(<NavBar />)
+        wrapper.find('button').simulate('click');
+        const { loginWithRedirect } = useAuth0();
+        expect(loginWithRedirect).toHaveBeenCalledTimes(1);
     });
 });
