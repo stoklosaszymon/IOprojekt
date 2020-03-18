@@ -7,6 +7,7 @@ using IOprojekt.Models;
 using IOprojekt.Utils;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using IOprojekt.Interfaces;
 
 namespace IOprojekt.Repositories
 {

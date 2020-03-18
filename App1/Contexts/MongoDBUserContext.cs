@@ -1,22 +1,30 @@
-﻿public class MongoBookDBContext : IMongoBookDBContext
+﻿using IOprojekt.Interfaces
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+
+namespace IOprojekt.Contexts
 {
-    private IMongoDatabase _db { get; set; }
-    private MongoClient _mongoClient { get; set; }
-    public IClientSessionHandle Session { get; set; }
 
-    public MongoBookDBContext(IOptions<Mongosettings> configuration)
+    public class MongoBookDBContext : IMongoBookDBContext
     {
-        _mongoClient = new MongoClient(configuration.Value.Connection);
+        private IMongoDatabase _db { get; set; }
+        private MongoClient _mongoClient { get; set; }
+        public IClientSessionHandle Session { get; set; }
 
-        _db = _mongoClient.GetDatabase(configuration.Value.DatabaseName);
-    }
-
-    public IMongoCollection<T> GetCollection<T>(string name)
-    {
-        if (string.IsNullOrEmpty(name))
+        public MongoBookDBContext(IOptions<Mongosettings> configuration)
         {
-            return null;
+            _mongoClient = new MongoClient(configuration.Value.Connection);
+
+            _db = _mongoClient.GetDatabase(configuration.Value.DatabaseName);
         }
-        return _db.GetCollection<T>(name);
+
+        public IMongoCollection<T> GetCollection<T>(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return null;
+            }
+            return _db.GetCollection<T>(name);
+        }
     }
 }
