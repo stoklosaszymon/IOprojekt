@@ -18,6 +18,7 @@ using GraphiQl;
 using MongoDB.Driver;
 using IOprojekt.Interfaces;
 using IOprojekt.Classes;
+using IOprojekt.Contexts;
 
 namespace App1
 {
@@ -29,6 +30,8 @@ namespace App1
             services.AddSpaStaticFiles(configuration => {
                 configuration.RootPath = "client_app";
             });
+
+            services.Configure<Mongosettings>(options => Configuration.GetSection("Mongosettings").Bind(options));
 
             services.AddControllers();
 
@@ -43,20 +46,24 @@ namespace App1
             services.AddSingleton<InputUserType>();
             services.AddSingleton<IntGraphType>();
 
-            services.Configure<Mongosettings>(options =>
-            {
-                options.Connection = Configuration.GetConnectionString("UsersDb");
-                options.DatabaseName = "Users";
-            });
+            services.AddSingleton<IMongoDBContext, MongoDBContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
 
             app.UseGraphiQl("/graphql");
             app.UseRouting();

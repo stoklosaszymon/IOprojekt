@@ -1,4 +1,5 @@
 ﻿using IOprojekt.Classes;
+using IOprojekt.Contexts;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Moq;
@@ -37,7 +38,7 @@ namespace Bcknd_Tests
                 .Returns(_mockDB.Object);
 
             //Act 
-            var context = new MongoDBUserContext(_mockOptions.Object);
+            var context = new MongoDBContext(_mockOptions.Object);
 
             //Assert 
             Assert.NotNull(context);

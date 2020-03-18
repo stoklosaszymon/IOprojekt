@@ -1,5 +1,5 @@
 ﻿using IOprojekt.Classes;
-using IOprojekt.Interfaces
+using IOprojekt.Interfaces;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 

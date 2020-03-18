@@ -1,4 +1,5 @@
 ﻿using GraphQL.Types;
+using IOprojekt.Interfaces;
 using IOprojekt.Models;
 using IOprojekt.Repositories;
 
