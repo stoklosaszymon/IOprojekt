@@ -16,6 +16,8 @@ using GraphQL;
 using GraphQL.Types;
 using GraphiQl;
 using MongoDB.Driver;
+using IOprojekt.Interfaces;
+using IOprojekt.Classes;
 
 namespace App1
 {
@@ -41,6 +43,11 @@ namespace App1
             services.AddSingleton<InputUserType>();
             services.AddSingleton<IntGraphType>();
 
+            services.Configure<Mongosettings>(options =>
+            {
+                options.Connection = Configuration.GetConnectionString("UsersDb");
+                options.DatabaseName = "Users";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
