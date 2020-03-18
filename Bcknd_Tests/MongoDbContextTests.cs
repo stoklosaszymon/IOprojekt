@@ -11,18 +11,15 @@ namespace Bcknd_Tests
 {
     public class MongoDbContextTests
     {
+        private Mock<IOptions<Mongosettings>> _mockOptions;
+        private Mock<IMongoDatabase> _mockDB;
+        private Mock<IMongoClient> _mockClient;
         public MongoDbContextTests()
         {
             _mockOptions = new Mock<IOptions<Mongosettings>>();
             _mockDB = new Mock<IMongoDatabase>();
             _mockClient = new Mock<IMongoClient>();
         }
-
-        private Mock<IOptions<Mongosettings>> _mockOptions;
-
-        private Mock<IMongoDatabase> _mockDB;
-
-        private Mock<IMongoClient> _mockClient;
 
         [Fact]
         public void UserRepository_Constructor_Success()
@@ -86,7 +83,7 @@ namespace Bcknd_Tests
 
             //Act 
             var context = new MongoDBContext(_mockOptions.Object);
-            var myCollection = context.GetCollection<User>("Book");
+            var myCollection = context.GetCollection<User>("Users");
 
             //Assert 
             Assert.NotNull(myCollection);

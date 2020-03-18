@@ -8,14 +8,13 @@ namespace IOprojekt.Contexts
 
     public class MongoDBContext : IMongoDBContext
     {
-        private IMongoDatabase _db { get; set; }
-        private MongoClient _mongoClient { get; set; }
+        private readonly IMongoDatabase _db = null;
 
         public MongoDBContext(IOptions<Mongosettings> configuration)
         {
-            _mongoClient = new MongoClient(configuration.Value.Connection);
-
-            _db = _mongoClient.GetDatabase(configuration.Value.DatabaseName);
+           var client = new MongoClient(configuration.Value.Connection);
+           if (client != null)
+                _db = client.GetDatabase(configuration.Value.DatabaseName);
         }
 
         public IMongoCollection<T> GetCollection<T>(string name)
