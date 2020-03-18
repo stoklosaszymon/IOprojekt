@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
-namespace IOprojekt.Controllers
+namespace IOprojekt.Hubs
 {
     public class ChatHub : Hub
     {
