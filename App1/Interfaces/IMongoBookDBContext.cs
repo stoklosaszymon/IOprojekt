@@ -1,7 +1,9 @@
-﻿namespace IOprojekt.Interfaces
+﻿using MongoDB.Driver;
+
+namespace IOprojekt.Interfaces
 {
-    public interface IMongoBookDBContext
+    public interface IMongoDBContext
     {
+        public IMongoCollection<T> GetCollection<T>(string name);
     }
-}
 }

@@ -8,6 +8,8 @@ using IOprojekt.Utils;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using IOprojekt.Interfaces;
+using Microsoft.Extensions.Options;
+using IOprojekt.Classes;
 
 namespace IOprojekt.Repositories
 {
@@ -16,11 +18,9 @@ namespace IOprojekt.Repositories
 
         private readonly IMongoCollection<User> users;
 
-        public UserRepository( IConfiguration config)
+        public UserRepository( IMongoDBContext context )
         {
-            MongoClient client = new MongoClient(config.GetConnectionString("UsersDb"));
-            IMongoDatabase database = client.GetDatabase("UsersDb");
-            users = database.GetCollection<User>("Users");
+            users = context.GetCollection<User>("Users");
         }
 
         public List<User> GetAll()
