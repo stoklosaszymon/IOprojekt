@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using IOprojekt.Repositories;
 using IOprojekt.GraphQLTypes;
@@ -17,7 +16,6 @@ using GraphQL.Types;
 using GraphiQl;
 using MongoDB.Driver;
 using IOprojekt.Interfaces;
-using IOprojekt.Classes;
 using IOprojekt.Contexts;
 
 namespace App1
@@ -31,11 +29,10 @@ namespace App1
                 configuration.RootPath = "client_app";
             });
 
-            services.Configure<Mongosettings>(options => Configuration.GetSection("Mongosettings").Bind(options));
+            services.Configure<RepositoryOptions>(options => Configuration.GetSection("Mongosettings").Bind(options));
 
             services.AddControllers();
 
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDependencyResolver>(_ => new FuncDependencyResolver(_.GetRequiredService));
             services.AddScoped<ISchema, RootSchema>();
             services.AddScoped<RootQuery>();
@@ -45,8 +42,8 @@ namespace App1
             services.AddSingleton<UserType>();
             services.AddSingleton<InputUserType>();
             services.AddSingleton<IntGraphType>();
+            services.AddSingleton<IDbContext, DbContext>();
 
-            services.AddSingleton<IMongoDBContext, MongoDBContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
 ﻿using IOprojekt.Classes;
+using IOprojekt.Repositories;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,6 @@ namespace IOprojekt.Interfaces
 {
     public interface IRepositoryFactory
     {
-        IRepository<TEntity> Create<TEntity>(IOptions<Mongosettings> options);
+        IRepository<TEntity> Create<TEntity>(RepositoryOptions options);
     }
 }

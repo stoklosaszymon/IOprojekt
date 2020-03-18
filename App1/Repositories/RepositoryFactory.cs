@@ -16,11 +16,11 @@ namespace IOprojekt.Repositories
             if (dbFactory == null) throw new ArgumentNullException("dbFactory");
             _dbFactory = dbFactory;
         }
-        public IRepository<TEntity> Create<TEntity>(IOptions<Mongosettings> options)
+        public IRepository<TEntity> Create<TEntity>(RepositoryOptions options)
         {
             if (options == null) throw new ArgumentNullException("options");
-            var db = _dbFactory.Connect(options.Value.ConnectionString, options.Value.DatabaseName);
-            return new Repository<TEntity>(db.GetCollection<TEntity>(options.Value.CollectionName));
+            var db = _dbFactory.Connect(options.ConnectionString, options.DatabaseName);
+            return new Repository<TEntity>(db.GetCollection<TEntity>(options.CollectionName));
         }
     }
 }

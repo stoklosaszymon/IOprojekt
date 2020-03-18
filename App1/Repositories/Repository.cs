@@ -22,4 +22,10 @@ namespace IOprojekt.Repositories
 
         public string CollectionName { get; private set; }
 
+        public TEntity Add(TEntity entity)
+        {
+            _collection.InsertOne(entity);
+            return entity;
+        }
+    }
 }

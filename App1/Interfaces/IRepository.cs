@@ -8,6 +8,8 @@ namespace IOprojekt.Interfaces
     public interface IRepository<TEntity>
     {
         string CollectionName { get; }
+
+        TEntity Add(TEntity entity);
     }
 }
 }
