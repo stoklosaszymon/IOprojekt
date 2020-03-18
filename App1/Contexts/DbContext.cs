@@ -1,6 +1,7 @@
 ﻿using IOprojekt.Interfaces;
 using IOprojekt.Models;
 using IOprojekt.Repositories;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace IOprojekt.Contexts
             if (string.IsNullOrWhiteSpace(dbName)) 
                 throw new ArgumentNullException("dbName");
             
-            this.Users = repoFactory.Create<User>(new RepositoryOptions(connectionString, dbName, "users")); 
+            this.Users = repoFactory.Create<User>(new RepositoryOptions(connectionString, dbName, "Users")); 
             
         }
         public IRepository<User> Users { get; private set; }

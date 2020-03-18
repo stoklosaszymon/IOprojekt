@@ -1,5 +1,4 @@
-﻿using IOprojekt.Classes;
-using IOprojekt.Interfaces;
+﻿using IOprojekt.Interfaces;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -18,7 +17,8 @@ namespace IOprojekt.Repositories
         }
         public IRepository<TEntity> Create<TEntity>(RepositoryOptions options)
         {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) 
+                throw new ArgumentNullException("options");
             var db = _dbFactory.Connect(options.ConnectionString, options.DatabaseName);
             return new Repository<TEntity>(db.GetCollection<TEntity>(options.CollectionName));
         }

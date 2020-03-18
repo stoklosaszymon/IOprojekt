@@ -17,6 +17,8 @@ using GraphiQl;
 using MongoDB.Driver;
 using IOprojekt.Interfaces;
 using IOprojekt.Contexts;
+using IOprojekt.Models;
+using IOprojekt.Factories;
 
 namespace App1
 {
@@ -42,8 +44,9 @@ namespace App1
             services.AddSingleton<UserType>();
             services.AddSingleton<InputUserType>();
             services.AddSingleton<IntGraphType>();
-            services.AddSingleton<IDbContext, DbContext>();
 
+            services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
+            services.AddSingleton<IMongoDatabaseFactory, MongoDatabaseFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

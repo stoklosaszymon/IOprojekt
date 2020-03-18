@@ -27,5 +27,19 @@ namespace IOprojekt.Repositories
             _collection.InsertOne(entity);
             return entity;
         }
+        public List<TEntity> GetAll(FilterDefinition<TEntity> filter)
+        {
+            return _collection.Find(filter).ToList();
+        }
+        //public TEntity Add(TEntity entity)
+        //{
+        //    _collection.InsertOne(entity);
+        //    return entity;
+        //}
+        //public TEntity Add(TEntity entity)
+        //{
+        //    _collection.InsertOne(entity);
+        //    return entity;
+        //}
     }
 }
