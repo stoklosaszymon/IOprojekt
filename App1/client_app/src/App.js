@@ -1,16 +1,11 @@
+
 import React, { Component } from 'react';
 import { withRouter, Route} from 'react-router-dom';
 import './data'
 
-<<<<<<< Updated upstream
-import Template from './Components/Template.jsx';
-import Home from './Components/Home/Home.jsx';
-import Header from './Components/Header/Header.jsx';
-=======
 import Template from './components/Template.jsx';
 import Home from './components/Home/Home.jsx';
 import Header from './components/Header/Header.jsx';
->>>>>>> Stashed changes
 
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
@@ -20,10 +15,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './App.css';
 import './css/bootstrap-grid.css';
 import './css/animate.css';
-
 const darkTheme = getMuiTheme(darkBaseTheme)
 const defautTheme = getMuiTheme(lightBaseTheme)
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -56,5 +49,4 @@ class App extends Component {
     );
   }
 }
-
 export default withRouter(App);
