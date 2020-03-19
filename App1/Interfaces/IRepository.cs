@@ -10,10 +10,14 @@ namespace IOprojekt.Interfaces
     {
         string CollectionName { get; }
 
-        TEntity Add(TEntity entity);
-        //TEntity Delete(int id);
-        //TEntity Update(TEntity entity);
-        List<TEntity> GetAll(FilterDefinition<TEntity> filter);
+        public  Task<TEntity> Add(TEntity entity);
+
+        public  Task<IEnumerable<TEntity>> GetAll(FilterDefinition<TEntity> filter);
+
+        public  Task<TEntity> Delete(FilterDefinition<TEntity> filter);
+
+        public  Task<TEntity> Update(FilterDefinition<TEntity> filter,
+                                           UpdateDefinition<TEntity> udate);
     }
 }
 

@@ -22,24 +22,25 @@ namespace IOprojekt.Repositories
 
         public string CollectionName { get; private set; }
 
-        public TEntity Add(TEntity entity)
+        public async Task<TEntity> Add(TEntity entity)
         {
-            _collection.InsertOne(entity);
+            await _collection.InsertOneAsync(entity);
             return entity;
         }
-        public List<TEntity> GetAll(FilterDefinition<TEntity> filter)
+        public async Task<IEnumerable<TEntity>> GetAll(FilterDefinition<TEntity> filter)
         {
-            return _collection.Find(filter).ToList();
+            return await _collection.Find(filter).ToListAsync();
         }
-        //public TEntity Add(TEntity entity)
-        //{
-        //    _collection.InsertOne(entity);
-        //    return entity;
-        //}
-        //public TEntity Add(TEntity entity)
-        //{
-        //    _collection.InsertOne(entity);
-        //    return entity;
-        //}
+        public async Task<TEntity> Delete(FilterDefinition<TEntity> filter)
+        {
+            var foundUser = await _collection.FindOneAndDeleteAsync(filter);
+            return foundUser;
+        }
+        public async Task<TEntity> Update( FilterDefinition<TEntity> filter,
+                                          UpdateDefinition<TEntity> update   )
+        {
+            var entity = await _collection.FindOneAndUpdateAsync(filter, update);
+            return entity;
+        }
     }
 }

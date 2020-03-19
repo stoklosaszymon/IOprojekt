@@ -14,11 +14,9 @@ using IOprojekt.GraphQLTypes;
 using GraphQL;
 using GraphQL.Types;
 using GraphiQl;
-using MongoDB.Driver;
 using IOprojekt.Interfaces;
-using IOprojekt.Contexts;
-using IOprojekt.Models;
 using IOprojekt.Factories;
+using IOprojekt.Classes;
 
 namespace App1
 {
@@ -31,7 +29,7 @@ namespace App1
                 configuration.RootPath = "client_app";
             });
 
-            services.Configure<RepositoryOptions>(options => Configuration.GetSection("Mongosettings").Bind(options));
+            services.Configure<MongoSettings>(options => Configuration.GetSection("Mongosettings").Bind(options));
 
             services.AddControllers();
 
