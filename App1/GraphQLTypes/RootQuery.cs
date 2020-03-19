@@ -1,17 +1,20 @@
 ﻿using GraphQL.Types;
+using IOprojekt.Interfaces;
+using IOprojekt.Models;
 using IOprojekt.Repositories;
+using MongoDB.Driver;
 using System.Linq;
 
 namespace IOprojekt.GraphQLTypes
 {
     public class RootQuery : ObjectGraphType
     {
-        public RootQuery(IUserRepository _userRepository)
+        public RootQuery(IRepositoryFactory factory)
         {
             Field<ListGraphType<UserType>>("users",
             resolve: context =>
             {
-                return _userRepository.GetAll();
+                return factory.Create<User>(new RepositoryOptions("mongodb+srv://client:nhpQ3hVzxMIhrCJv@ioproject-vkivc.mongodb.net/test?retryWrites=true&w=majority", "UsersDb", "Users")).GetAll(FilterDefinition<User>.Empty);
             });
 
             Field<ListGraphType<UserType>>("userById",
@@ -22,7 +25,7 @@ namespace IOprojekt.GraphQLTypes
             resolve: context =>
             {
                 int id = context.GetArgument<int>("id");
-                return _userRepository.GetAll().Where(_ => _.Id == id).ToList();
+                return factory.Create<User>(new RepositoryOptions("mongodb+srv://client:nhpQ3hVzxMIhrCJv@ioproject-vkivc.mongodb.net/test?retryWrites=true&w=majority", "UsersDb", "Users")).GetAll("{ Id:" + id  +"}");
             });
         }
     }
