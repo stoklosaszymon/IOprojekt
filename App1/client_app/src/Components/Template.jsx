@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 import {Paper} from 'material-ui';
-// tutaj dodac X
+
+import HomeTrends from './Home/HomeTrends'
+import HomeFollow from './Home/HomeFollow'
 
 class Template extends Component {
   componentDidMount() {
@@ -12,6 +14,7 @@ class Template extends Component {
       <div className="container main-content">
         <div className="row">
           <div className="col-sm-3">
+            <HomeTrends/>
           </div>
           <div className="col-sm-6">
             <div className="row">
@@ -22,6 +25,7 @@ class Template extends Component {
             </div>
           </div>
           <div className="col-sm-3">
+            <HomeFollow/>
           </div>
         </div>
       </div>

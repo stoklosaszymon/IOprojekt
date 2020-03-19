@@ -4,7 +4,7 @@ import HomeUserProfile from './HomeUserProfile'
 import HomeFollow from './HomeFollow'
 import HomeTrends from './HomeTrends'
 import NewPost from './NewPost'
-
+import ToggleTheme from './ToggleTheme'
 import {Paper, Avatar} from 'material-ui';
 
 
@@ -25,6 +25,7 @@ class Home extends Component {
           </div>
           <div className="col-sm-3">
           <HomeFollow/>
+          <ToggleTheme/>
           </div>
         </div>
       </div>
