@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
 import HomeUserProfile from './HomeUserProfile'
-import HomeFollow from './HomeFollow'
 import HomeTrends from './HomeTrends'
+import HomeFollow from './HomeFollow'
 import NewPost from './NewPost'
+import PostList from './PostList/PostList'
 import ToggleTheme from './ToggleTheme'
+
 import {Paper, Avatar} from 'material-ui';
 
 
@@ -14,25 +16,25 @@ class Home extends Component {
   }
   render() {
     return (
-      <div className="countainer main-content">
+      <div className="container main-content">
         <div className="row">
           <div className="col-sm-3">
-          <HomeTrends/>
-          <HomeUserProfile/>
+            <HomeUserProfile/>
+            <HomeTrends/>
           </div>
           <div className="col-sm-6">
-          <NewPost/>
+            <NewPost/>
+            <PostList/>
+            {/* Posts here */}
           </div>
           <div className="col-sm-3">
-          <HomeFollow/>
-          <ToggleTheme/>
+            <HomeFollow/>
+            <ToggleTheme/>
           </div>
         </div>
       </div>
     );
   }
 }
-
-// Dodac HomeFollow Do sm-3
 
 export default Home;
