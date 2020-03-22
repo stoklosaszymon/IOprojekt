@@ -10,15 +10,12 @@ namespace IOprojekt.GraphQLTypes
 {
     public class RootMutation : ObjectGraphType
     {
-        private readonly IRepository<User> repository;
-        public RootMutation(IRepositoryFactory factory, IOptions<MongoSettings> conf)
+        private readonly IRepository<User> users;
+        public RootMutation(IDbContext context, IOptions<MongoSettings> conf)
         {
-            repository = factory.Create<User>(
-                new RepositoryOptions(
-                        conf.Value.ConnectionString,
-                        conf.Value.DatabaseName,
-                        "Users"
-                    ));
+
+            if ( context != null)
+                users = context.Users;
 
             Field<UserType>("addUser",
                 arguments: new QueryArguments
@@ -28,7 +25,7 @@ namespace IOprojekt.GraphQLTypes
                 resolve: context =>
                 {
                     var user = context.GetArgument<User>("user");
-                    return repository.Add(user);
+                    return users.Add(user);
                 }
              );
 
@@ -42,7 +39,7 @@ namespace IOprojekt.GraphQLTypes
                     var id = context.GetArgument<int>("userId");
                     var builder = Builders<User>.Filter;
                     var filter = builder.Eq(user => user.Id, id);
-                    return repository.Delete(filter);
+                    return users.Delete(filter);
                 }
              );
 
@@ -60,7 +57,7 @@ namespace IOprojekt.GraphQLTypes
                                         .Set("firstName", user.FirstName)
                                         .Set("lastName", user.LastName);
 
-                   return repository.Update(filter, update);
+                   return users.Update(filter, update);
                }
             );
 

@@ -17,6 +17,8 @@ using GraphiQl;
 using IOprojekt.Interfaces;
 using IOprojekt.Factories;
 using IOprojekt.Classes;
+using IOprojekt.Contexts;
+using Microsoft.Extensions.Options;
 
 namespace App1
 {
@@ -25,13 +27,26 @@ namespace App1
         public IConfiguration Configuration { get; private set; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSpaStaticFiles(configuration => {
+            services.AddSpaStaticFiles(configuration =>
+            {
                 configuration.RootPath = "client_app";
             });
 
+            
             services.Configure<MongoSettings>(options => Configuration.GetSection("Mongosettings").Bind(options));
 
             services.AddControllers();
+
+            services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
+            services.AddSingleton<IMongoDatabaseFactory, MongoDatabaseFactory>();
+
+            services.AddSingleton<IDbContext, DbContext>(serviceProvider =>
+            {
+                var options = serviceProvider.GetService<IOptions<MongoSettings>>();
+                var repos = serviceProvider.GetService<IRepositoryFactory>();
+                var dbContext = new DbContext(repos, options.Value.ConnectionString, options.Value.DatabaseName);
+                return dbContext;
+            });
 
             services.AddScoped<IDependencyResolver>(_ => new FuncDependencyResolver(_.GetRequiredService));
             services.AddScoped<ISchema, RootSchema>();
@@ -43,8 +58,7 @@ namespace App1
             services.AddSingleton<InputUserType>();
             services.AddSingleton<IntGraphType>();
 
-            services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
-            services.AddSingleton<IMongoDatabaseFactory, MongoDatabaseFactory>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

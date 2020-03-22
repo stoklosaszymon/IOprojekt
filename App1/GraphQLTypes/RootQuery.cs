@@ -9,12 +9,16 @@ namespace IOprojekt.GraphQLTypes
 {
     public class RootQuery : ObjectGraphType
     {
-        public RootQuery(IRepositoryFactory factory)
+        private readonly IRepository<User> users;
+        public RootQuery(IDbContext context)
         {
+            if ( context != null)
+                users = context.Users;
+
             Field<ListGraphType<UserType>>("users",
             resolve: context =>
             {
-                return factory.Create<User>(new RepositoryOptions("mongodb+srv://client:nhpQ3hVzxMIhrCJv@ioproject-vkivc.mongodb.net/test?retryWrites=true&w=majority", "UsersDb", "Users")).GetAll(FilterDefinition<User>.Empty);
+                return users.GetAll( FilterDefinition<User>.Empty );
             });
 
             Field<ListGraphType<UserType>>("userById",
@@ -25,7 +29,7 @@ namespace IOprojekt.GraphQLTypes
             resolve: context =>
             {
                 int id = context.GetArgument<int>("id");
-                return factory.Create<User>(new RepositoryOptions("mongodb+srv://client:nhpQ3hVzxMIhrCJv@ioproject-vkivc.mongodb.net/test?retryWrites=true&w=majority", "UsersDb", "Users")).GetAll("{ Id:" + id  +"}");
+                return users.GetAll("{ Id:" + id  +"}");
             });
         }
     }
