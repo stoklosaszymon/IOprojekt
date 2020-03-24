@@ -56,7 +56,7 @@ class Header extends Component {
           <Link to="/notifications"><FlatButton icon={<IconNotification  style={{fill:'white'}}/>} label="Notifications" className="appbar-btn"/></Link>
           <Link to="/messages"><FlatButton icon={<IconMail style={{fill:'white'}}/>} label="Messages" className="appbar-btn"/></Link>
           <IconMenu className="pull-right" iconButtonElement={<IconButton className="appbar-btn"><Avatar src={this.state.user.avatar} size={40} /></IconButton>}>
-          <MenuItem primaryText="Profile" leftIcon={<IconPerson/>}/>
+          <Link to="/Profile"></Link><MenuItem primaryText="Profile" leftIcon={<IconPerson/>}/>
           <MenuItem primaryText="List" leftIcon={<IconList/>}/>
           <MenuItem primaryText="Moments"  leftIcon={<IconFlash/>}/>
           <Divider />

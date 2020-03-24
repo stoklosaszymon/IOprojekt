@@ -9,6 +9,7 @@ import './data'
 import Template from './components/Template.jsx';
 import Home from './components/Home/Home.jsx';
 import Header from './components/Header/Header.jsx';
+import Profile from './components/Profile/Profile.jsx';
 
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
@@ -51,6 +52,7 @@ class App extends Component {
                     <Router history={history}>
                         <Switch>
                             <PrivateRoute path="/" component={Home} />
+                            <PrivateRoute path="/Profile" component={Profile} />
                             <Route exact path="/notifications" component={Template} />
                             <Route exact path="/messages" component={Template} />
                         </Switch>
