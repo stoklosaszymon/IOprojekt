@@ -50,7 +50,7 @@ namespace App1
 
             services.AddScoped<IDependencyResolver>(_ => new FuncDependencyResolver(_.GetRequiredService));
             services.AddScoped<ISchema, RootSchema>();
-            services.AddScoped<RootQuery>();
+            services.AddScoped<UserQuery>();
             services.AddScoped<RootMutation>();
 
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();

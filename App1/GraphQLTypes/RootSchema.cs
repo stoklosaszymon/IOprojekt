@@ -7,7 +7,7 @@ namespace IOprojekt.GraphQLTypes
     {
         public RootSchema(IDependencyResolver resolver) : base(resolver)
         {
-            Query = resolver.Resolve<RootQuery>();
+            Query = resolver.Resolve<UserQuery>();
             Mutation = resolver.Resolve<RootMutation>();
         }
     }
