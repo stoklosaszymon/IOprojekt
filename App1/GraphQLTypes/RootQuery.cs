@@ -29,7 +29,8 @@ namespace IOprojekt.GraphQLTypes
             resolve: context =>
             {
                 int id = context.GetArgument<int>("id");
-                return users.GetAll("{ Id:" + id  +"}");
+                var filter = Builders<User>.Filter.Eq(user => user.Id, id);
+                return users.GetAll(filter).Result.FirstOrDefault();
             });
         }
     }
