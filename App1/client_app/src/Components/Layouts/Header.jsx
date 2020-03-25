@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Avatar from "assets/Avatar";
+import Avatar from "../assets/Avatar";
 
 const Header = () => {
   return (

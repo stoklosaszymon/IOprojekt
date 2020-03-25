@@ -1,6 +1,6 @@
 import React from "react";
-import Avatar from "assets/img/profile_normal.png";
-import Media from "assets/img/media.jpg";
+import Avatar from "../../assets/img/profile_normal.png";
+import Media from "../../assets/img/media.jpg";
 
 const HomeStream = () => {
   return (

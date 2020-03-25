@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Avatar from "assets/Avatar";
+import Avatar from "../../assets/Avatar";
 
 const HomeSectionMiddle = () => {
   const [value, setValue] = useState("");
