@@ -1,66 +1,37 @@
 import React, { Component }from "react"
-import NavBar from "./components/NavBar"
 import { withRouter, Router, Route, Switch } from "react-router-dom"
 import history from "./utils/history"
-import PrivateRoute from './components/PrivateRoute'
+
+
+import NavBar from "./Components/NavBar"
+import PrivateRoute from './Components/PrivateRoute'
+
+
+import Header from "Components/Layouts/Header";
+import Home from "Components/Pages/Home";
 
 import './data'
 
-import Template from './components/Template.jsx';
-import Home from './components/Home/Home.jsx';
-import Header from './components/Header/Header.jsx';
-import Profile from './components/Profile/Profile.jsx';
 
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import './App.css';
-import './css/bootstrap-grid.css';
-import './css/animate.css';
-
-
-const darkTheme = getMuiTheme(darkBaseTheme)
-const defautTheme = getMuiTheme(lightBaseTheme)
-
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            theme: defautTheme
-        }
-        window.theme = 0;
-        window.toggleTheme = () => {
-            if (window.theme === 0) {
-                this.setState({ theme: darkTheme })
-                document.body.style.backgroundColor = "darkgray"
-                window.theme = 1;
-            } else {
-                this.setState({ theme: defautTheme })
-                document.body.style.backgroundColor = "white"
-                window.theme = 0;
-            }
-        };
-    }
-    render() {
+function App () {
         return (
-            <MuiThemeProvider muiTheme={this.state.theme}>
-                <div className="content-wrapper">
-                    <Header />
-                    <NavBar />
+                <div className="container">
                     <Router history={history}>
+                        <Header />
+                        <NavBar />
+                        <main>
                         <Switch>
-                            <PrivateRoute path="/" component={Home} />
+                            {/* Home */}
+                            <PrivateRoute path="/" exact component={Home} />
+                            <Route path="/home" component={Home} />
                             <PrivateRoute path="/Profile" component={Profile} />
                             <Route exact path="/notifications" component={Template} />
                             <Route exact path="/messages" component={Template} />
                         </Switch>
+                        </main>
                     </Router>
                 </div>
-            </MuiThemeProvider>
         );
-    }
 }
 
 export default withRouter(App);
