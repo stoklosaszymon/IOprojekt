@@ -21,7 +21,7 @@ namespace IOprojekt.GraphQLTypes
                 return users.GetAll( FilterDefinition<User>.Empty );
             });
 
-            Field<ListGraphType<UserType>>("userById",
+            Field<UserType>("userById",
             arguments: new QueryArguments
             {
                new  QueryArgument<IntGraphType> { Name = "id"}

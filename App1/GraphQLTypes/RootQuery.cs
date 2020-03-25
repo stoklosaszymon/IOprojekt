@@ -11,7 +11,7 @@ namespace IOprojekt.GraphQLTypes
         public RootQuery()
         {
             Name = "Query";
-            Field<UserQuery>("account", resolve: context => new { });
+            Field<UserQuery>("usersQuery", resolve: context => new { });
         }
     }
 }
