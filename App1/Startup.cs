@@ -49,13 +49,16 @@ namespace App1
             });
 
             services.AddScoped<IDependencyResolver>(_ => new FuncDependencyResolver(_.GetRequiredService));
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+
             services.AddScoped<ISchema, RootSchema>();
-            services.AddScoped<UserQuery>();
+            services.AddScoped<RootQuery>();
             services.AddScoped<RootMutation>();
 
-            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<UserType>();
+            services.AddScoped<UserQuery>();
             services.AddSingleton<InputUserType>();
+
             services.AddSingleton<IntGraphType>();
 
 

@@ -15,7 +15,7 @@ namespace IOprojekt.GraphQLTypes
             if ( context != null)
                 users = context.Users;
 
-            Field<ListGraphType<UserType>>("users",
+            Field<ListGraphType<UserType>>("getAll",
             resolve: context =>
             {
                 return users.GetAll( FilterDefinition<User>.Empty );
