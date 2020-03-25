@@ -1,0 +1,4 @@
+.messages .section-middle-container {
+  padding: 10px;
+  border-bottom: solid var(--primary-border-color) 1px;
+}

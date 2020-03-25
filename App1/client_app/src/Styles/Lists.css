@@ -1,0 +1,7 @@
+.lists-container .section-header {
+  padding: 0 4px;
+  border: none;
+}
+.lists-container .section-middle-container {
+  border-bottom: solid var(--primary-border-color) 1px;
+}

@@ -1,0 +1,72 @@
+.profile .section-header .home-refresh {
+  order: 1;
+  padding: 5px 0;
+  /* border: solid red 1px; */
+}
+.profile .section-header .a-container {
+  order: 0;
+  /* border: solid red 1px; */
+}
+.profile .section-header .a-container .a {
+  margin: 5px 12px;
+}
+.profile .section-middle-container {
+  color: var(--grey-color);
+  border-bottom: solid var(--primary-border-color) 1px;
+}
+
+/*----- Profile UI -----*/
+.profile .userData {
+  padding: 10px 15px 0 15px;
+  margin-bottom: 15px;
+}
+.profile .userAvatar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile .avatar-container {
+  margin-top: -18%;
+}
+.profile .avatar {
+  border: solid var(--dark-theme-bg) 4px;
+}
+.profile .avatar img {
+  width: 132px;
+  height: 132px;
+}
+.profile .edit-profile-btn .a {
+  font-weight: bold;
+  color: var(--primary-color);
+  border: solid var(--primary-color) 1px;
+}
+.profile .user-name-container {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.profile .join-date-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.profile .calender-logo {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 5px;
+}
+.profile .calender-logo svg {
+  fill: var(--grey-color);
+  display: inline-block;
+}
+.profile .follow-count-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.profile .follow-count-container .count {
+  color: var(--dark-theme-color);
+}
+.profile .following {
+  margin-right: 15px;
+}
