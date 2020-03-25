@@ -1,5 +1,5 @@
 import React from "react";
-import Default from "../subComponents/Default";
+import Default from "../../subComponents/Default";
 
 const BookmarksStream = () => {
   let defaultHeading = "You haven’t added any Tweets to your Bookmarks yet";
