@@ -59,6 +59,9 @@ namespace App1
             services.AddScoped<UserQuery>();
             services.AddSingleton<InputUserType>();
 
+            services.AddSingleton<PostType>();
+            services.AddScoped<PostQuery>();
+
             services.AddSingleton<IntGraphType>();
 
 
