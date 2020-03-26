@@ -18,10 +18,12 @@ namespace IOprojekt.Contexts
             if (string.IsNullOrWhiteSpace(dbName)) 
                 throw new ArgumentNullException("dbName");
             
-            this.Users = repoFactory.Create<User>(new RepositoryOptions(connectionString, dbName, "Users")); 
-            
+            this.Users = repoFactory.Create<User>(new RepositoryOptions(connectionString, dbName, "Users"));
+            this.Posts = repoFactory.Create<Post>(new RepositoryOptions(connectionString, dbName, "Posts"));
+
         }
         public IRepository<User> Users { get; private set; }
+        public IRepository<Post> Posts { get; private set; }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using GraphQL.Types;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,10 @@ namespace IOprojekt.Models
 {
     public class User
     {
-        [BsonId]
         [BsonElement("id")]
-        [BsonRepresentation(BsonType.Int64)]
         public int Id { get; set; }
 
         [BsonElement("firstName")]
-        [BsonRepresentation(BsonType.String)]
         public string FirstName { get; set; }
 
         [BsonElement("lastName")]

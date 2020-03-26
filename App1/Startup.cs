@@ -37,25 +37,35 @@ namespace App1
 
             services.AddControllers();
 
-            services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
             services.AddSingleton<IMongoDatabaseFactory, MongoDatabaseFactory>();
+            services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
 
-            services.AddSingleton<IDbContext, DbContext>(serviceProvider =>
+            services.AddScoped<IDbContext, DbContext>(serviceProvider =>
             {
                 var options = serviceProvider.GetService<IOptions<MongoSettings>>();
-                var repos = serviceProvider.GetService<IRepositoryFactory>();
+                var repos = serviceProvider.GetRequiredService<IRepositoryFactory>();
                 var dbContext = new DbContext(repos, options.Value.ConnectionString, options.Value.DatabaseName);
                 return dbContext;
             });
 
             services.AddScoped<IDependencyResolver>(_ => new FuncDependencyResolver(_.GetRequiredService));
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+
             services.AddScoped<ISchema, RootSchema>();
             services.AddScoped<RootQuery>();
             services.AddScoped<RootMutation>();
 
-            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<UserType>();
+            services.AddScoped<UserQuery>();
             services.AddSingleton<InputUserType>();
+            services.AddScoped<UserMutation>();
+
+
+            services.AddSingleton<PostType>();
+            services.AddScoped<PostQuery>();
+            services.AddSingleton<InputPostType>();
+            services.AddScoped<PostMutation>();
+
             services.AddSingleton<IntGraphType>();
 
 
