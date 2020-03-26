@@ -1,5 +1,6 @@
 ﻿using GraphQL.Types;
 using IOprojekt.Models;
+using MongoDB.Bson;
 using System;
 
 namespace IOprojekt.GraphQLTypes

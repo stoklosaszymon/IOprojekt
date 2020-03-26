@@ -9,7 +9,7 @@ namespace IOprojekt.Interfaces
     public interface IDbContext
     {
         IRepository<User> Users { get; }
-        IRepository<User> Posts { get; }
+        IRepository<Post> Posts { get; }
 
     }
 }

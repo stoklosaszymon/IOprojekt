@@ -37,13 +37,13 @@ namespace App1
 
             services.AddControllers();
 
-            services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
             services.AddSingleton<IMongoDatabaseFactory, MongoDatabaseFactory>();
+            services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
 
-            services.AddSingleton<IDbContext, DbContext>(serviceProvider =>
+            services.AddScoped<IDbContext, DbContext>(serviceProvider =>
             {
                 var options = serviceProvider.GetService<IOptions<MongoSettings>>();
-                var repos = serviceProvider.GetService<IRepositoryFactory>();
+                var repos = serviceProvider.GetRequiredService<IRepositoryFactory>();
                 var dbContext = new DbContext(repos, options.Value.ConnectionString, options.Value.DatabaseName);
                 return dbContext;
             });

@@ -2,6 +2,7 @@
 using IOprojekt.Interfaces;
 using IOprojekt.Models;
 using IOprojekt.Repositories;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq;
 
@@ -14,6 +15,7 @@ namespace IOprojekt.GraphQLTypes
         {
             if ( context != null)
                 users = context.Users;
+            Name = "UsersQuery";
 
             Field<ListGraphType<UserType>>("getAll",
             resolve: context =>
@@ -28,7 +30,7 @@ namespace IOprojekt.GraphQLTypes
             },
             resolve: context =>
             {
-                int id = context.GetArgument<int>("id");
+                var id = context.GetArgument<int>("id");
                 var filter = Builders<User>.Filter.Eq(user => user.Id, id);
                 return users.GetAll(filter).Result.FirstOrDefault();
             });
