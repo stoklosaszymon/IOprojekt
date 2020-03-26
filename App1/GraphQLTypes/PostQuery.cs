@@ -17,21 +17,33 @@ namespace IOprojekt.GraphQLTypes
                 posts = context.Posts;
             Name = "PostsQuery";
 
-            Field<ListGraphType<UserType>>("getAll",
+            Field<ListGraphType<PostType>>("getAll",
             resolve: context =>
             {
                 return posts.GetAll(FilterDefinition<Post>.Empty);
             });
 
-            Field<UserType>("userById",
+            Field<UserType>("GetByUserId",
             arguments: new QueryArguments
             {
-               new  QueryArgument<IntGraphType> { Name = "postId"}
+               new  QueryArgument<IntGraphType> { Name = "userId"}
             },
             resolve: context =>
             {
-                var id = context.GetArgument<int>("id");
-                var filter = Builders<Post>.Filter.Eq(post => post.PostId, id);
+                var id = context.GetArgument<int>("userId");
+                var filter = Builders<Post>.Filter.Eq(post => post.UserId, id);
+                return posts.GetAll(filter).Result.FirstOrDefault();
+            });
+
+            Field<UserType>("GetById",
+            arguments: new QueryArguments
+            {
+                new  QueryArgument<IntGraphType> { Name = "postId"}
+            },
+            resolve: context =>
+            {
+                var id = context.GetArgument<int>("postId");
+                var filter = Builders<Post>.Filter.Eq(post => post.UserId, id);
                 return posts.GetAll(filter).Result.FirstOrDefault();
             });
         }
