@@ -12,6 +12,8 @@ namespace IOprojekt.GraphQLTypes
         {
             Name = "Query";
             Field<UserQuery>("usersQuery", resolve: context => new { });
+            Field<PostQuery>("postsQuery", resolve: context => new { });
+
         }
     }
 }
