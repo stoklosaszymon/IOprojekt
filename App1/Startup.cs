@@ -58,6 +58,8 @@ namespace App1
             services.AddSingleton<UserType>();
             services.AddScoped<UserQuery>();
             services.AddSingleton<InputUserType>();
+            services.AddScoped<UserMutation>();
+
 
             services.AddSingleton<PostType>();
             services.AddScoped<PostQuery>();
