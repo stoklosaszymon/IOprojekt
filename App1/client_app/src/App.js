@@ -1,64 +1,73 @@
 import React, { Component }from "react"
-import NavBar from "./components/NavBar"
 import { withRouter, Router, Route, Switch } from "react-router-dom"
 import history from "./utils/history"
-import PrivateRoute from './components/PrivateRoute'
+
+
+import NavBar from "./Components/NavBar"
+import PrivateRoute from './Components/PrivateRoute'
+
+
+import Header from "./Components/Layouts/Header";
+import Home from "./Components/Pages/Home";
+import Explore from "./Components/Pages/Explore";
+import Notifications from "./Components/Pages/Notifications";
+import Messages from "./Components/Pages/Messages";
+import Bookmarks from "./Components/Pages/Bookmarks";
+import Lists from "./Components/Pages/Lists";
+import Profile from "./Components/Pages/Profile";
+import Toast from "./Components/subComponents/Toast";
+import TrendsSettingBody from "./Components/subComponents/TrendsSetting";
+import Compose from "./Components/subComponents/messagesComponents/Compose";
+import CreateLists from "./Components/subComponents/listsComponents/CreateLists";
+import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
+import Error404 from "./Components/Pages/Error404";
 
 import './data'
 
-import Template from './components/Template.jsx';
-import Home from './components/Home/Home.jsx';
-import Header from './components/Header/Header.jsx';
 
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import './App.css';
-import './css/bootstrap-grid.css';
-import './css/animate.css';
-
-
-const darkTheme = getMuiTheme(darkBaseTheme)
-const defautTheme = getMuiTheme(lightBaseTheme)
-
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            theme: defautTheme
-        }
-        window.theme = 0;
-        window.toggleTheme = () => {
-            if (window.theme === 0) {
-                this.setState({ theme: darkTheme })
-                document.body.style.backgroundColor = "darkgray"
-                window.theme = 1;
-            } else {
-                this.setState({ theme: defautTheme })
-                document.body.style.backgroundColor = "white"
-                window.theme = 0;
-            }
-        };
-    }
-    render() {
+function App () {
         return (
-            <MuiThemeProvider muiTheme={this.state.theme}>
-                <div className="content-wrapper">
-                    <Header />
-                    <NavBar />
+                <div className="container">
                     <Router history={history}>
+                        <Header />
+                        <NavBar />
+                        <main>
                         <Switch>
-                            <PrivateRoute path="/" component={Home} />
-                            <Route exact path="/notifications" component={Template} />
-                            <Route exact path="/messages" component={Template} />
+                            {/* Home */}
+                            <PrivateRoute path="/" exact component={Home} />
+                            <Route path="/home" component={Home} />
+                            {/* Explore */}
+                            <Route path="/explore" component={Explore} />]
+                            {/* Notification */}
+                            <Route path="/notifications" component={Notifications} />
+                            {/* Messages */}
+                            <Route path="/messages" exact component={Messages} />
+                            <Route path="/messages/compose" component={() => (
+                            <Toast header="New message" btnText="Next" body={<Compose />} />
+                            )} />
+                            {/* Bookmarks */}
+                            <Route path="/i/bookmarks" component={Bookmarks} />
+                            {/* Lists */}
+                            <Route path="/i/lists" component={Lists} />
+                            <Route path="/lists/create" component={() => (
+                            <Toast header="Create new List" btnText="Next" body={<CreateLists />}
+                            />)} />
+                            {/* Profile */}
+                            <Route path="/userName" component={Profile} />
+                            <Route path="/settings/profile" component={() => (
+                            <Toast header="Edit Profile" btnText="Save" body={<ProfileSetting />}
+                            /> )} />
+                            {/* Trends */}
+                            <Route path="/settings/trends" component={() => (
+                            <Toast header="Trends" body={<TrendsSettingBody />} />
+                            )} />
+                            {/* Error 404 */}
+                            <Route component={Error404} />
                         </Switch>
+                        </main>
                     </Router>
                 </div>
-            </MuiThemeProvider>
         );
-    }
 }
 
 export default withRouter(App);
