@@ -63,6 +63,8 @@ namespace App1
 
             services.AddSingleton<PostType>();
             services.AddScoped<PostQuery>();
+            services.AddSingleton<InputPostType>();
+            services.AddScoped<PostMutation>();
 
             services.AddSingleton<IntGraphType>();
 

@@ -11,12 +11,11 @@ namespace IOprojekt.GraphQLTypes
 {
     public class RootMutation : ObjectGraphType
     {
-        private readonly IRepository<User> users;
         public RootMutation(IDbContext context)
         {
 
             Field<UserMutation>("users", resolve: context => new { });
-           // Field<PostQuery>("postsQuery", resolve: context => new { });
+            Field<PostMutation>("posts", resolve: context => new { });
 
         }
     }
