@@ -49,11 +49,11 @@ namespace IOprojekt.GraphQLTypes
             Field<PostType>("updatePost",
                arguments: new QueryArguments
                {
-                     new QueryArgument<InputPostType>() { Name = "Post" }
+                     new QueryArgument<InputPostType>() { Name = "post" }
                },
                resolve: context =>
                {
-                   var post = context.GetArgument<Post>("Post");
+                   var post = context.GetArgument<Post>("post");
                    var builder = Builders<Post>.Filter;
                    var filter = builder.Eq(p => p.PostId, post.PostId);
                    var update = Builders<Post>.Update
