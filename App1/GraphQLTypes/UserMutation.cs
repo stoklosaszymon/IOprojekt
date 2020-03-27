@@ -11,12 +11,12 @@ namespace IOprojekt.GraphQLTypes
 {
     public class UserMutation : ObjectGraphType
     {
-        private readonly IRepository<User> users;
+        private readonly IDbContext _context;
         public UserMutation(IDbContext context)
         {
 
             if (context != null)
-                users = context.Users;
+                _context = context;
 
             Name = "UserMutation";
 
@@ -28,7 +28,7 @@ namespace IOprojekt.GraphQLTypes
                 resolve: context =>
                 {
                     var user = context.GetArgument<User>("user");
-                    return users.Add(user);
+                    return _context.Users.Add(user);
                 }
              );
 
@@ -42,7 +42,7 @@ namespace IOprojekt.GraphQLTypes
                     var id = context.GetArgument<int>("userId");
                     var builder = Builders<User>.Filter;
                     var filter = builder.Eq(user => user.Id, id);
-                    return users.Delete(filter);
+                    return _context.Users.Delete(filter);
                 }
              );
 
@@ -60,7 +60,7 @@ namespace IOprojekt.GraphQLTypes
                                         .Set("firstName", user.FirstName)
                                         .Set("lastName", user.LastName);
 
-                   return users.Update(filter, update);
+                   return _context.Users.Update(filter, update);
                }
             );
 

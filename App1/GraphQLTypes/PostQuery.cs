@@ -10,17 +10,17 @@ namespace IOprojekt.GraphQLTypes
 {
     public class PostQuery : ObjectGraphType
     {
-        private readonly IRepository<Post> posts;
+        private readonly IDbContext _context;
         public PostQuery(IDbContext context)
         {
             if (context != null)
-                posts = context.Posts;
+                _context = context;
             Name = "PostsQuery";
 
             Field<ListGraphType<PostType>>("getAll",
             resolve: context =>
             {
-                return posts.GetAll(FilterDefinition<Post>.Empty);
+                return _context.Posts.GetAll(FilterDefinition<Post>.Empty);
             });
 
             Field<UserType>("GetByUserId",
@@ -32,7 +32,7 @@ namespace IOprojekt.GraphQLTypes
             {
                 var id = context.GetArgument<int>("userId");
                 var filter = Builders<Post>.Filter.Eq(post => post.UserId, id);
-                return posts.GetAll(filter).Result.FirstOrDefault();
+                return _context.Posts.GetAll(filter).Result.FirstOrDefault();
             });
 
             Field<UserType>("GetById",
@@ -44,7 +44,7 @@ namespace IOprojekt.GraphQLTypes
             {
                 var id = context.GetArgument<int>("postId");
                 var filter = Builders<Post>.Filter.Eq(post => post.UserId, id);
-                return posts.GetAll(filter).Result.FirstOrDefault();
+                return _context.Posts.GetAll(filter).Result.FirstOrDefault();
             });
         }
     }

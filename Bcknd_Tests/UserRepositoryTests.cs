@@ -13,9 +13,27 @@ using Xunit;
 using System.Linq.Expressions;
 using IOprojekt.GraphQLTypes;
 using System.Threading.Tasks;
+using System.Threading;
+using Microsoft.Extensions.DependencyInjection;
+using GraphQL;
+using GraphQL.Types;
+using IOprojekt.Controllers;
 
 namespace Bcknd_Tests
 {
+    public class UserService {
+
+        private readonly IRepository<User> _context;
+        public UserService(IDbContext context)
+        {
+            _context = context.Users;
+        }
+
+        public void Add( User user)
+        {
+            _context.Add(user);
+        }
+    }
     public class UserRepositoryTests
     {
 
@@ -28,14 +46,15 @@ namespace Bcknd_Tests
                 FirstName = "lorem",
                 LastName = "ipsum"
             };
+
             var mockRepo = new Mock<IRepository<User>>();
             var mockDbContext = new Mock<IDbContext>();
             mockDbContext.Setup(db => db.Users).Returns(mockRepo.Object);
 
-            var mockMongoCollection = new Mock<IMongoCollection<User>>();
+            var userHandler = new UserService(mockDbContext.Object);
 
+            userHandler.Add(command);
 
-            var sut = new Repository<User>(mockMongoCollection.Object).Add(command);
             mockRepo.Verify(m => m.Add(It.IsAny<User>()), Times.Once());
         }
     }

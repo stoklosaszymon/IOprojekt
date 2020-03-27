@@ -10,17 +10,17 @@ namespace IOprojekt.GraphQLTypes
 {
     public class UserQuery : ObjectGraphType
     {
-        private readonly IRepository<User> users;
+        private readonly IDbContext _context;
         public UserQuery(IDbContext context)
         {
             if ( context != null)
-                users = context.Users;
+                _context = context;
             Name = "UsersQuery";
 
             Field<ListGraphType<UserType>>("getAll",
             resolve: context =>
             {
-                return users.GetAll( FilterDefinition<User>.Empty );
+                return _context.Users.GetAll( FilterDefinition<User>.Empty );
             });
 
             Field<UserType>("userById",
@@ -32,7 +32,7 @@ namespace IOprojekt.GraphQLTypes
             {
                 var id = context.GetArgument<int>("id");
                 var filter = Builders<User>.Filter.Eq(user => user.Id, id);
-                return users.GetAll(filter).Result.FirstOrDefault();
+                return _context.Users.GetAll(filter).Result.FirstOrDefault();
             });
         }
     }

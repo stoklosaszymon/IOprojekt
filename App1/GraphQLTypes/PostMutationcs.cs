@@ -11,12 +11,12 @@ namespace IOprojekt.GraphQLTypes
 {
     public class PostMutation : ObjectGraphType
     {
-        private readonly IRepository<Post> posts;
+        private readonly IDbContext _context;
         public PostMutation(IDbContext context)
         {
 
             if (context != null)
-                posts = context.Posts;
+                _context = context;
 
             Name = "PostMutation";
 
@@ -28,7 +28,7 @@ namespace IOprojekt.GraphQLTypes
                 resolve: context =>
                 {
                     var post = context.GetArgument<Post>("post");
-                    return posts.Add(post);
+                    return _context.Posts.Add(post);
                 }
              );
 
@@ -42,7 +42,7 @@ namespace IOprojekt.GraphQLTypes
                     var id = context.GetArgument<int>("postId");
                     var builder = Builders<Post>.Filter;
                     var filter = builder.Eq(post => post.PostId, id);
-                    return posts.Delete(filter);
+                    return _context.Posts.Delete(filter);
                 }
              );
 
@@ -59,7 +59,7 @@ namespace IOprojekt.GraphQLTypes
                    var update = Builders<Post>.Update
                                         .Set("body", post.Body);
 
-                   return posts.Update(filter, update);
+                   return _context.Posts.Update(filter, update);
                }
             );
 
