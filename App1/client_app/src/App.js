@@ -3,24 +3,24 @@ import { withRouter, Router, Route, Switch } from "react-router-dom"
 import history from "./utils/history"
 
 
-import NavBar from "./Components/NavBar"
-import PrivateRoute from './Components/PrivateRoute'
+import NavBar from "./components/NavBar"
+import PrivateRoute from './components/PrivateRoute'
 
 
-import Header from "./Components/Layouts/Header";
-import Home from "./Components/Pages/Home";
-import Explore from "./Components/Pages/Explore";
-import Notifications from "./Components/Pages/Notifications";
-import Messages from "./Components/Pages/Messages";
-import Bookmarks from "./Components/Pages/Bookmarks";
-import Lists from "./Components/Pages/Lists";
-import Profile from "./Components/Pages/Profile";
-import Toast from "./Components/subComponents/Toast";
-import TrendsSettingBody from "./Components/subComponents/TrendsSetting";
-import Compose from "./Components/subComponents/messagesComponents/Compose";
-import CreateLists from "./Components/subComponents/listsComponents/CreateLists";
-import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
-import Error404 from "./Components/Pages/Error404";
+import Header from "./components/Layouts/Header";
+import Home from "./components/Pages/Home";
+import Explore from "./components/Pages/Explore";
+import Notifications from "./components/Pages/Notifications";
+import Messages from "./components/Pages/Messages";
+import Bookmarks from "./components/Pages/Bookmarks";
+import Lists from "./components/Pages/Lists";
+import Profile from "./components/Pages/Profile";
+import Toast from "./components/subComponents/Toast";
+import TrendsSettingBody from "./components/subComponents/TrendsSetting";
+import Compose from "./components/subComponents/messagesComponents/Compose";
+import CreateLists from "./components/subComponents/listsComponents/CreateLists";
+import ProfileSetting from "./components/subComponents/profileComponents/ProfileSetting";
+import Error404 from "./components/Pages/Error404";
 
 import './data'
 

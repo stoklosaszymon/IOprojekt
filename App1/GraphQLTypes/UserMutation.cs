@@ -18,7 +18,7 @@ namespace IOprojekt.GraphQLTypes
             if (context != null)
                 _context = context;
 
-            Name = "UserMutation";
+           // Name = "UserMutation";
 
             Field<UserType>("addUser",
                 arguments: new QueryArguments

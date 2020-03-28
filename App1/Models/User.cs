@@ -11,6 +11,7 @@ namespace IOprojekt.Models
 {
     public class User
     {
+        [BsonId]
         [BsonElement("id")]
         public int Id { get; set; }
 

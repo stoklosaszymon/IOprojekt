@@ -11,7 +11,7 @@ namespace IOprojekt.GraphQLTypes
 {
     public class RootMutation : ObjectGraphType
     {
-        public RootMutation(IDbContext context)
+        public RootMutation()
         {
 
             Field<UserMutation>("users", resolve: context => new { });

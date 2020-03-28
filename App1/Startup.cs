@@ -40,7 +40,7 @@ namespace App1
             services.AddSingleton<IMongoDatabaseFactory, MongoDatabaseFactory>();
             services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
 
-            services.AddScoped<IDbContext, DbContext>(serviceProvider =>
+            services.AddSingleton<IDbContext, DbContext>(serviceProvider =>
             {
                 var options = serviceProvider.GetService<IOptions<MongoSettings>>();
                 var repos = serviceProvider.GetRequiredService<IRepositoryFactory>();

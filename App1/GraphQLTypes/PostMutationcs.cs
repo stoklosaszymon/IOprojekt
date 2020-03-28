@@ -6,6 +6,7 @@ using IOprojekt.Repositories;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
 
 namespace IOprojekt.GraphQLTypes
 {

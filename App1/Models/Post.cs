@@ -11,17 +11,16 @@ namespace IOprojekt.Models
 {
     public class Post
     {
+        [BsonId]
         [BsonElement("postId")]
         public int PostId { get; set; }
 
-        [BsonId]
         [BsonElement("userId")]
         public int UserId { get; set; }
 
         [BsonElement("body")]
         [BsonRepresentation(BsonType.String)]
         public string Body { get; set; }
-
 
         [BsonElement("createdAt")]
         [BsonRepresentation(BsonType.DateTime)]
