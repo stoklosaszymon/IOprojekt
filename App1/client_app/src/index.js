@@ -8,7 +8,8 @@ import config from './auth_config.json'
 import history from "./utils/history";
 import "./index.css";
 import "./App.css";
-
+import { Provider } from 'react-redux';
+import { store } from './store'
 
 const onRedirectCallback = appState => {
     history.push(
@@ -19,16 +20,18 @@ const onRedirectCallback = appState => {
 };
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Auth0Provider
-            domain={config.domain}
-            client_id={config.clientId}
-            redirect_uri={window.location.origin}
-            onRedirectCallback={onRedirectCallback}
-        >
-            <App />
-        </Auth0Provider>,
-    </BrowserRouter>,
+    <Provider store={store}>
+        <BrowserRouter>
+            <Auth0Provider
+                domain={config.domain}
+                client_id={config.clientId}
+                redirect_uri={window.location.origin}
+                onRedirectCallback={onRedirectCallback}
+            >
+                <App />
+            </Auth0Provider>,
+        </BrowserRouter>
+    </Provider>,
     document.getElementById("root")
 );
 
