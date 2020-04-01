@@ -9,38 +9,21 @@ export default class Chat extends Component {
     render() {
         return (
             <div>
-                <h1>Chat page</h1>
-                <div className="container">
-                    <div className="row">&nbsp;</div>
-                    <div class="row">
-                        <div class="col-2">User</div>
-                        <div class="col-4"><input type="text" id="userInput" /></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">Message</div>
-                        <div class="col-4"><input type="text" id="messageInput" /></div>
-                    </div>
-                    <div class="row">&nbsp;</div>
-                    <div class="row">
-                        <div class="col-6">
-                            <input type="button" id="sendButton" value="Send Message" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <hr />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <ul id="messagesList"></ul>
-                    </div>
-                </div>
-                
-            </div>
+                <br />
+                <input
+                    type="text"
+                    value={this.state.message}
+                    onChange={e => this.setState({ message: e.target.value })}
+                />
 
-            
+                <button onClick={this.sendMessage}>Send</button>
+
+                <div>
+                    {this.state.messages.map((message, index) => (
+                        <span style={{ display: 'block' }} key={index}> {message} </span>
+                    ))}
+                </div>
+            </div>   
         );
     }
 }
