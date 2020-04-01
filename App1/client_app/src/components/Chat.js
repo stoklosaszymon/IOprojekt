@@ -18,7 +18,7 @@ export default class Chat extends Component {
         const nick = window.prompt('Your name:', 'John');
 
         const hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl("/chatHub")
+            .withUrl("/chathub")
             .configureLogging(signalR.LogLevel.Information)
             .build();
 
@@ -28,9 +28,16 @@ export default class Chat extends Component {
                 .then(() => console.log('Connection started!'))
                 .catch(err => console.log('Error while establishing connection :('));
 
+
+            this.state.hubConnection.on('SendMessage', (nick, receivedMessage) => {
+                const text = `${nick}: ${receivedMessage}`;
+                const messages = this.state.messages.concat([text]);
+                this.setState({ messages });
+            });
         });
      //   this.setState({ hubConnection, nick });
     }
+    
 
     render() {
         return (
