@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import * as signalR from "@microsoft/signalr";
 
 export default class Chat extends Component {
     static displayName = Chat.name;
@@ -11,6 +12,16 @@ export default class Chat extends Component {
             messages: [],
             hubConnection: null,
         };  
+    }
+
+    componentDidMount = () => {
+        const nick = window.prompt('Your name:', 'John');
+
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+        this.setState({ hubConnection, nick });
     }
 
     render() {
