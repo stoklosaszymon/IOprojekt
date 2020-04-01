@@ -21,7 +21,15 @@ export default class Chat extends Component {
             .withUrl("/chatHub")
             .configureLogging(signalR.LogLevel.Information)
             .build();
-        this.setState({ hubConnection, nick });
+
+        this.setState({ hubConnection, nick }, () => {
+            this.state.hubConnection
+                .start()
+                .then(() => console.log('Connection started!'))
+                .catch(err => console.log('Error while establishing connection :('));
+
+        });
+     //   this.setState({ hubConnection, nick });
     }
 
     render() {
