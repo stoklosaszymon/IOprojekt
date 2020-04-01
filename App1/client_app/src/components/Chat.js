@@ -1,9 +1,16 @@
 ﻿import React, { Component } from 'react';
 
 export default class Chat extends Component {
+    static displayName = Chat.name;
     constructor(props) {
         super(props);
 
+        this.state = {
+            nick: '',
+            message: '',
+            messages: [],
+            hubConnection: null,
+        };  
     }
 
     render() {
