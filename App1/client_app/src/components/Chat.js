@@ -18,7 +18,7 @@ export default class Chat extends Component {
         const nick = window.prompt('Your name:', 'John');
 
         const hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl("/chathub")
+            .withUrl("/chatHub")
             .configureLogging(signalR.LogLevel.Information)
             .build();
 
@@ -35,9 +35,16 @@ export default class Chat extends Component {
                 this.setState({ messages });
             });
         });
-     //   this.setState({ hubConnection, nick });
     }
-    
+
+    sendMessage = () => {
+        this.state.hubConnection
+            .invoke('SendMessage', this.state.nick, this.state.message)
+            .catch(err => console.error(err));
+
+        this.setState({ message: '' });
+    };
+
 
     render() {
         return (
