@@ -101,6 +101,8 @@ namespace App1
             app.UseRouting();
             app.UseSpaStaticFiles();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
