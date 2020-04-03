@@ -9,5 +9,11 @@ namespace IOprojekt.Hubs
         {
             await Clients.All.SendAsync("SendMessage", user, message);
         }
+
+        public async Task JoinRoom (string name, string roomName)
+        {
+            await Groups.AddToGroupAsync(name, roomName);
+        }
+
     }
 }
