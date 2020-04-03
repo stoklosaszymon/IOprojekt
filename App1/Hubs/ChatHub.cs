@@ -15,5 +15,9 @@ namespace IOprojekt.Hubs
             await Groups.AddToGroupAsync(name, roomName);
         }
 
+        public async Task SendMessageGroup (string name, string message, string roomName)
+        {
+            await Clients.Group(roomName).SendAsync("sendMessage", name, message);
+        }
     }
 }
