@@ -7,6 +7,7 @@ using GraphQL.Types;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using IOprojekt.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IOprojekt.Controllers
 {
@@ -23,6 +24,7 @@ namespace IOprojekt.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] GraphQLQueryDto query)
         {
             var result = await _executer.ExecuteAsync(_ =>
