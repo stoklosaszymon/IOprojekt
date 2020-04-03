@@ -19,6 +19,7 @@ using IOprojekt.Factories;
 using IOprojekt.Classes;
 using IOprojekt.Contexts;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace App1
 {
@@ -32,7 +33,16 @@ namespace App1
                 configuration.RootPath = "client_app";
             });
 
-            
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://dev-qvcdnn51.eu.auth0.com/";
+                options.Audience = "api.ioproject";
+            });
+
             services.Configure<MongoSettings>(options => Configuration.GetSection("Mongosettings").Bind(options));
 
             services.AddControllers();
