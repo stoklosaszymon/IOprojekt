@@ -1,8 +1,6 @@
 ﻿using GraphQL.Types;
 using IOprojekt.Interfaces;
 using IOprojekt.Models;
-using IOprojekt.Repositories;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq;
 

@@ -1,6 +1,5 @@
 ﻿using GraphQL.Types;
 using IOprojekt.Models;
-using System;
 
 namespace IOprojekt.GraphQLTypes
 {

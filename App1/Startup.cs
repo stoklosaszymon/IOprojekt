@@ -1,23 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-using Microsoft.Extensions.Configuration;
-using IOprojekt.Repositories;
-using IOprojekt.GraphQLTypes;
+using GraphiQl;
 using GraphQL;
 using GraphQL.Types;
-using GraphiQl;
-using IOprojekt.Interfaces;
-using IOprojekt.Factories;
 using IOprojekt.Classes;
 using IOprojekt.Contexts;
+using IOprojekt.Factories;
+using IOprojekt.GraphQLTypes;
+using IOprojekt.Interfaces;
+using IOprojekt.Repositories;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
 namespace App1
@@ -32,7 +27,7 @@ namespace App1
                 configuration.RootPath = "client_app";
             });
 
-            
+
             services.Configure<MongoSettings>(options => Configuration.GetSection("Mongosettings").Bind(options));
 
             services.AddControllers();

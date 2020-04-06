@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace Bcknd_Tests
@@ -9,7 +8,7 @@ namespace Bcknd_Tests
         [Fact]
         public void Test1()
         {
-           
+
         }
     }
 }

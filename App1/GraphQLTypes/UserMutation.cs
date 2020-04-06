@@ -1,10 +1,6 @@
 ﻿using GraphQL.Types;
-using IOprojekt.Classes;
 using IOprojekt.Interfaces;
 using IOprojekt.Models;
-using IOprojekt.Repositories;
-using Microsoft.Extensions.Options;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace IOprojekt.GraphQLTypes
@@ -18,7 +14,7 @@ namespace IOprojekt.GraphQLTypes
             if (context != null)
                 _context = context;
 
-           // Name = "UserMutation";
+            // Name = "UserMutation";
 
             Field<UserType>("addUser",
                 arguments: new QueryArguments
