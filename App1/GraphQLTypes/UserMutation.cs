@@ -2,6 +2,7 @@
 using IOprojekt.Interfaces;
 using IOprojekt.Models;
 using MongoDB.Driver;
+using System;
 
 namespace IOprojekt.GraphQLTypes
 {
@@ -24,6 +25,7 @@ namespace IOprojekt.GraphQLTypes
                 resolve: context =>
                 {
                     var user = context.GetArgument<User>("user");
+                    user.CreatedAt = DateTime.Now();
                     return _context.Users.Add(user);
                 }
              );

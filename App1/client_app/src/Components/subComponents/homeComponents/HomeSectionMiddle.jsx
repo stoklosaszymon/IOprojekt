@@ -37,19 +37,7 @@ const HomeSectionMiddle = () => {
               </div>
             </div>
             <div className="tweet-input">
-              <div className="input">
-                <textarea
-                  id="text"
-                  maxLength="140"
-                  name="tweet-text"
-                  rows="1"
-                  placeholder="What's happening?"
-                  autoComplete="off"
-                  spellCheck="false"
-                  onChange={updateValue}
-                  autoFocus
-                ></textarea>
-              </div>
+                    <PostInput updateValue={updateValue} />
               <div className="tweet-input-utility">
                 <div className="utility-left">
                             <AddMultimedia/>
@@ -80,6 +68,21 @@ const AddMultimedia = () =>
                 </g>
             </svg>
         </a>
+    </div>
+
+const PostInput = ({ updateValue }) => 
+    <div className="input">
+        <textarea
+            id="text"
+            maxLength="140"
+            name="tweet-text"
+            rows="1"
+            placeholder="What's happening?"
+            autoComplete="off"
+            spellCheck="false"
+            onChange={updateValue}
+            autoFocus
+        ></textarea>
     </div>
 
 export default HomeSectionMiddle;
