@@ -1,53 +1,71 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import Avatar from "../../assets/Avatar";
 
 const HomeSectionMiddle = () => {
-  const [value, setValue] = useState("");
+    const [value, setValue] = useState("");
 
-  const updateValue = e => {
-    setValue(e.target.value);
-    e.target.style.height = "auto";
-    e.target.style.height = e.target.scrollHeight + "px";
-  };
-  let wordCount = value.length;
+    const updateValue = e => {
+        setValue(e.target.value);
+        e.target.style.height = "auto";
+        e.target.style.height = e.target.scrollHeight + "px";
+    };
 
-  return (
-    <div className="section-middle">
-      <div className="avatar-container">
-        <div className="avatar">
-          <Avatar />
-        </div>
-      </div>
-      <div className="tweet-input">
-        <div className="input">
-          <textarea
-            id="text"
-            maxLength="140"
-            name="tweet-text"
-            rows="1"
-            placeholder="What's happening?"
-            autoComplete="off"
-            spellCheck="false"
-            onChange={updateValue}
-            autoFocus
-          ></textarea>
-        </div>
-        <div className="tweet-input-utility">
-          <div className="utility-left">
-               <AddMultimedia />
+    const onAddPost = () => {
+        fetch('graphql', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                query: `
+                    mutation {
+                      posts {
+                        addPost(post: { body: "${value}", userId: 3}) {
+                          body
+                        }
+                      }
+                    }`
+            }),
+        })
+            .then(res => res.json())
+            .then(res => console.log(res))
+    }
+
+        return (
+          <div className="section-middle">
+            <div className="avatar-container">
+              <div className="avatar">
+                <Avatar />
+              </div>
+            </div>
+            <div className="tweet-input">
+              <div className="input">
+                <textarea
+                  id="text"
+                  maxLength="140"
+                  name="tweet-text"
+                  rows="1"
+                  placeholder="What's happening?"
+                  autoComplete="off"
+                  spellCheck="false"
+                  onChange={updateValue}
+                  autoFocus
+                ></textarea>
+              </div>
+              <div className="tweet-input-utility">
+                <div className="utility-left">
+                            <AddMultimedia/>
+                </div>
+                <div className="utility-right">
+                            <AddPost onAddPost={onAddPost} />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="utility-right">
-               <AddPost />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+        );
+}
 
-const AddPost = () => 
+const AddPost = ({ onAddPost }) => 
     <div className="tweet-btn btn-container">
-        <button href="#tweet" className="btn btn-small btn-solid">
+        <button href="#tweet" className="btn btn-small btn-solid" onClick={onAddPost}>
             <span>Add Post</span>
         </button>
     </div>

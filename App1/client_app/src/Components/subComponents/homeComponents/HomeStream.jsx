@@ -34,7 +34,7 @@ class HomeStream extends Component {
                       <div className="stream" key={post.postId}>
                         <div className="content">
                             <div className="stream-header-container">
-                                <a href="#demo">
+                                <a href="/demo">
                                     <MainAvatar />
                                     <FullName />
                                 </a>

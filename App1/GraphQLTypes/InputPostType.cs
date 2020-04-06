@@ -8,7 +8,6 @@ namespace IOprojekt.GraphQLTypes
         public InputPostType()
         {
             Name = "InputPostType";
-            Field(_ => _.PostId);
             Field(_ => _.UserId);
             Field(_ => _.Body);
         }

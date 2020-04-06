@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,9 +8,9 @@ namespace IOprojekt.Models
 {
     public class Post
     {
-        [BsonId]
+        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         [BsonElement("postId")]
-        public int PostId { get; set; }
+        public string PostId { get; set; }
 
         [BsonElement("userId")]
         public int UserId { get; set; }

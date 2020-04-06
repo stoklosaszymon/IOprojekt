@@ -31,11 +31,11 @@ namespace IOprojekt.GraphQLTypes
             Field<IntGraphType>("deletePost",
                 arguments: new QueryArguments
                 {
-                     new QueryArgument<IntGraphType>() { Name = "postId" }
+                     new QueryArgument<StringGraphType>() { Name = "postId" }
                 },
                 resolve: context =>
                 {
-                    var id = context.GetArgument<int>("postId");
+                    var id = context.GetArgument<string>("postId");
                     var builder = Builders<Post>.Filter;
                     var filter = builder.Eq(post => post.PostId, id);
                     return _context.Posts.Delete(filter);
