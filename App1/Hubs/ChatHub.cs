@@ -27,5 +27,11 @@ namespace IOprojekt.Hubs
         {
             await Clients.Group(roomName).SendAsync("sendMessage", name, message);
         }
+
+        public override async Task OnConnectedAsync()
+        {
+            await Clients.All.SendAsync("UserConnected", Context.ConnectionId);
+            await base.OnConnectedAsync();
+        }
     }
 }
