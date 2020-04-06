@@ -14,6 +14,10 @@ namespace IOprojekt.Hubs
         {
             return Clients.Caller.SendAsync("ReceiveMessage", message);
         }
+        public Task SendMessageToUser(string connectionId, string message)
+        {
+            return Clients.Client(connectionId).SendAsync("ReceiveMessage", message);
+        }
         public async Task JoinRoom (string name, string roomName)
         {
             await Groups.AddToGroupAsync(name, roomName);
