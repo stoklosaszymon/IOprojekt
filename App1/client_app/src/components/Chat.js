@@ -60,6 +60,13 @@ export default class Chat extends Component {
         });
     };
 
+    sendMessageNover = () => {
+        this.state.hubConnection
+            .invoke('SendMessageGroup', this.state.nick, this.state.messagenover, this.state.Nover)
+            .catch(err => console.error(err));
+        this.setState({ messagenover: '' });
+    };
+
     render() {
         return (
             <div>
