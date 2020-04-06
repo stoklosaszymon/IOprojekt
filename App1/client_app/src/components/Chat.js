@@ -12,6 +12,9 @@ export default class Chat extends Component {
             message: '',
             messages: [],
             hubConnection: null,
+            messagenover: '',
+            messagesnover: [],
+            Nover: 'Nover',
         };  
     }
 
@@ -42,10 +45,20 @@ export default class Chat extends Component {
         this.state.hubConnection
             .invoke('SendMessageToAll', this.state.nick, this.state.message)
             .catch(err => console.error(err));
-
         this.setState({ message: '' });
     };
 
+    joinChat = () => {
+        this.state.hubConnection
+            .invoke("JoinRoom", this.state.Nover)
+            .then(() => console.log('Connection started ! (Nover)'))
+            .catch(err => console.log(err));
+        this.state.hubConnection.on('SendMessageGroup', (nick, receivedMessage) => {
+            const text = '${ nick }: ${receivedMessage}';
+            const messagesnover = this.state.messagenover.concat([text]);
+            this.setState({ messagesnover });
+        });
+    };
 
     render() {
         return (
