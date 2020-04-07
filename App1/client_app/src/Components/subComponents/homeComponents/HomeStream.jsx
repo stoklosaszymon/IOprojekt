@@ -20,7 +20,7 @@ class HomeStream extends Component {
         return fetch('graphql', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: '{ posts { getAll { postId body createdAt userId}}}' }),
+            body: JSON.stringify({ query: '{ posts { getAll { postId body createdAt userId image}}}' }),
         })
             .then(res => res.json())
             .then(res => this.setState({ posts: res.posts.getAll }))
@@ -41,7 +41,7 @@ class HomeStream extends Component {
                                 <TimeStamp time={post.createdAt}/>
                             </div>
                             <MessageContainer message={post.body}/>
-                            <MediaContainer />
+                                <MediaContainer image={post.image}/>
                             <PostFooter />
                         </div>
                     </div>
@@ -82,9 +82,9 @@ const HashTag = () =>
               </a>
     </p>
 
-const MediaContainer = () => 
+const MediaContainer = ({ image }) => 
     <div className="stream-media-container">
-        <img src={Media} alt="SpongeBob" className="media-img" />
+        <img src={image} alt="SpongeBob" className="media-img" />
     </div>
 
 const PostFooter = () => 

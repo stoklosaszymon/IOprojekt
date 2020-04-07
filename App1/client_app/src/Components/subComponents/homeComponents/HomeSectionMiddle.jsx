@@ -20,7 +20,7 @@ const HomeSectionMiddle = () => {
                 query: `
                     mutation {
                       posts {
-                        addPost(post: { body: "${value}", userId: 3}) {
+                        addPost(post: { body: "${value}", userId: 3, image: "${image}"}) {
                           body
                         }
                       }

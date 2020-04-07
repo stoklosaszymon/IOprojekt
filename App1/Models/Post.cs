@@ -23,5 +23,9 @@ namespace IOprojekt.Models
         [BsonRepresentation(BsonType.DateTime)]
         [DataType(DataType.Date)]
         public DateTime CreatedAt { get; set; }
+
+        [BsonElement("image")]
+        [BsonRepresentation(BsonType.String)]
+        public string Image { get; set; }
     }
 }

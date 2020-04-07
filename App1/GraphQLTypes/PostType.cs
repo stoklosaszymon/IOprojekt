@@ -12,6 +12,7 @@ namespace IOprojekt.GraphQLTypes
             Field(_ => _.UserId);
             Field(_ => _.Body);
             Field(_ => _.CreatedAt).DefaultValue(DateTime.Now);
+            Field(_ => _.Image).DefaultValue("");
         }
 
     }
