@@ -8,6 +8,7 @@ namespace IOprojekt.GraphQLTypes
     {
         public UserType()
         {
+            Field(_ => _.Id);
             Field(_ => _.FirstName);
             Field(_ => _.LastName);
             Field(_ => _.Email);
