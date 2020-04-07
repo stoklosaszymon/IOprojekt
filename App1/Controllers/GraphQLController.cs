@@ -20,6 +20,7 @@ namespace IOprojekt.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] GraphQLQueryDto query)
         {
             var result = await _executer.ExecuteAsync(_ =>

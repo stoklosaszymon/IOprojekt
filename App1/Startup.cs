@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace App1
 {
@@ -25,6 +26,16 @@ namespace App1
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "client_app";
+            });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://dev-qvcdnn51.eu.auth0.com/";
+                options.Audience = "api.ioproject";
             });
 
 
@@ -86,6 +97,8 @@ namespace App1
             app.UseRouting();
             app.UseSpaStaticFiles();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
