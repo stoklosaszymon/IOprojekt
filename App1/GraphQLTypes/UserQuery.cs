@@ -24,11 +24,11 @@ namespace IOprojekt.GraphQLTypes
             Field<UserType>("getById",
             arguments: new QueryArguments
             {
-               new  QueryArgument<IntGraphType> { Name = "id"}
+               new  QueryArgument<StringGraphType> { Name = "id"}
             },
             resolve: context =>
             {
-                var id = context.GetArgument<int>("id");
+                var id = context.GetArgument<string>("id");
                 var filter = Builders<User>.Filter.Eq(user => user.Id, id);
                 return _context.Users.GetAll(filter).Result.FirstOrDefault();
             });

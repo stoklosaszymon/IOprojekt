@@ -37,7 +37,7 @@ namespace IOprojekt.GraphQLTypes
                 },
                 resolve: context =>
                 {
-                    var id = context.GetArgument<int>("userId");
+                    var id = context.GetArgument<string>("userId");
                     var builder = Builders<User>.Filter;
                     var filter = builder.Eq(user => user.Id, id);
                     return _context.Users.Delete(filter);
