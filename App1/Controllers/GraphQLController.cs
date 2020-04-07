@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GraphQL;
+using GraphQL.Types;
+using IOprojekt.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
-using GraphQL;
-using GraphQL.Types;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using IOprojekt.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace IOprojekt.Controllers
 {

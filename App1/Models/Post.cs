@@ -1,19 +1,16 @@
-﻿using GraphQL.Types;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IOprojekt.Models
 {
     public class Post
     {
-        [BsonId]
+        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         [BsonElement("postId")]
-        public int PostId { get; set; }
+        public string PostId { get; set; }
 
         [BsonElement("userId")]
         public int UserId { get; set; }
@@ -26,5 +23,9 @@ namespace IOprojekt.Models
         [BsonRepresentation(BsonType.DateTime)]
         [DataType(DataType.Date)]
         public DateTime CreatedAt { get; set; }
+
+        [BsonElement("image")]
+        [BsonRepresentation(BsonType.String)]
+        public string Image { get; set; }
     }
 }

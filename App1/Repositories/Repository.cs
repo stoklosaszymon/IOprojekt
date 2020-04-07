@@ -2,7 +2,6 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace IOprojekt.Repositories
@@ -36,8 +35,8 @@ namespace IOprojekt.Repositories
             var foundUser = await _collection.FindOneAndDeleteAsync(filter);
             return foundUser;
         }
-        public async Task<TEntity> Update( FilterDefinition<TEntity> filter,
-                                          UpdateDefinition<TEntity> update   )
+        public async Task<TEntity> Update(FilterDefinition<TEntity> filter,
+                                          UpdateDefinition<TEntity> update)
         {
             var entity = await _collection.FindOneAndUpdateAsync(filter, update);
             return entity;

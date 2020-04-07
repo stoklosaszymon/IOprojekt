@@ -1,9 +1,6 @@
 ﻿using GraphQL.Types;
 using IOprojekt.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IOprojekt.GraphQLTypes
 {
@@ -15,7 +12,8 @@ namespace IOprojekt.GraphQLTypes
             Field(_ => _.UserId);
             Field(_ => _.Body);
             Field(_ => _.CreatedAt).DefaultValue(DateTime.Now);
+            Field(_ => _.Image).DefaultValue("");
         }
-        
+
     }
 }

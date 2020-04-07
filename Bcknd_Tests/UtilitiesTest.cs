@@ -1,6 +1,5 @@
 ﻿using IOprojekt.Models;
 using IOprojekt.Utils;
-using System;
 using Xunit;
 
 namespace Bcknd_Tests

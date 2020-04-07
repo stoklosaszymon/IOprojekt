@@ -1,27 +1,13 @@
-﻿using IOprojekt.Classes;
-using IOprojekt.Contexts;
-using IOprojekt.Interfaces;
+﻿using IOprojekt.Interfaces;
 using IOprojekt.Models;
-using IOprojekt.Factories;
-using IOprojekt.Repositories;
-using Microsoft.Extensions.Options;
-using MongoDB.Driver;
 using Moq;
-using System;
-using System.Collections.Generic;
-using Xunit;
-using System.Linq.Expressions;
-using IOprojekt.GraphQLTypes;
 using System.Threading.Tasks;
-using System.Threading;
-using Microsoft.Extensions.DependencyInjection;
-using GraphQL;
-using GraphQL.Types;
-using IOprojekt.Controllers;
+using Xunit;
 
 namespace Bcknd_Tests
 {
-    public class UserService {
+    public class UserService
+    {
 
         private readonly IRepository<User> _context;
         public UserService(IDbContext context)
@@ -29,7 +15,7 @@ namespace Bcknd_Tests
             _context = context.Users;
         }
 
-        public void Add( User user)
+        public void Add(User user)
         {
             _context.Add(user);
         }

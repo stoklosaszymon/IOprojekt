@@ -1,23 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-using Microsoft.Extensions.Configuration;
-using IOprojekt.Repositories;
-using IOprojekt.GraphQLTypes;
+using GraphiQl;
 using GraphQL;
 using GraphQL.Types;
-using GraphiQl;
-using IOprojekt.Interfaces;
-using IOprojekt.Factories;
 using IOprojekt.Classes;
 using IOprojekt.Contexts;
+using IOprojekt.Factories;
+using IOprojekt.GraphQLTypes;
+using IOprojekt.Interfaces;
+using IOprojekt.Repositories;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
@@ -42,6 +37,7 @@ namespace App1
                 options.Authority = "https://dev-qvcdnn51.eu.auth0.com/";
                 options.Audience = "api.ioproject";
             });
+
 
             services.Configure<MongoSettings>(options => Configuration.GetSection("Mongosettings").Bind(options));
 

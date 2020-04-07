@@ -1,11 +1,9 @@
 ﻿using GraphQL.Types;
-using IOprojekt.Classes;
 using IOprojekt.Interfaces;
 using IOprojekt.Models;
-using IOprojekt.Repositories;
-using Microsoft.Extensions.Options;
-using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
+using System.Linq;
 
 namespace IOprojekt.GraphQLTypes
 {
@@ -18,7 +16,7 @@ namespace IOprojekt.GraphQLTypes
             if (context != null)
                 _context = context;
 
-           // Name = "UserMutation";
+            // Name = "UserMutation";
 
             Field<UserType>("addUser",
                 arguments: new QueryArguments
@@ -27,8 +25,13 @@ namespace IOprojekt.GraphQLTypes
                 },
                 resolve: context =>
                 {
-                    var user = context.GetArgument<User>("user");
-                    return _context.Users.Add(user);
+                    var newUser = context.GetArgument<User>("user");
+                    newUser.CreatedAt = DateTime.Now;
+
+                    var filter = Builders<User>.Filter.Eq(user => user.Sub, newUser.Sub);
+                    var exist = _context.Users.GetAll(filter).Result.Count();
+
+                    return exist == 0 ? _context.Users.Add(newUser) : null;
                 }
              );
 
@@ -39,7 +42,7 @@ namespace IOprojekt.GraphQLTypes
                 },
                 resolve: context =>
                 {
-                    var id = context.GetArgument<int>("userId");
+                    var id = context.GetArgument<string>("userId");
                     var builder = Builders<User>.Filter;
                     var filter = builder.Eq(user => user.Id, id);
                     return _context.Users.Delete(filter);

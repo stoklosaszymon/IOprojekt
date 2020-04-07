@@ -1,10 +1,7 @@
 ﻿using IOprojekt.Classes;
-using IOprojekt.Contexts;
-using IOprojekt.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Moq;
-using System;
 using Xunit;
 
 namespace Bcknd_Tests

@@ -34,7 +34,6 @@ function App () {
                         <main>
                         <Switch>
                             {/* Home */}
-                            <PrivateRoute path="/" exact component={Home} />
                             <Route path="/home" component={Home} />
                             {/* Explore */}
                             <Route path="/explore" component={Explore} />]

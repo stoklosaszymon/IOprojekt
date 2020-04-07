@@ -1,10 +1,6 @@
 ﻿using GraphQL.Types;
-using IOprojekt.Classes;
 using IOprojekt.Interfaces;
 using IOprojekt.Models;
-using IOprojekt.Repositories;
-using Microsoft.Extensions.Options;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 
@@ -29,6 +25,7 @@ namespace IOprojekt.GraphQLTypes
                 resolve: context =>
                 {
                     var post = context.GetArgument<Post>("post");
+                    post.CreatedAt = DateTime.Now;
                     return _context.Posts.Add(post);
                 }
              );
@@ -36,11 +33,11 @@ namespace IOprojekt.GraphQLTypes
             Field<IntGraphType>("deletePost",
                 arguments: new QueryArguments
                 {
-                     new QueryArgument<IntGraphType>() { Name = "postId" }
+                     new QueryArgument<StringGraphType>() { Name = "postId" }
                 },
                 resolve: context =>
                 {
-                    var id = context.GetArgument<int>("postId");
+                    var id = context.GetArgument<string>("postId");
                     var builder = Builders<Post>.Filter;
                     var filter = builder.Eq(post => post.PostId, id);
                     return _context.Posts.Delete(filter);
