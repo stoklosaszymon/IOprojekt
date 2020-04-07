@@ -5,6 +5,8 @@ const NavBar = () => {
 
     const { isAuthenticated, loginWithRedirect, logout, getTokenSilently } = useAuth0();
 
+
+
     return (
         <div>
             <div>

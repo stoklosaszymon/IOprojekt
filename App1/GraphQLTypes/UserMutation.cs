@@ -3,6 +3,7 @@ using IOprojekt.Interfaces;
 using IOprojekt.Models;
 using MongoDB.Driver;
 using System;
+using System.Linq;
 
 namespace IOprojekt.GraphQLTypes
 {
@@ -24,9 +25,13 @@ namespace IOprojekt.GraphQLTypes
                 },
                 resolve: context =>
                 {
-                    var user = context.GetArgument<User>("user");
-                    user.CreatedAt = DateTime.Now;
-                    return _context.Users.Add(user);
+                    var newUser = context.GetArgument<User>("user");
+                    newUser.CreatedAt = DateTime.Now;
+
+                    var filter = Builders<User>.Filter.Eq(user => user.Sub, newUser.Sub);
+                    var exist = _context.Users.GetAll(filter).Result.Count();
+
+                    return exist == 0 ? _context.Users.Add(newUser) : null;
                 }
              );
 
