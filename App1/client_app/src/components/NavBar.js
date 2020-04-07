@@ -6,26 +6,20 @@ let NavBar = () => {
 
     const { isAuthenticated, loginWithPopup, logout, getTokenSilently, user } = useAuth0();
 
-    return (
-        <div>
-            <div>
-                {!isAuthenticated && (
-                    <button onClick={() => loginWithPopup({})}>Log in</button>
-                )}
+    const addUser = async ({ sub, given_name, family_name, locale, email }) => {
+        let token = '';
+        if (user !== undefined && getTokenSilently != undefined) {
 
-                {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
-                {isAuthenticated && user !== undefined ? addUser(user) : console.log(user)}
-            </div>
-        </div>
-  );
-};
+            await getTokenSilently().then(e => token = e)
 
-const addUser = ({ sub, given_name, family_name, locale, email }) => {
-    fetch('graphql', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            query: `
+            fetch('graphql', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    query: `
                     mutation {
                       users {
                         addUser(user: {
@@ -40,10 +34,28 @@ const addUser = ({ sub, given_name, family_name, locale, email }) => {
                         }
                       }
                     }`
-        }),
-    })
-}
-export default NavBar;
+                }),
+            })
+        }
+    }
+
+    if (isAuthenticated) {
+        addUser(user);
+    }
+
+    return (
+        <div>
+            <div>
+                {!isAuthenticated && (
+                    <button onClick={() => loginWithPopup({})}>Log in</button>
+                )}
+
+                {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+                
+            </div>
+        </div>
+  );
+};
 
 const mapStateToProps = (state) => {
     return { logged: state.logged, loggedUserId: state.loggedUserId };
