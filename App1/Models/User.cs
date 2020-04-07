@@ -31,6 +31,10 @@ namespace IOprojekt.Models
         [BsonRepresentation(BsonType.String)]
         public string Locale { get; set; }
 
+        [BsonElement("sub")]
+        [BsonRepresentation(BsonType.String)]
+        public string Sub { get; set; }
+
         [BsonElement("createdAt")]
         [BsonRepresentation(BsonType.DateTime)]
         [DataType(DataType.Date)]

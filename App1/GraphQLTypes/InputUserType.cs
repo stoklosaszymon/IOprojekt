@@ -10,6 +10,7 @@ namespace IOprojekt.GraphQLTypes
             Name = "InputUserType";
             Field(_ => _.FirstName);
             Field(_ => _.LastName);
+            Field(_ => _.Sub, nullable: true);
             Field(_ => _.Email, nullable: true);
             Field(_ => _.Gender, nullable: true);
             Field(_ => _.Locale, nullable: true);
