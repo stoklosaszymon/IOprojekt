@@ -2,36 +2,55 @@
 using IOprojekt.Interfaces;
 using IOprojekt.Models;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http;
 
 namespace IOprojekt.GraphQLTypes
 {
     public class UserMutation : ObjectGraphType
     {
         private readonly IDbContext _context;
-        public UserMutation(IDbContext context)
+        private readonly IHttpClientFactory _clientFactory;
+        public UserMutation(IDbContext context, IHttpClientFactory clientFactory)
         {
+            _clientFactory = clientFactory;
 
             if (context != null)
                 _context = context;
 
             // Name = "UserMutation";
 
-            Field<UserType>("addUser",
+            Field<StringGraphType>("addUser",
                 arguments: new QueryArguments
                 {
-                    new QueryArgument<InputUserType>() { Name = "user" }
+                    new QueryArgument<StringGraphType>() { Name = "user" }
                 },
                 resolve: context =>
                 {
-                    var newUser = context.GetArgument<User>("user");
-                    newUser.CreatedAt = DateTime.Now;
+                    var newUser = context.GetArgument<string>("user");
+                    //newUser.CreatedAt = DateTime.Now;
 
-                    var filter = Builders<User>.Filter.Eq(user => user.Sub, newUser.Sub);
-                    var exist = _context.Users.GetAll(filter).Result.Count();
+                    //var filter = Builders<User>.Filter.Eq(user => user.Sub, newUser.Sub);
+                    //var exist = _context.Users.GetAll(filter).Result.Count();
+                    //return exist == 0 ? _context.Users.Add(newUser) : null;
 
-                    return exist == 0 ? _context.Users.Add(newUser) : null;
+                    var request = new HttpRequestMessage(HttpMethod.Get,
+                         "https://dev-qvcdnn51.eu.auth0.com/userinfo");
+                    request.Headers.Add("Authorization", $"Bearer {newUser}");
+
+
+                    var client = _clientFactory.CreateClient();
+
+                    var response = client.SendAsync(request);
+
+                    var result = response.Result.Content.ReadAsStringAsync();
+
+                    User m = JsonConvert.DeserializeObject<User>(result.Result);
+
+                    return _context.Users.Add(m);
                 }
              );
 
