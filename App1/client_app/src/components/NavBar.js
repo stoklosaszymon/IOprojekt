@@ -22,7 +22,7 @@ let NavBar = () => {
                     query: `
                     mutation {
                       users {
-                        addUser(user: "${token}") 
+                        addUser(token: "${token}") 
                       }
                     }`
                 }),

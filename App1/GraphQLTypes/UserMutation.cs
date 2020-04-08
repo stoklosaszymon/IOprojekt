@@ -26,11 +26,11 @@ namespace IOprojekt.GraphQLTypes
             Field<StringGraphType>("addUser",
                 arguments: new QueryArguments
                 {
-                    new QueryArgument<StringGraphType>() { Name = "user" }
+                    new QueryArgument<StringGraphType>() { Name = "token" }
                 },
                 resolve: context =>
                 {
-                    var newUser = context.GetArgument<string>("user");
+                    var token = context.GetArgument<string>("token");
                     //newUser.CreatedAt = DateTime.Now;
 
                     //var filter = Builders<User>.Filter.Eq(user => user.Sub, newUser.Sub);
@@ -39,18 +39,30 @@ namespace IOprojekt.GraphQLTypes
 
                     var request = new HttpRequestMessage(HttpMethod.Get,
                          "https://dev-qvcdnn51.eu.auth0.com/userinfo");
-                    request.Headers.Add("Authorization", $"Bearer {newUser}");
+                    request.Headers.Add("Authorization", $"Bearer {token}");
 
 
                     var client = _clientFactory.CreateClient();
-
                     var response = client.SendAsync(request);
-
                     var result = response.Result.Content.ReadAsStringAsync();
 
-                    User m = JsonConvert.DeserializeObject<User>(result.Result);
+                    Auth0User m = JsonConvert.DeserializeObject<Auth0User>(result.Result);
 
-                    return _context.Users.Add(m);
+                    var newUser = new User
+                    {
+                        Email = m.email,
+                        FirstName = m.given_name,
+                        LastName = m.family_name,
+                        Locale = m.locale,
+                        Sub = m.sub,
+                        CreatedAt = DateTime.Now   
+                    };
+
+                    var builder = Builders<User>.Filter;
+                    var filter = builder.Eq(user => user.Sub, newUser.Sub);
+                    var found =_context.Users.GetAll(filter).Result;
+
+                    return found.Count() == 0 ? _context.Users.Add(newUser) : null;
                 }
              );
 
