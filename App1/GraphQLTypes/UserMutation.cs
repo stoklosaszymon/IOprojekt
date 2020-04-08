@@ -31,11 +31,6 @@ namespace IOprojekt.GraphQLTypes
                 resolve: context =>
                 {
                     var token = context.GetArgument<string>("token");
-                    //newUser.CreatedAt = DateTime.Now;
-
-                    //var filter = Builders<User>.Filter.Eq(user => user.Sub, newUser.Sub);
-                    //var exist = _context.Users.GetAll(filter).Result.Count();
-                    //return exist == 0 ? _context.Users.Add(newUser) : null;
 
                     var request = new HttpRequestMessage(HttpMethod.Get,
                          "https://dev-qvcdnn51.eu.auth0.com/userinfo");
