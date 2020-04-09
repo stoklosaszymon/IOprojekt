@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IOprojekt.Repositories
@@ -28,7 +29,7 @@ namespace IOprojekt.Repositories
         }
         public async Task<IEnumerable<TEntity>> GetAll(FilterDefinition<TEntity> filter)
         {
-            return await _collection.Find(filter).ToListAsync();
+            return await _collection.FindAsync(filter).Result.ToListAsync();
         }
         public async Task<TEntity> Delete(FilterDefinition<TEntity> filter)
         {
@@ -40,6 +41,10 @@ namespace IOprojekt.Repositories
         {
             var entity = await _collection.FindOneAndUpdateAsync(filter, update);
             return entity;
+        }
+        public async Task<TEntity> FindOne(FilterDefinition<TEntity> filter)
+        {
+            return await _collection.FindAsync(filter).Result.FirstAsync();
         }
     }
 }
