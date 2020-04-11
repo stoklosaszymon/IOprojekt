@@ -22,20 +22,12 @@ let NavBar = () => {
                     query: `
                     mutation {
                       users {
-                        addUser(user: {
-                                  sub: "${sub}",
-                                  firstName: "${given_name}",
-                                  lastName: "${family_name}",                         
-                                  locale: "${locale}",
-                                  email: "${email}",
-                                }) 
-                        {
-                           sub
-                        }
+                        addUser(token: "${token}") 
                       }
                     }`
                 }),
-            })
+            }).then(res => res.json())
+                .then(res => console.log(res));
         }
     }
 

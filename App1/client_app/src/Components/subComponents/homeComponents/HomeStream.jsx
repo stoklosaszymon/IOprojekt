@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "../../assets/img/profile_normal.png";
 import Media from "../../assets/img/media.jpg";
-import UseAuth0 from "../../../react-auth0-spa";
+import { useAuth0 } from "../../../react-auth0-spa";
 import { Component } from "react";
 
 class HomeStream extends Component {
@@ -13,13 +13,15 @@ class HomeStream extends Component {
 
 
     componentDidMount() {
-        this.fetchPosts(); 
+        this.fetchPosts();
     }
 
     fetchPosts() {
         return fetch('graphql', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({ query: '{ posts { getAll { postId body createdAt userId image}}}' }),
         })
             .then(res => res.json())
