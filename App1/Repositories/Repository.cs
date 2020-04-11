@@ -44,7 +44,7 @@ namespace IOprojekt.Repositories
         }
         public async Task<TEntity> FindOne(FilterDefinition<TEntity> filter)
         {
-            return await _collection.FindAsync(filter).Result.FirstAsync();
+            return await _collection.FindAsync(filter).Result.FirstOrDefaultAsync();
         }
     }
 }

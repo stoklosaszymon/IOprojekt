@@ -16,6 +16,8 @@ namespace IOprojekt.Interfaces
 
         public Task<TEntity> Update(FilterDefinition<TEntity> filter,
                                            UpdateDefinition<TEntity> udate);
+
+        public Task<TEntity> FindOne(FilterDefinition<TEntity> filter);
     }
 }
 

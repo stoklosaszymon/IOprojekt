@@ -55,9 +55,9 @@ namespace IOprojekt.GraphQLTypes
 
                     var builder = Builders<User>.Filter;
                     var filter = builder.Eq(user => user.Sub, newUser.Sub);
-                    var found =_context.Users.GetAll(filter).Result;
+                    var found =_context.Users.FindOne(filter).Result;
 
-                    return found.Count() == 0 ? _context.Users.Add(newUser) : null;
+                    return found == null ? _context.Users.Add(newUser) : null;
                 }
              );
 
