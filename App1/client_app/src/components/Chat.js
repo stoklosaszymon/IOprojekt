@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
+//import { Container, Row, Col } from 'reactstrap';
 import * as signalR from "@microsoft/signalr";
-import { Container, Row, Col } from 'reactstrap';
+
 
 export default class Chat extends Component {
     static displayName = Chat.name;
@@ -32,59 +33,62 @@ export default class Chat extends Component {
                 .then(() => console.log('Connection started!'))
                 .catch(err => console.log('Error while establishing connection :('));
 
-
-            this.state.hubConnection.on('SendMessageToAll', (nick, receivedMessage) => {
-                const text = `${nick}: ${receivedMessage}`;
-                const messages = this.state.messages.concat([text]);
-                this.setState({ messages });
-            });
+            //this.state.hubConnection.on('SendMessageToAll', (nick, receivedMessage) => {
+            //    const text = `${nick}: ${receivedMessage}`;
+            //    const messages = this.state.messages.concat([text]);
+            //    this.setState({ messages });
+            //});
         });
     }
 
-    sendMessage = () => {
-        this.state.hubConnection
-            .invoke('SendMessageToAll', this.state.nick, this.state.message)
-            .catch(err => console.error(err));
-        this.setState({ message: '' });
-    };
+    //sendMessage = () => {
+    //    this.state.hubConnection
+    //        .invoke('SendMessageToAll', this.state.nick, this.state.message)
+    //        .catch(err => console.error(err));
+    //    this.setState({ message: '' });
+    //};
 
-    joinChat = () => {
+    JoniChat = () => {
+
         this.state.hubConnection
-            .invoke("JoinRoom", this.state.Nover)
-            .then(() => console.log('Connection started ! (Nover)'))
-            .catch(err => console.log(err));
-        this.state.hubConnection.on('SendMessageGroup', (nick, receivedMessage) => {
-            const text = '${ nick }: ${receivedMessage}';
-            const messagesnover = this.state.messagenover.concat([text]);
+            .invoke('JoinRoom', this.state.Nover)
+            .then(() => console.log('Connection started! Nover'))
+            .catch(err => console.error(err));
+
+        this.state.hubConnection.on('SendMessageGroup', (nick, receivedMessage, ) => {
+            const text = `${nick}: ${receivedMessage}`;
+            const messagesnover = this.state.messagesnover.concat([text]);
             this.setState({ messagesnover });
         });
+
     };
 
     sendMessageNover = () => {
         this.state.hubConnection
             .invoke('SendMessageGroup', this.state.nick, this.state.messagenover, this.state.Nover)
             .catch(err => console.error(err));
+
         this.setState({ messagenover: '' });
     };
 
     render() {
-        return (
+        return ( 
             <div>
+                <button onClick={this.JoniChat}>Join Nover Chat</button>
                 <br />
                 <input
                     type="text"
-                    value={this.state.message}
-                    onChange={e => this.setState({ message: e.target.value })}
+                    value={this.state.messagenover}
+                    onChange={e => this.setState({ messagenover: e.target.value })}
                 />
-
-                <button onClick={this.sendMessage}>Send</button>
+                <button onClick={this.sendMessageNover}>Send</button>
 
                 <div>
-                    {this.state.messages.map((message, index) => (
-                        <span style={{ display: 'block' }} key={index}> {message} </span>
+                    {this.state.messagesnover.map((messagenover, index) => (
+                        <span style={{ display: 'block' }} key={index}> {messagenover} </span>
                     ))}
                 </div>
-            </div>   
+            </div>
         );
     }
 }
