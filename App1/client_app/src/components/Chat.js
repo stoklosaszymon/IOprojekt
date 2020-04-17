@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-//import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import * as signalR from "@microsoft/signalr";
 
 
@@ -72,7 +72,10 @@ export default class Chat extends Component {
     };
 
     render() {
-        return ( 
+        return (
+            <Container>
+                <Row>
+                    <Col>
             <div>
                 <button onClick={this.JoniChat}>Join Nover Chat</button>
                 <br />
@@ -89,6 +92,9 @@ export default class Chat extends Component {
                     ))}
                 </div>
             </div>
+             </Col >
+           </Row >
+        </Container >
         );
     }
 }
