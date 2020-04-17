@@ -26,7 +26,7 @@ namespace IOprojekt.Hubs
 
         public async Task SendMessageGroup (string name, string message, string roomName)
         {
-            await Clients.Group(roomName).SendAsync("sendMessage", name, message);
+            await Clients.Group(roomName).SendAsync("SendMessageGroup", name, message);
         }
 
         public override async Task OnConnectedAsync()
