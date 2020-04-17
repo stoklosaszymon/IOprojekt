@@ -1,11 +1,22 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using IOprojekt.Models;
+using Microsoft.AspNetCore.SignalR;
 using System;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
 namespace IOprojekt.Hubs
 {
     public class ChatHub : Hub
     {
+        private static ConcurrentDictionary<string, User> chatClients = new ConcurrentDictionary<string, User>();
+
+        public ConcurrentDictionary<string, User> Login(string name)
+        {
+            User newUser = new User { FirstName = name, IdChat = Context.ConnectionId };
+            chatClients.TryAdd(name, newUser);
+            return chatClients;
+        }
+
         public async Task SendMessageToAll(string user, string message)
         {
             await Clients.All.SendAsync("SendMessageToAll", user, message);
