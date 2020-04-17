@@ -81,10 +81,15 @@ export default class Chat extends Component {
     render() {
         return (
             <Container>
-
-
-
                 <Row>
+                    <Col>
+                        <div>
+                            <button onClick={this.sendNick}>Login</button>
+                            <br />
+                        </div>
+                    </Col>
+
+               
                     <Col>
             <div>
                 <button onClick={this.JoniChat}>Join Nover Chat</button>
