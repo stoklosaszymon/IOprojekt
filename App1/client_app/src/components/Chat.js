@@ -48,32 +48,42 @@ export default class Chat extends Component {
     //    this.setState({ message: '' });
     //};
 
-    JoniChat = () => {
+    //JoniChat = () => {
 
+    //    this.state.hubConnection
+    //        .invoke('JoinRoom', this.state.Nover)
+    //        .then(() => console.log('Connection started! Nover'))
+    //        .catch(err => console.error(err));
+
+    //    this.state.hubConnection.on('SendMessageGroup', (nick, receivedMessage, ) => {
+    //        const text = `${nick}: ${receivedMessage}`;
+    //        const messagesnover = this.state.messagesnover.concat([text]);
+    //        this.setState({ messagesnover });
+    //    });
+
+    //};
+
+    //sendMessageNover = () => {
+    //    this.state.hubConnection
+    //        .invoke('SendMessageGroup', this.state.nick, this.state.messagenover, this.state.Nover)
+    //        .catch(err => console.error(err));
+
+    //    this.setState({ messagenover: '' });
+    //};
+
+    sendNick = () => {
         this.state.hubConnection
-            .invoke('JoinRoom', this.state.Nover)
-            .then(() => console.log('Connection started! Nover'))
+            .invoke('Login', this.state.nick)
+            .then(() => console.log('Apllay'))
             .catch(err => console.error(err));
-
-        this.state.hubConnection.on('SendMessageGroup', (nick, receivedMessage, ) => {
-            const text = `${nick}: ${receivedMessage}`;
-            const messagesnover = this.state.messagesnover.concat([text]);
-            this.setState({ messagesnover });
-        });
-
-    };
-
-    sendMessageNover = () => {
-        this.state.hubConnection
-            .invoke('SendMessageGroup', this.state.nick, this.state.messagenover, this.state.Nover)
-            .catch(err => console.error(err));
-
-        this.setState({ messagenover: '' });
-    };
+    }
 
     render() {
         return (
             <Container>
+
+
+
                 <Row>
                     <Col>
             <div>
