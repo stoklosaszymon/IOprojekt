@@ -41,7 +41,12 @@ namespace IOprojekt.Hubs
         {
             await Clients.Group(roomName).SendAsync("SendMessageGroup", name, message);
         }
- 
+
+        public async Task RemoveUserRoom(string roomName, string removeName)
+        {
+            var nameID = chatClients.Where(s => s.Key == removeName).Select(s => s.Value.IdChat).First();
+            await Groups.RemoveFromGroupAsync(nameID, roomName);
+        }
 
         //public async Task SendMessageToAll(string user, string message)
         //{

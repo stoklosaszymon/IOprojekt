@@ -76,6 +76,14 @@ export default class Chat extends Component {
         this.state.hubConnection
             .invoke('SendMessageGroup', this.state.nick, this.state.messageGroup, this.state.roomName)
     };
+
+    RemoveUser = () => {
+
+        this.state.hubConnection
+            .invoke('RemoveUserRoom', this.state.roomName, this.state.user)
+            .then(() => console.log(this.state.user))
+            .catch(err => console.error(err));
+    }
    
     sendNick = () => {
         this.state.hubConnection
