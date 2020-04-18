@@ -13,9 +13,6 @@ export default class Chat extends Component {
             message: '',
             messages: [],
             hubConnection: null,
-            messagenover: '',
-            messagesnover: [],
-            Nover: 'Nover',
         };  
     }
 
@@ -86,28 +83,24 @@ export default class Chat extends Component {
                         <div>
                             <button onClick={this.sendNick}>Login</button>
                             <br />
-                        </div>
+                        
+                   
+                             Send priv to:
+                            <br />
+                             <input
+                             type="text"
+                             value={this.state.privNick}
+                             onChange={e => this.setState({ privNick: e.target.value })}
+                             />
+                         </div>
+
+
                     </Col>
 
+                    <Col>
 
-
-                    <col>
-                    <div>
-                        <button onClick={this.JoniChat}>Join Nover Chat</button>
-                        <br />
-                        <input
-                            type="text"
-                            value={this.state.messagenover}
-                            onChange={e => this.setState({ messagenover: e.target.value })}
-                        />
-                        <button onClick={this.sendMessageNover}>Send</button>
-                        <div>
-                            {this.state.messagesnover.map((messagenover, index) => (
-                                <span style={{ display: 'block' }} key={index}> {messagenover} </span>
-                            ))}
-                        </div>
-                        </div>
-                    </col>
+                    dd
+                    </Col>
                 </Row >
             </Container >
         );

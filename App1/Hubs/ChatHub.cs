@@ -20,7 +20,7 @@ namespace IOprojekt.Hubs
 
         public Task SendMessageToUser(string fromName, string toName, string message)
         {
-            var nameID = chatClients.Where(s => s.Key == toName).Select(s => s.Value.ID).First();
+            var nameID = chatClients.Where(s => s.Key == toName).Select(s => s.Value.IdChat).First();
             Clients.Client(Context.ConnectionId).SendAsync("SendMessageToUser", fromName, message);
             return Clients.Client(nameID).SendAsync("SendMessageToUser", fromName, message);
         }
@@ -34,10 +34,10 @@ namespace IOprojekt.Hubs
         {
             return Clients.Caller.SendAsync("ReceiveMessage", message);
         }
-        public Task SendMessageToUser(string connectionId, string message)
-        {
-            return Clients.Client(connectionId).SendAsync("ReceiveMessage", message);
-        }
+        //public Task SendMessageToUser(string connectionId, string message)
+        //{
+        //    return Clients.Client(connectionId).SendAsync("ReceiveMessage", message);
+        //}
         public async Task JoinRoom ( string roomName)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
