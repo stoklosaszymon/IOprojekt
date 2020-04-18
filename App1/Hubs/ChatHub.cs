@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IOprojekt.Hubs
@@ -15,6 +16,13 @@ namespace IOprojekt.Hubs
             User newUser = new User { FirstName = name, IdChat = Context.ConnectionId };
             chatClients.TryAdd(name, newUser);
             return chatClients;
+        }
+
+        public Task SendMessageToUser(string fromName, string toName, string message)
+        {
+            var nameID = chatClients.Where(s => s.Key == toName).Select(s => s.Value.ID).First();
+            Clients.Client(Context.ConnectionId).SendAsync("SendMessageToUser", fromName, message);
+            return Clients.Client(nameID).SendAsync("SendMessageToUser", fromName, message);
         }
 
         public async Task SendMessageToAll(string user, string message)

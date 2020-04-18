@@ -89,27 +89,27 @@ export default class Chat extends Component {
                         </div>
                     </Col>
 
-               
-                    <Col>
-            <div>
-                <button onClick={this.JoniChat}>Join Nover Chat</button>
-                <br />
-                <input
-                    type="text"
-                    value={this.state.messagenover}
-                    onChange={e => this.setState({ messagenover: e.target.value })}
-                />
-                <button onClick={this.sendMessageNover}>Send</button>
 
-                <div>
-                    {this.state.messagesnover.map((messagenover, index) => (
-                        <span style={{ display: 'block' }} key={index}> {messagenover} </span>
-                    ))}
-                </div>
-            </div>
-             </Col >
-           </Row >
-        </Container >
+
+                    <col>
+                    <div>
+                        <button onClick={this.JoniChat}>Join Nover Chat</button>
+                        <br />
+                        <input
+                            type="text"
+                            value={this.state.messagenover}
+                            onChange={e => this.setState({ messagenover: e.target.value })}
+                        />
+                        <button onClick={this.sendMessageNover}>Send</button>
+                        <div>
+                            {this.state.messagesnover.map((messagenover, index) => (
+                                <span style={{ display: 'block' }} key={index}> {messagenover} </span>
+                            ))}
+                        </div>
+                        </div>
+                    </col>
+                </Row >
+            </Container >
         );
     }
 }
