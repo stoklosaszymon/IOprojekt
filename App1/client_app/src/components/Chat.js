@@ -13,6 +13,10 @@ export default class Chat extends Component {
             message: '',
             messages: [],
             hubConnection: null,
+            messageGroup: '',
+            messagesGroup: [],
+            privNick: '',
+            user: '',
         };  
     }
 
@@ -43,7 +47,22 @@ export default class Chat extends Component {
                     .invoke('SendMessageToUser', this.state.nick, this.state.privNick, this.state.message)
                     .then(() => console.log("Send"))
                     .catch(err => console.error(err));
-            }
+    }
+
+    createGroup = () => {
+        this.state.hubConnection
+            .invoke('CreateRoom', this.state.roomName)
+            .then(() => console.log(this.state.roomName))
+            .catch(err => console.error(err));
+
+    }
+
+    addUser = () => {
+        this.state.hubConnection
+            .invoke('AddUserRoom', this.state.roomName, this.state.user)
+            .then(() => console.log(this.state.user))
+            .catch(err => console.error(err));
+    };
     //sendMessage = () => {
     //    this.state.hubConnection
     //        .invoke('SendMessageToAll', this.state.nick, this.state.message)
@@ -97,7 +116,29 @@ export default class Chat extends Component {
                              type="text"
                              value={this.state.privNick}
                              onChange={e => this.setState({ privNick: e.target.value })}
-                             />
+                            />
+                            <br />
+                            Room Name:
+                            <br />
+                            <input
+                                type="text"
+                                value={this.state.roomName}
+                                onChange={e => this.setState({ roomName: e.target.value })}
+                            />
+                            <br />
+                            <button onClick={this.createGroup}>CreateGroup</button>
+                            <br />
+                            User:
+                            <br />
+                            <input
+                                type="text"
+                                value={this.state.user}
+                                onChange={e => this.setState({ user: e.target.value })}
+                            />
+                            <br />
+                            <button onClick={this.addUser}>Add</button>
+                            <button onClick={this.RemoveUser}>Remove</button>
+
                          </div>
 
 
