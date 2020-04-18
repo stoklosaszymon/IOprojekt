@@ -48,12 +48,6 @@ namespace IOprojekt.Hubs
         //    await Clients.All.SendAsync("SendMessageToAll", user, message);
         //}
 
-        //public async Task JoinRoom ( string roomName)
-        //{
-        //    await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
-        //}
-
-
         public override async Task OnConnectedAsync()
         {
             await Clients.All.SendAsync("UserConnected", Context.ConnectionId);
