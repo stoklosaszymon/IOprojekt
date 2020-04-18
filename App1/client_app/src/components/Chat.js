@@ -13,6 +13,7 @@ export default class Chat extends Component {
             message: '',
             messages: [],
             hubConnection: null,
+            roomName: '',
             messageGroup: '',
             messagesGroup: [],
             privNick: '',
@@ -39,6 +40,11 @@ export default class Chat extends Component {
                 const messages = this.state.messages.concat([text]);
                 this.setState({ messages });
             });
+            this.state.hubConnection.on('SendMessageGroup', (nick, receivedMessage, ) => {
+                const text = `${nick}: ${receivedMessage}`;
+                const messagesGroup = this.state.messagesGroup.concat([text]);
+                this.setState({ messagesGroup });
+            });
         }); 
     }
 
@@ -62,6 +68,13 @@ export default class Chat extends Component {
             .invoke('AddUserRoom', this.state.roomName, this.state.user)
             .then(() => console.log(this.state.user))
             .catch(err => console.error(err));
+    };
+
+
+    sendGroup = () => {
+
+        this.state.hubConnection
+            .invoke('SendMessageGroup', this.state.nick, this.state.messageGroup, this.state.roomName)
     };
     //sendMessage = () => {
     //    this.state.hubConnection
@@ -159,6 +172,7 @@ export default class Chat extends Component {
                             ))}
                         </div>
                     </Col>
+                    
                 </Row >
             </Container >
         );

@@ -36,20 +36,23 @@ namespace IOprojekt.Hubs
             var nameID = chatClients.Where(s => s.Key == addName).Select(s => s.Value.IdChat).First();
             await Groups.AddToGroupAsync(nameID, roomName);
         }
-        //public async Task SendMessageToAll(string user, string message)
-        //{
-        //    await Clients.All.SendAsync("SendMessageToAll", user, message);
-        //}
-
-        public async Task JoinRoom ( string roomName)
-        {
-            await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
-        }
 
         public async Task SendMessageGroup (string name, string message, string roomName)
         {
             await Clients.Group(roomName).SendAsync("SendMessageGroup", name, message);
         }
+ 
+
+        //public async Task SendMessageToAll(string user, string message)
+        //{
+        //    await Clients.All.SendAsync("SendMessageToAll", user, message);
+        //}
+
+        //public async Task JoinRoom ( string roomName)
+        //{
+        //    await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
+        //}
+
 
         public override async Task OnConnectedAsync()
         {
