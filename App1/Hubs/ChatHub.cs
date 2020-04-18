@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace IOprojekt.Hubs
     public class ChatHub : Hub
     {
         private static ConcurrentDictionary<string, User> chatClients = new ConcurrentDictionary<string, User>();
-
+        private static IList<string> chatRoom = new List<string>();
         public ConcurrentDictionary<string, User> Login(string name)
         {
             User newUser = new User { FirstName = name, IdChat = Context.ConnectionId };
@@ -24,20 +25,22 @@ namespace IOprojekt.Hubs
             Clients.Client(Context.ConnectionId).SendAsync("SendMessageToUser", fromName, message);
             return Clients.Client(nameID).SendAsync("SendMessageToUser", fromName, message);
         }
-
-        public async Task SendMessageToAll(string user, string message)
+        public async Task CreateRoom(string roomName)
         {
-            await Clients.All.SendAsync("SendMessageToAll", user, message);
+            chatRoom.Add(roomName);
+            await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
         }
 
-        public Task SendMessageToCaller(string message)
+        public async Task AddUserRoom(string roomName, string addName)
         {
-            return Clients.Caller.SendAsync("ReceiveMessage", message);
+            var nameID = chatClients.Where(s => s.Key == addName).Select(s => s.Value.IdChat).First();
+            await Groups.AddToGroupAsync(nameID, roomName);
         }
-        //public Task SendMessageToUser(string connectionId, string message)
+        //public async Task SendMessageToAll(string user, string message)
         //{
-        //    return Clients.Client(connectionId).SendAsync("ReceiveMessage", message);
+        //    await Clients.All.SendAsync("SendMessageToAll", user, message);
         //}
+
         public async Task JoinRoom ( string roomName)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
