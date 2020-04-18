@@ -30,14 +30,20 @@ export default class Chat extends Component {
                 .then(() => console.log('Connection started!'))
                 .catch(err => console.log('Error while establishing connection :('));
 
-            //this.state.hubConnection.on('SendMessageToAll', (nick, receivedMessage) => {
-            //    const text = `${nick}: ${receivedMessage}`;
-            //    const messages = this.state.messages.concat([text]);
-            //    this.setState({ messages });
-            //});
-        });
+            this.state.hubConnection.on('SendMessageToUser', (nick, receivedMessage, ) => {
+                const text = `${nick}: ${receivedMessage}`;
+                const messages = this.state.messages.concat([text]);
+                this.setState({ messages });
+            });
+        }); 
     }
 
+    private = () => {
+                this.state.hubConnection
+                    .invoke('SendMessageToUser', this.state.nick, this.state.privNick, this.state.message)
+                    .then(() => console.log("Send"))
+                    .catch(err => console.error(err));
+            }
     //sendMessage = () => {
     //    this.state.hubConnection
     //        .invoke('SendMessageToAll', this.state.nick, this.state.message)
@@ -83,8 +89,8 @@ export default class Chat extends Component {
                         <div>
                             <button onClick={this.sendNick}>Login</button>
                             <br />
-                        
-                   
+
+
                              Send priv to:
                             <br />
                              <input
@@ -98,8 +104,19 @@ export default class Chat extends Component {
                     </Col>
 
                     <Col>
-
-                    dd
+                        <h1> Priv </h1>
+                        <div>
+                            <input
+                                type="text"
+                                value={this.state.message}
+                                onChange={e => this.setState({ message: e.target.value })}
+                            />
+                            <br />
+                            <button onClick={this.private}>Send</button>
+                            {this.state.messages.map((message, index) => (
+                                <span style={{ display: 'block' }} key={index}> {message} </span>
+                            ))}
+                        </div>
                     </Col>
                 </Row >
             </Container >
