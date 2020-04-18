@@ -119,7 +119,7 @@ export default class Chat extends Component {
                 <Row>
                     <Col>
                         <div>
-                            <button onClick={this.sendNick}>Login</button>
+                            <button onClick={this.sendNick}>Login chat</button>
                             <br />
 
 
@@ -172,7 +172,21 @@ export default class Chat extends Component {
                             ))}
                         </div>
                     </Col>
-                    
+                    <Col>
+                        <h1> Group </h1>
+                        <div>
+                            <input
+                                type="text"
+                                value={this.state.messageGroup}
+                                onChange={e => this.setState({ messageGroup: e.target.value })}
+                            />
+                            <br />
+                            <button onClick={this.sendGroup}>Send</button>
+                            {this.state.messagesGroup.map((messageGroup, index) => (
+                                <span style={{ display: 'block' }} key={index}> {messageGroup} </span>
+                            ))}
+                        </div>
+                    </Col>
                 </Row >
             </Container >
         );
