@@ -9,7 +9,7 @@ namespace IOprojekt.Models
     public class Friends
     {
         [BsonElement("userId")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [BsonElement("friendsList")]
         public BsonArray FriendsList { get; set; }
