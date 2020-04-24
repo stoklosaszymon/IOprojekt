@@ -19,11 +19,11 @@ namespace IOprojekt.GraphQLTypes
             Field<ListGraphType<UserType>>("GetFriendsByUserId",
             arguments: new QueryArguments
             {
-               new  QueryArgument<IntGraphType> { Name = "userId"}
+               new  QueryArgument<StringGraphType> { Name = "userId"}
             },
             resolve: context =>
             {
-                var id = context.GetArgument<int>("userId");
+                var id = context.GetArgument<string>("userId");
                 var filter = Builders<Friends>.Filter.Eq(user => user.UserId, id);
                 return _context.Friends.GetAll(filter).Result;
             });

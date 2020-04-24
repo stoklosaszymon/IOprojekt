@@ -59,7 +59,7 @@ namespace IOprojekt.GraphQLTypes
 
                     if ( found == null )
                     {
-                        _context.Friends.Add(new Friends { UserId = newUser.Sub, FriendsList = new MongoDB.Bson.BsonArray { });
+                        _context.Friends.Add(new Friends { UserId = newUser.Sub, FriendsList = new MongoDB.Bson.BsonArray { } });
                         return _context.Users.Add(newUser);
                     } 
                     else
