@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GraphQL;
+using GraphQL.Types;
+using IOprojekt.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
-using GraphQL;
-using GraphQL.Types;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using IOprojekt.Models;
 
 namespace IOprojekt.Controllers
 {
@@ -23,6 +21,7 @@ namespace IOprojekt.Controllers
         }
 
         [HttpPost]
+       // [Authorize]
         public async Task<IActionResult> Post([FromBody] GraphQLQueryDto query)
         {
             var result = await _executer.ExecuteAsync(_ =>

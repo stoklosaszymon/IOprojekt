@@ -1,8 +1,7 @@
 ﻿using IOprojekt.Models;
 using IOprojekt.Utils;
-using System;
 using Xunit;
-a
+
 namespace Bcknd_Tests
 {
     public class UtilitiesTest

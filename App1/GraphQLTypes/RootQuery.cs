@@ -1,29 +1,15 @@
 ﻿using GraphQL.Types;
-using IOprojekt.Repositories;
-using System.Linq;
 
 namespace IOprojekt.GraphQLTypes
 {
     public class RootQuery : ObjectGraphType
     {
-        public RootQuery(IUserRepository _userRepository)
+        public RootQuery()
         {
-            Field<ListGraphType<UserType>>("users",
-            resolve: context =>
-            {
-                return _userRepository.GetAll();
-            });
+            Name = "Query";
+            Field<UserQuery>("users", resolve: context => new { });
+            Field<PostQuery>("posts", resolve: context => new { });
 
-            Field<ListGraphType<UserType>>("userById",
-            arguments: new QueryArguments
-            {
-               new  QueryArgument<IntGraphType> { Name = "id"}
-            },
-            resolve: context =>
-            {
-                int id = context.GetArgument<int>("id");
-                return _userRepository.GetAll().Where(_ => _.Id == id).ToList();
-            });
         }
     }
 }

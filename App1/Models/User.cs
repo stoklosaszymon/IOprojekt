@@ -1,22 +1,18 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IOprojekt.Models
 {
     public class User
     {
-        [BsonId]
+        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         [BsonElement("id")]
-        [BsonRepresentation(BsonType.Int64)]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [BsonElement("firstName")]
-        [BsonRepresentation(BsonType.String)]
         public string FirstName { get; set; }
 
         [BsonElement("lastName")]
@@ -34,6 +30,10 @@ namespace IOprojekt.Models
         [BsonElement("locale")]
         [BsonRepresentation(BsonType.String)]
         public string Locale { get; set; }
+
+        [BsonElement("sub")]
+        [BsonRepresentation(BsonType.String)]
+        public string Sub { get; set; }
 
         [BsonElement("createdAt")]
         [BsonRepresentation(BsonType.DateTime)]
