@@ -57,7 +57,15 @@ namespace IOprojekt.GraphQLTypes
                     var filter = builder.Eq(user => user.Sub, newUser.Sub);
                     var found =_context.Users.FindOne(filter).Result;
 
-                    return found == null ? _context.Users.Add(newUser) : null;
+                    if ( found == null )
+                    {
+                        _context.Friends.Add(new Friends { UserId = newUser.Sub, FriendsList = new MongoDB.Bson.BsonArray { });
+                        return _context.Users.Add(newUser);
+                    } 
+                    else
+                    {
+                        return null;
+                    }
                 }
              );
 
