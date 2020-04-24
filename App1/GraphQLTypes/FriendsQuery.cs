@@ -14,6 +14,8 @@ namespace IOprojekt.GraphQLTypes
             if (context != null)
                 _context = context;
 
+            Name = "FriendsQuery";
+
             Field<ListGraphType<UserType>>("GetFriendsByUserId",
             arguments: new QueryArguments
             {
