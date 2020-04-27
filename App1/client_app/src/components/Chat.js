@@ -20,32 +20,32 @@ export default class Chat extends Component {
         };
     }
 
-    //componentDidMount = () => {
-    //    //const nick = window.prompt('Your name:', 'John');
+    componentDidMount = () => {
+        const nick = window.prompt('Your name:', 'John');
 
-    //    //const hubConnection = new signalR.HubConnectionBuilder()
-    //    //    .withUrl("/chatHub")
-    //    //    .configureLogging(signalR.LogLevel.Information)
-    //    //    .build();
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
 
-    //    //this.setState({ hubConnection, nick }, () => {
-    //    //    this.state.hubConnection
-    //    //        .start()
-    //    //        .then(() => console.log('Connection started!'))
-    //    //        .catch(err => console.log('Error while establishing connection :('));
+        this.setState({ hubConnection, nick }, () => {
+            this.state.hubConnection
+                .start()
+                .then(() => console.log('Connection started!'))
+                .catch(err => console.log('Error while establishing connection :('));
 
-    //    //    this.state.hubConnection.on('SendMessageToUser', (nick, receivedMessage, ) => {
-    //    //        const text = `${nick}: ${receivedMessage}`;
-    //    //        const messages = this.state.messages.concat([text]);
-    //    //        this.setState({ messages });
-    //    //    });
-    //    //    this.state.hubConnection.on('SendMessageGroup', (nick, receivedMessage, ) => {
-    //    //        const text = `${nick}: ${receivedMessage}`;
-    //    //        const messagesGroup = this.state.messagesGroup.concat([text]);
-    //    //        this.setState({ messagesGroup });
-    //    //    });
-    //    //});
-    //}
+            this.state.hubConnection.on('SendMessageToUser', (nick, receivedMessage, ) => {
+                const text = `${nick}: ${receivedMessage}`;
+                const messages = this.state.messages.concat([text]);
+                this.setState({ messages });
+            });
+            this.state.hubConnection.on('SendMessageGroup', (nick, receivedMessage, ) => {
+                const text = `${nick}: ${receivedMessage}`;
+                const messagesGroup = this.state.messagesGroup.concat([text]);
+                this.setState({ messagesGroup });
+            });
+        });
+    }
 
     private = () => {
         this.state.hubConnection
@@ -85,53 +85,16 @@ export default class Chat extends Component {
     }
 
     sendNick = () => {
-        if (this.state.hubConnection == null) {
-            const nick = this.state.nick
-            const hubConnection = new signalR.HubConnectionBuilder()
-                .withUrl("/chatHub")
-                .configureLogging(signalR.LogLevel.Information)
-                .build();
-
-            this.setState({ hubConnection, nick }, () => {
-                this.state.hubConnection
-                    .start()
-                    .then(() => 
-                        this.state.hubConnection
-                            .invoke('Login', this.state.nick)
-                            .then(() => console.log('Connection'))
-                            .catch(err => console.error(err)))
-                    .catch(err => console.log('Error while establishing connection :('));
-
-                this.state.hubConnection.on('SendMessageToUser', (nick, receivedMessage, ) => {
-                    const text = `${nick}: ${receivedMessage}`;
-                    const messages = this.state.messages.concat([text]);
-                    this.setState({ messages });
-                });
-                this.state.hubConnection.on('SendMessageGroup', (nick, receivedMessage, ) => {
-                    const text = `${nick}: ${receivedMessage}`;
-                    const messagesGroup = this.state.messagesGroup.concat([text]);
-                    this.setState({ messagesGroup });
-                });
-
-            });
-        }
-        
-               
-
+        this.state.hubConnection
+            .invoke('Login', this.state.nick)
+            .then(() => console.log('Apllay'))
+            .catch(err => console.error(err));
     }
 
     render() {
         return (
             <div>
-                <div>
-                    Nick:
-                    <br />
-                    <input
-                        type="text"
-                        value={this.state.nick}
-                        onChange={e => this.setState({ nick: e.target.value })}
-                    />
-                    <br />
+            <div>
                 <button onClick={this.sendNick}>Login chat</button>
                 <br />
 
