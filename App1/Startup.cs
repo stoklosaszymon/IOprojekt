@@ -79,7 +79,7 @@ namespace App1
 
             services.AddSingleton<IntGraphType>();
 
-            services.AddSignalR()
+            services.AddSignalR();
 
 
         }
@@ -112,7 +112,7 @@ namespace App1
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
-                    endpoints.MapHub<ChatHub>("/chatt");
+                    endpoints.MapHub<ChatHub>("/chatHub");
             });
 
 

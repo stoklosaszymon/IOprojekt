@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
 import * as signalR from "@microsoft/signalr";
 
 
@@ -18,7 +17,7 @@ export default class Chat extends Component {
             messagesGroup: [],
             privNick: '',
             user: '',
-        };  
+        };
     }
 
     componentDidMount = () => {
@@ -45,14 +44,14 @@ export default class Chat extends Component {
                 const messagesGroup = this.state.messagesGroup.concat([text]);
                 this.setState({ messagesGroup });
             });
-        }); 
+        });
     }
 
     private = () => {
-                this.state.hubConnection
-                    .invoke('SendMessageToUser', this.state.nick, this.state.privNick, this.state.message)
-                    .then(() => console.log("Send"))
-                    .catch(err => console.error(err));
+        this.state.hubConnection
+            .invoke('SendMessageToUser', this.state.nick, this.state.privNick, this.state.message)
+            .then(() => console.log("Send"))
+            .catch(err => console.error(err));
     }
 
     createGroup = () => {
@@ -84,7 +83,7 @@ export default class Chat extends Component {
             .then(() => console.log(this.state.user))
             .catch(err => console.error(err));
     }
-   
+
     sendNick = () => {
         this.state.hubConnection
             .invoke('Login', this.state.nick)
@@ -94,80 +93,70 @@ export default class Chat extends Component {
 
     render() {
         return (
-            <Container>
-                <Row>
-                    <Col>
-                        <div>
-                            <button onClick={this.sendNick}>Login chat</button>
-                            <br />
+            <div>
+            <div>
+                <button onClick={this.sendNick}>Login chat</button>
+                <br />
 
 
                              Send priv to:
                             <br />
-                             <input
-                             type="text"
-                             value={this.state.privNick}
-                             onChange={e => this.setState({ privNick: e.target.value })}
-                            />
-                            <br />
+                <input
+                    type="text"
+                    value={this.state.privNick}
+                    onChange={e => this.setState({ privNick: e.target.value })}
+                />
+                <br />
                             Room Name:
                             <br />
-                            <input
-                                type="text"
-                                value={this.state.roomName}
-                                onChange={e => this.setState({ roomName: e.target.value })}
-                            />
-                            <br />
-                            <button onClick={this.createGroup}>CreateGroup</button>
-                            <br />
+                <input
+                    type="text"
+                    value={this.state.roomName}
+                    onChange={e => this.setState({ roomName: e.target.value })}
+                />
+                <br />
+                <button onClick={this.createGroup}>CreateGroup</button>
+                <br />
                             User:
                             <br />
-                            <input
-                                type="text"
-                                value={this.state.user}
-                                onChange={e => this.setState({ user: e.target.value })}
-                            />
-                            <br />
-                            <button onClick={this.addUser}>Add</button>
-                            <button onClick={this.RemoveUser}>Remove</button>
+                <input
+                    type="text"
+                    value={this.state.user}
+                    onChange={e => this.setState({ user: e.target.value })}
+                />
+                <br />
+                <button onClick={this.addUser}>Add</button>
+                <button onClick={this.RemoveUser}>Remove</button>
+            </div>
+            <h1> Priv </h1>
+            <div>
+                <input
+                    type="text"
+                    value={this.state.message}
+                    onChange={e => this.setState({ message: e.target.value })}
+                />
+                <br />
+                <button onClick={this.private}>Send</button>
+                {this.state.messages.map((message, index) => (
+                    <span style={{ display: 'block' }} key={index}> {message} </span>
+                ))}
+            </div>
 
-                         </div>
-
-
-                    </Col>
-
-                    <Col>
-                        <h1> Priv </h1>
-                        <div>
-                            <input
-                                type="text"
-                                value={this.state.message}
-                                onChange={e => this.setState({ message: e.target.value })}
-                            />
-                            <br />
-                            <button onClick={this.private}>Send</button>
-                            {this.state.messages.map((message, index) => (
-                                <span style={{ display: 'block' }} key={index}> {message} </span>
-                            ))}
-                        </div>
-                    </Col>
-                    <Col>
-                        <h1> Group </h1>
-                        <div>
-                            <input
-                                type="text"
-                                value={this.state.messageGroup}
-                                onChange={e => this.setState({ messageGroup: e.target.value })}
-                            />
-                            <br />
-                            <button onClick={this.sendGroup}>Send</button>
-                            {this.state.messagesGroup.map((messageGroup, index) => (
-                                <span style={{ display: 'block' }} key={index}> {messageGroup} </span>
-                            ))}
-                        </div>
-                    </Col>
-                </Row >
-            </Container >
+            <h1> Group </h1>
+            <div>
+                <input
+                    type="text"
+                    value={this.state.messageGroup}
+                    onChange={e => this.setState({ messageGroup: e.target.value })}
+                />
+                <br />
+                <button onClick={this.sendGroup}>Send</button>
+                {this.state.messagesGroup.map((messageGroup, index) => (
+                    <span style={{ display: 'block' }} key={index}> {messageGroup} </span>
+                ))}
+                </div>
+            </div>
         );
     }
 }
+
