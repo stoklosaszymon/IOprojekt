@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using IOprojekt.Models;
+using IOprojekt.Hubs;
 
 namespace App1
 {
@@ -78,6 +79,8 @@ namespace App1
 
             services.AddSingleton<IntGraphType>();
 
+            services.AddSignalR();
+
 
         }
 
@@ -109,6 +112,7 @@ namespace App1
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                    endpoints.MapHub<ChatHub>("/chatHub");
             });
 
 

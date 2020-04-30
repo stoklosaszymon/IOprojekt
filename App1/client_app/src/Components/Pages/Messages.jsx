@@ -6,6 +6,7 @@ import MessageLogo from "../assets/MessageLogo";
 import Search from "../mainComponents/mainAside/Search";
 import Default from "../subComponents/messagesComponents/MessagesStream";
 import "../../Styles/Messages.css";
+import Chat from "../Chat";
 
 const Messages = () => {
   return (
@@ -15,7 +16,9 @@ const Messages = () => {
         <SectionMiddle data={<Search />} />
         <Stream data={<Default />} />
       </section>
-      <aside></aside>
+          <aside>
+              <Chat />
+          </aside>
     </div>
   );
 };
