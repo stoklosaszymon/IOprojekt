@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace IOprojekt.Models
@@ -12,6 +13,6 @@ namespace IOprojekt.Models
         public string UserId { get; set; }
 
         [BsonElement("friendsList")]
-        public BsonArray FriendsList { get; set; }
+        public List<string> FriendsList { get; set; }
     }
 }

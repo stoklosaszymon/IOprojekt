@@ -16,7 +16,7 @@ namespace IOprojekt.GraphQLTypes
 
             Name = "FriendsQuery";
 
-            Field<ListGraphType<UserType>>("GetFriendsByUserId",
+            Field<FriendsType>("GetFriendsByUserId",
             arguments: new QueryArguments
             {
                new  QueryArgument<StringGraphType> { Name = "userId"}
@@ -25,7 +25,7 @@ namespace IOprojekt.GraphQLTypes
             {
                 var id = context.GetArgument<string>("userId");
                 var filter = Builders<Friends>.Filter.Eq(user => user.UserId, id);
-                return _context.Friends.GetAll(filter).Result;
+                return _context.Friends.GetAll(filter).Result.FirstOrDefault();
             });
         }
     }

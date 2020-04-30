@@ -6,10 +6,10 @@ using System;
 
 namespace IOprojekt.GraphQLTypes
 {
-    public class FirendsMutation : ObjectGraphType
+    public class FriendsMutation : ObjectGraphType
     {
         private readonly IDbContext _context;
-        public FirendsMutation(IDbContext context)
+        public FriendsMutation(IDbContext context)
         {
             if (context != null)
                 _context = context;
