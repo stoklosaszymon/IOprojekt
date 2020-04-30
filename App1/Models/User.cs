@@ -39,5 +39,9 @@ namespace IOprojekt.Models
         [BsonRepresentation(BsonType.DateTime)]
         [DataType(DataType.Date)]
         public DateTime CreatedAt { get; set; }
+
+        [BsonElement("idChat")]
+        [BsonRepresentation(BsonType.String)]
+        public string IdChat { get; set; }
     }
 }
