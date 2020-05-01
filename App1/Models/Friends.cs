@@ -9,6 +9,7 @@ namespace IOprojekt.Models
 {
     public class Friends
     {
+        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         [BsonElement("userId")]
         public string UserId { get; set; }
 

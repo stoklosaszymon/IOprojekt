@@ -16,7 +16,7 @@ namespace IOprojekt.GraphQLTypes
 
             Name = "FriendsMutation";
 
-            Field<PostType>("addFriend",
+            Field<FriendsType>("addFriend",
                 arguments: new QueryArguments
                 {
                     new QueryArgument<StringGraphType>() { Name = "userId" },

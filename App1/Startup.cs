@@ -79,6 +79,8 @@ namespace App1
 
             services.AddSingleton<FriendsType>();
             services.AddScoped<FriendsQuery>();
+            services.AddScoped<FriendsMutation>();
+
 
             services.AddSingleton<IntGraphType>();
 
