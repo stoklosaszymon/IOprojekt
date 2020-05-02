@@ -6,6 +6,6 @@ namespace IOprojekt.Interfaces
     {
         IRepository<User> Users { get; }
         IRepository<Post> Posts { get; }
-
+        IRepository<Friends> Friends { get; }
     }
 }

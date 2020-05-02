@@ -1,9 +1,11 @@
 ﻿using GraphQL.Types;
 using IOprojekt.Interfaces;
 using IOprojekt.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
@@ -57,7 +59,21 @@ namespace IOprojekt.GraphQLTypes
                     var filter = builder.Eq(user => user.Sub, newUser.Sub);
                     var found =_context.Users.FindOne(filter).Result;
 
-                    return found == null ? _context.Users.Add(newUser) : null;
+                    if ( found == null )
+                    {
+                        var createdUser = _context.Users.Add(newUser);
+
+                        _context.Friends.Add(new Friends
+                        {
+                            UserId = createdUser.Result.Id,
+                            FriendsList = new List<string>()
+                        });
+                        return createdUser;
+                    } 
+                    else
+                    {
+                        return null;
+                    }
                 }
              );
 

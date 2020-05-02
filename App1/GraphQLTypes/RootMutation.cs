@@ -9,6 +9,7 @@ namespace IOprojekt.GraphQLTypes
 
             Field<UserMutation>("users", resolve: context => new { });
             Field<PostMutation>("posts", resolve: context => new { });
+            Field<FriendsMutation>("friends", resolve: context => new { });
 
         }
     }

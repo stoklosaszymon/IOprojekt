@@ -77,6 +77,11 @@ namespace App1
             services.AddSingleton<InputPostType>();
             services.AddScoped<PostMutation>();
 
+            services.AddSingleton<FriendsType>();
+            services.AddScoped<FriendsQuery>();
+            services.AddScoped<FriendsMutation>();
+
+
             services.AddSingleton<IntGraphType>();
 
             services.AddSignalR();
