@@ -10,11 +10,13 @@ import BackButton from "../assets/BackButton";
 import ProfileSectionMiddle from "../subComponents/profileComponents/ProfileSectionMiddle";
 import ProfileStream from "../subComponents/profileComponents/ProfileStream";
 import "../../Styles/Profile.css";
+import { useParams } from "react-router-dom";
 
 const Profile = () => {
+    let { userName } = useParams();
   return (
     <div className="main-container profile">
-      <section>
+       <section>
         <SectionHeader
           heading="fname lname"
           subText="0 Tweets"

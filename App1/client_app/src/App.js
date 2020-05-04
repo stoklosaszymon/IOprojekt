@@ -52,7 +52,7 @@ function App () {
                             <Toast header="Create new List" btnText="Next" body={<CreateLists />}
                             />)} />
                             {/* Profile */}
-                            <Route path="/userName" component={Profile} />
+                            <Route path="/:userName" component={Profile} />
                             <Route path="/settings/profile" component={() => (
                             <Toast header="Edit Profile" btnText="Save" body={<ProfileSetting />}
                             /> )} />
