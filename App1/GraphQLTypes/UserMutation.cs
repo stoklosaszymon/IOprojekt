@@ -43,6 +43,7 @@ namespace IOprojekt.GraphQLTypes
                     var response = client.SendAsync(request);
                     var result = response.Result.Content.ReadAsStringAsync();
 
+
                     Auth0User m = JsonConvert.DeserializeObject<Auth0User>(result.Result);
 
                     var newUser = new User
@@ -52,6 +53,7 @@ namespace IOprojekt.GraphQLTypes
                         LastName = m.family_name,
                         Locale = m.locale,
                         Sub = m.sub,
+                        Nickname = m.nickname,
                         CreatedAt = DateTime.Now   
                     };
 

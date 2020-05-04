@@ -14,6 +14,7 @@ namespace IOprojekt.GraphQLTypes
             Field(_ => _.Email, nullable: true);
             Field(_ => _.Gender, nullable: true);
             Field(_ => _.Locale, nullable: true);
+            Field(_ => _.Nickname, nullable: true);
         }
     }
 }
