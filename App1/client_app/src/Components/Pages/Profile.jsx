@@ -14,6 +14,9 @@ import { useParams } from "react-router-dom";
 
 const Profile = () => {
     let { userName } = useParams();
+
+
+
   return (
     <div className="main-container profile">
        <section>
