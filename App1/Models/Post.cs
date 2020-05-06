@@ -13,7 +13,7 @@ namespace IOprojekt.Models
         public string PostId { get; set; }
 
         [BsonElement("userId")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [BsonElement("body")]
         [BsonRepresentation(BsonType.String)]

@@ -33,12 +33,12 @@ const Profile = () => {
     <div className="main-container profile">
           <section>
         <SectionHeader
-                    heading={user.nickname}
+          heading={user.nickname}
           subText="0 Tweets"
           logo={<BackButton />}
         />
-        <SectionMiddle data={<ProfileSectionMiddle />} />
-        <Stream data={<ProfileStream />} />
+           <SectionMiddle data={<ProfileSectionMiddle username={user.nickname}/>} />
+           <Stream data={<ProfileStream username={user.nickname}/>} />
       </section>
       <aside>
         <Search />
