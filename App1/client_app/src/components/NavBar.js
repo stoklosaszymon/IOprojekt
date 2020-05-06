@@ -7,7 +7,7 @@ const NavBar = () => {
 
     const { isAuthenticated, loginWithPopup, logout, getTokenSilently, user } = useAuth0();
 
-    const addUser = async ({ sub, given_name, family_name, locale, email }) => {
+    const addUser = async () => {
         let token = '';
         if (user !== undefined && getTokenSilently != undefined) {
 
