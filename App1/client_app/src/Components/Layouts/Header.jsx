@@ -1,8 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Avatar from "../assets/Avatar";
+import { useSelector } from 'react-redux'
 
 const Header = () => {
+
+    const user = useSelector(state => state.loggedUser);
+
   return (
     <header>
       <div className="header-container">
@@ -103,7 +107,7 @@ const Header = () => {
             </div>
           </NavLink>
           <NavLink
-            to="/userName"
+            to={user.nickname}
             className="a-container"
             activeClassName={"active-link"}
           >

@@ -1,8 +1,9 @@
 ﻿import React from 'react'
 import { useAuth0 } from "../react-auth0-spa";
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux'
 
-let NavBar = () => {
+const NavBar = () => {
+    let dispatch = useDispatch();
 
     const { isAuthenticated, loginWithPopup, logout, getTokenSilently, user } = useAuth0();
 
@@ -33,6 +34,7 @@ let NavBar = () => {
 
     if (isAuthenticated) {
         addUser(user);
+        dispatch({ type: 'LOG_IN', loggedUser: user });
     }
 
     return (
@@ -49,15 +51,4 @@ let NavBar = () => {
   );
 };
 
-const mapStateToProps = (state) => {
-    return { logged: state.logged, loggedUserId: state.loggedUserId };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onLogIn: (userId) => dispatch({ type: 'LOG_IN', loggedUserId: userId }),
-        onLogOut: () => dispatch({ type: 'LOG_OUT' }),
-    }
-};
-
-export default NavBar = connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default NavBar;

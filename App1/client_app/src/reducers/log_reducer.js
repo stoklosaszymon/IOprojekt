@@ -1,9 +1,9 @@
 ﻿export const reducer = (state = {}, action) => {
     switch (action.type) {
         case 'LOG_IN':
-            return { ...state, logged: true, loggedUserId: action.loggedUserId };
+            return { ...state, logged: true, loggedUser: action.loggedUser };
         case 'LOG_OUT':
-            return { ...state, logged: false, loggedUserId: null };
+            return { ...state, logged: false, loggedUser: null };
         default:
             return state;
     }
