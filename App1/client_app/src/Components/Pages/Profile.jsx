@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 
 const Profile = () => {
     let { userName } = useParams();
-    const [user, setUser] = useState({email: '', nickname: ''});
+    const [user, setUser] = useState({id: '', email: '', nickname: ''});
 
     useEffect(() => {
             fetch('graphql', {
@@ -38,7 +38,7 @@ const Profile = () => {
           logo={<BackButton />}
         />
            <SectionMiddle data={<ProfileSectionMiddle username={user.nickname}/>} />
-           <Stream data={<ProfileStream username={user.nickname}/>} />
+           <Stream data={<ProfileStream />} />
       </section>
       <aside>
         <Search />

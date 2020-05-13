@@ -25,13 +25,13 @@ const NavBar = () => {
                     query: `
                     mutation {
                       users {
-                        addUser(token: "${token}") 
+                        addUser(token: "${token}")  
                       }
                     }`
                 }),
             }).then(res => res.json())
                 .then(res => user2 = res.users.addUser)
-                .then(res => dispatch({ type: 'LOG_IN', loggedUser: user }) )
+                .then(res => dispatch({ type: 'LOG_IN', loggedUser: user2 }) )
         }
     }
 
