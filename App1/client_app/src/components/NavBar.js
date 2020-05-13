@@ -7,13 +7,15 @@ const NavBar = () => {
 
     const { isAuthenticated, loginWithPopup, logout, getTokenSilently, user } = useAuth0();
 
+    let user2 = {};
+
     const addUser = async () => {
         let token = '';
         if (user !== undefined && getTokenSilently != undefined) {
 
             await getTokenSilently().then(e => token = e)
 
-            fetch('graphql', {
+            await fetch('graphql', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -28,13 +30,13 @@ const NavBar = () => {
                     }`
                 }),
             }).then(res => res.json())
-                .then(res => console.log(res));
+                .then(res => user2 = res.users.addUser)
+                .then(res => dispatch({ type: 'LOG_IN', loggedUser: user }) )
         }
     }
 
     if (isAuthenticated) {
-        addUser(user);
-        dispatch({ type: 'LOG_IN', loggedUser: user });
+        addUser();
     }
 
     return (

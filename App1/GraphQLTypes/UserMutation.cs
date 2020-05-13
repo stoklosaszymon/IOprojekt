@@ -74,7 +74,7 @@ namespace IOprojekt.GraphQLTypes
                     } 
                     else
                     {
-                        return null;
+                        return found;
                     }
                 }
              );
