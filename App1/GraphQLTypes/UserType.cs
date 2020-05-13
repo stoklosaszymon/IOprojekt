@@ -11,6 +11,7 @@ namespace IOprojekt.GraphQLTypes
             Field(_ => _.Id);
             Field(_ => _.FirstName);
             Field(_ => _.LastName);
+            Field(_ => _.Nickname);
             Field(_ => _.Email);
             Field(_ => _.Gender);
             Field(_ => _.Locale);

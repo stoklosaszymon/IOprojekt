@@ -1,18 +1,21 @@
 ﻿import React from 'react'
 import { useAuth0 } from "../react-auth0-spa";
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux'
 
-let NavBar = () => {
+const NavBar = () => {
+    let dispatch = useDispatch();
 
     const { isAuthenticated, loginWithPopup, logout, getTokenSilently, user } = useAuth0();
 
-    const addUser = async ({ sub, given_name, family_name, locale, email }) => {
+    let user2 = {};
+
+    const addUser = async () => {
         let token = '';
         if (user !== undefined && getTokenSilently != undefined) {
 
             await getTokenSilently().then(e => token = e)
 
-            fetch('graphql', {
+            await fetch('graphql', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -22,17 +25,18 @@ let NavBar = () => {
                     query: `
                     mutation {
                       users {
-                        addUser(token: "${token}") 
+                        addUser(token: "${token}")  
                       }
                     }`
                 }),
             }).then(res => res.json())
-                .then(res => console.log(res));
+                .then(res => user2 = res.users.addUser)
+                .then(res => dispatch({ type: 'LOG_IN', loggedUser: user2 }) )
         }
     }
 
     if (isAuthenticated) {
-        addUser(user);
+        addUser();
     }
 
     return (
@@ -49,15 +53,4 @@ let NavBar = () => {
   );
 };
 
-const mapStateToProps = (state) => {
-    return { logged: state.logged, loggedUserId: state.loggedUserId };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onLogIn: (userId) => dispatch({ type: 'LOG_IN', loggedUserId: userId }),
-        onLogOut: () => dispatch({ type: 'LOG_OUT' }),
-    }
-};
-
-export default NavBar = connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default NavBar;

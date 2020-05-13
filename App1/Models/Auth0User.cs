@@ -13,5 +13,6 @@ namespace IOprojekt.Models
         public string locale { get; set; }
         public string email { get; set; }
         public string sub { get; set; }
+        public string nickname { get; set; }
     }
 }

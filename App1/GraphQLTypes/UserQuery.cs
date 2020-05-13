@@ -32,6 +32,18 @@ namespace IOprojekt.GraphQLTypes
                 var filter = Builders<User>.Filter.Eq(user => user.Id, id);
                 return _context.Users.GetAll(filter).Result.FirstOrDefault();
             });
+
+            Field<UserType>("getByNickname",
+            arguments: new QueryArguments
+            {
+               new  QueryArgument<StringGraphType> { Name = "nickname"}
+            },
+            resolve: context =>
+            {
+                var nickname = context.GetArgument<string>("nickname");
+                var filter = Builders<User>.Filter.Eq(user => user.Nickname, nickname );
+                return _context.Users.GetAll(filter).Result.FirstOrDefault();
+            });
         }
     }
 }

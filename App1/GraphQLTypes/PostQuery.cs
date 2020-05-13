@@ -24,11 +24,11 @@ namespace IOprojekt.GraphQLTypes
             Field<ListGraphType<PostType>>("GetByUserId",
             arguments: new QueryArguments
             {
-               new  QueryArgument<IntGraphType> { Name = "userId"}
+               new  QueryArgument<StringGraphType> { Name = "userId"}
             },
             resolve: context =>
             {
-                var id = context.GetArgument<int>("userId");
+                var id = context.GetArgument<string>("userId");
                 var filter = Builders<Post>.Filter.Eq(post => post.UserId, id);
                 return _context.Posts.GetAll(filter).Result;
             });
@@ -36,11 +36,11 @@ namespace IOprojekt.GraphQLTypes
             Field<PostType>("GetById",
             arguments: new QueryArguments
             {
-                new  QueryArgument<IntGraphType> { Name = "postId"}
+                new  QueryArgument<StringGraphType> { Name = "postId"}
             },
             resolve: context =>
             {
-                var id = context.GetArgument<int>("postId");
+                var id = context.GetArgument<string>("postId");
                 var filter = Builders<Post>.Filter.Eq(post => post.UserId, id);
                 return _context.Posts.GetAll(filter).Result.FirstOrDefault();
             });

@@ -2,13 +2,13 @@ import React from "react";
 import ProfileUI from "./ProfileUI";
 import { NavLink } from "react-router-dom";
 
-const ProfileSectionMiddle = () => {
+const ProfileSectionMiddle = ({ username }) => {
   return (
     <div className="section-middle">
       <ProfileUI />
       <div className="nav">
         <NavLink
-          to="/username"
+          to={`/${username}`}
           className="a"
           activeClassName={"active-link"}
           exact={true}
@@ -16,21 +16,21 @@ const ProfileSectionMiddle = () => {
           Tweets
         </NavLink>
         <NavLink
-          to="/username/replies"
+          to={`/${username}/replies`}
           className="a"
           activeClassName={"active-link"}
         >
           Tweets & replies
         </NavLink>
         <NavLink
-          to="/username/media"
+          to={`/${username}/media`}
           className="a"
           activeClassName={"active-link"}
         >
           Media
         </NavLink>
         <NavLink
-          to="/username/likes"
+          to={`/${username}/likes`}
           className="a"
           activeClassName={"active-link"}
         >

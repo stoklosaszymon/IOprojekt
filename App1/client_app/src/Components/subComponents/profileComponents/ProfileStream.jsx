@@ -10,10 +10,10 @@ const ProfileStream = () => {
   return (
     <div>
       <Switch>
-        <Route path="/username" exact={true} component={Tweets} />
-        <Route path="/username/replies" component={Replies} />
-        <Route path="/username/media" component={Media} />
-        <Route path="/username/likes" component={Likes} />
+        <Route path="/:userName" exact={true} component={Tweets} />
+        <Route path="/:userName/replies" component={Replies} />
+        <Route path="/:userName/media" component={Media} />
+        <Route path="/:userName/likes" component={Likes} />
         <Route component={Error404} />
       </Switch>
     </div>
