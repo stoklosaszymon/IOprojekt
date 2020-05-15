@@ -1,7 +1,5 @@
 import React from "react";
 import Avatar from "../../assets/img/profile_normal.png";
-import Media from "../../assets/img/media.jpg";
-import { useAuth0 } from "../../../react-auth0-spa";
 import { Component } from "react";
 
 class HomeStream extends Component {

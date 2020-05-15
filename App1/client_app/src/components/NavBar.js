@@ -11,7 +11,7 @@ const NavBar = () => {
 
     const addUser = async () => {
         let token = '';
-        if (user !== undefined && getTokenSilently != undefined) {
+        if (user !== undefined && getTokenSilently !== undefined) {
 
             await getTokenSilently().then(e => token = e)
 
