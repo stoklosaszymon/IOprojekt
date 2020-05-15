@@ -9,11 +9,8 @@ import PrivateRoute from './components/PrivateRoute'
 
 import Header from "./components/Layouts/Header";
 import Home from "./components/Pages/Home";
-import Explore from "./components/Pages/Explore";
 import Notifications from "./components/Pages/Notifications";
 import Messages from "./components/Pages/Messages";
-import Bookmarks from "./components/Pages/Bookmarks";
-import Lists from "./components/Pages/Lists";
 import Profile from "./components/Pages/Profile";
 import Toast from "./components/subComponents/Toast";
 import TrendsSettingBody from "./components/subComponents/TrendsSetting";
@@ -35,8 +32,6 @@ function App () {
                         <Switch>
                             {/* Home */}
                             <Route path="/home" component={Home} />
-                            {/* Explore */}
-                            <Route path="/explore" component={Explore} />]
                             {/* Notification */}
                             <Route path="/notifications" component={Notifications} />
                             {/* Messages */}
@@ -44,13 +39,6 @@ function App () {
                             <Route path="/messages/compose" component={() => (
                             <Toast header="New message" btnText="Next" body={<Compose />} />
                             )} />
-                            {/* Bookmarks */}
-                            <Route path="/i/bookmarks" component={Bookmarks} />
-                            {/* Lists */}
-                            <Route path="/i/lists" component={Lists} />
-                            <Route path="/lists/create" component={() => (
-                            <Toast header="Create new List" btnText="Next" body={<CreateLists />}
-                            />)} />
                             {/* Profile */}
                             <Route path="/:userName" component={Profile} />
                             <Route path="/settings/profile" component={() => (
