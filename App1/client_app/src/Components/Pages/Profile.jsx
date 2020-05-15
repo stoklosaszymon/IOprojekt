@@ -3,7 +3,6 @@ import SectionHeader from "../mainComponents/mainSection/SectionHeader";
 import SectionMiddle from "../mainComponents/mainSection/SectionMiddle";
 import Stream from "../mainComponents/mainSection/Stream";
 import Search from "../mainComponents/mainAside/Search";
-import Follow from "../mainComponents/mainAside/Follow";
 import Trends from "../mainComponents/mainAside/Trends";
 import Footer from "../mainComponents/mainAside/Footer";
 import BackButton from "../assets/BackButton";
@@ -42,7 +41,6 @@ const Profile = () => {
       </section>
       <aside>
         <Search />
-        <Follow />
         <Trends />
         <Footer />
       </aside>

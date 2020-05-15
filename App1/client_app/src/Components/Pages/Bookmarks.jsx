@@ -4,7 +4,6 @@ import Stream from "../mainComponents/mainSection/Stream";
 import BookmarksStream from "../subComponents/bookmarksComponents/BookmarksStream";
 import Search from "../mainComponents/mainAside/Search";
 import Trends from "../mainComponents/mainAside/Trends";
-import Follow from "../mainComponents/mainAside/Follow";
 import Footer from "../mainComponents/mainAside/Footer";
 
 const Bookmarks = () => {
@@ -19,7 +18,6 @@ const Bookmarks = () => {
         <div className="aside-container">
           <Search />
           <Trends />
-          <Follow />
           <Footer />
         </div>
       </aside>

@@ -4,7 +4,6 @@ import SectionMiddle from "../mainComponents/mainSection/SectionMiddle";
 import Stream from "../mainComponents/mainSection/Stream";
 import ExploreSectionMiddle from "../subComponents/exploreComponents/ExploreSectionMiddle";
 import ExploreStream from "../subComponents/exploreComponents/ExploreStream";
-import Follow from "../mainComponents/mainAside/Follow";
 import Footer from "../mainComponents/mainAside/Footer";
 import Search from "../mainComponents/mainAside/Search";
 import SettingLogo from "../assets/SettingLogo";
@@ -18,7 +17,6 @@ const Explore = () => {
         <Stream data={<ExploreStream />} />
       </section>
       <aside>
-        <Follow />
         <Footer />
       </aside>
     </div>

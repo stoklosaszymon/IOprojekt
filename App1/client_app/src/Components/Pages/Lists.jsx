@@ -6,7 +6,6 @@ import ListsSectionMiddle from "../subComponents/listsComponents/ListsSectionMid
 import ListsStream from "../subComponents/listsComponents/ListsStream";
 import Search from "../mainComponents/mainAside/Search";
 import Trends from "../mainComponents/mainAside/Trends";
-import Follow from "../mainComponents/mainAside/Follow";
 import Footer from "../mainComponents/mainAside/Footer";
 import ListLogo from "../assets/ListLogo";
 import "../../Styles/Lists.css";
@@ -28,7 +27,6 @@ const Lists = () => {
         <div className="aside-container">
           <Search />
           <Trends />
-          <Follow />
           <Footer />
         </div>
       </aside>
