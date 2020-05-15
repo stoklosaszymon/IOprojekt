@@ -15,27 +15,6 @@ const ProfileSectionMiddle = ({ username }) => {
         >
           Tweets
         </NavLink>
-        <NavLink
-          to={`/${username}/replies`}
-          className="a"
-          activeClassName={"active-link"}
-        >
-          Tweets & replies
-        </NavLink>
-        <NavLink
-          to={`/${username}/media`}
-          className="a"
-          activeClassName={"active-link"}
-        >
-          Media
-        </NavLink>
-        <NavLink
-          to={`/${username}/likes`}
-          className="a"
-          activeClassName={"active-link"}
-        >
-          Likes
-        </NavLink>
       </div>
     </div>
   );
