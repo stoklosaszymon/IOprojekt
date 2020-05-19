@@ -37,7 +37,7 @@ const Profile = () => {
           logo={<BackButton />}
         />
            <SectionMiddle data={<ProfileSectionMiddle user={user}/>} />
-           <Stream data={<ProfileStream />} />
+                <Stream data={<ProfileStream userId={user.id}/>} />
       </section>
       <aside>
         <Search />

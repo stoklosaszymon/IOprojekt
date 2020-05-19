@@ -120,7 +120,7 @@ const PostFooter = () =>
                     <div className="tweet-action-count">
                         <span>3.5k</span>
                     </div>
-                </div>
+                </div>'
             </div>
             <div className="tweet-action">
                 <div className="tweet-action-btn likes-btn">

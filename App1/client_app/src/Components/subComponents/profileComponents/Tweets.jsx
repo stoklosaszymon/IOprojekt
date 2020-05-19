@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Avatar from "../../assets/img/profile_normal.png";
 
-const Tweets = () => {
+const Tweets = ({ userId }) => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -10,7 +10,7 @@ const Tweets = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ query: '{ posts { getByUserId(userId: "3") { postId body createdAt userId image}}}' }),
+            body: JSON.stringify({ query: `{ posts { getByUserId(userId: "${userId}") { postId body createdAt userId image}}}` }),
         })
             .then(res => res.json())
             .then(res => setPosts(res.posts.getByUserId))

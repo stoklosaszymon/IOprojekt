@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from 'react-redux';
 import Avatar from "../../assets/Avatar";
 
 const HomeSectionMiddle = () => {
     const [value, setValue] = useState("");
     const [image, setImage] = useState("");
 
+    const user = useSelector(state => state.loggedUser);
 
     const updateValue = e => {
         setValue(e.target.value);
@@ -20,7 +22,7 @@ const HomeSectionMiddle = () => {
                 query: `
                     mutation {
                       posts {
-                        addPost(post: { body: "${value}", userId: "3", image: "${image}"}) {
+                        addPost(post: { body: "${value}", userId: "${user.id}", image: "${image}"}) {
                           body
                         }
                       }
