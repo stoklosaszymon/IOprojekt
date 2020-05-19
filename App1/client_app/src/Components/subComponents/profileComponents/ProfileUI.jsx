@@ -3,7 +3,7 @@ import ProfileLogo from "../../assets/img/profile_normal.png";
 import BannerImg from "../../assets/img/404-bg-img.jpg";
 import { NavLink } from "react-router-dom";
 
-const ProfileUI = () => {
+const ProfileUI = ({ user }) => {
   return (
     <div className="profile-ui">
       <div className="userBanner">
@@ -25,8 +25,8 @@ const ProfileUI = () => {
           </div>
         </div>
         <div className="user-name-container">
-          <div className="full-name">fname lname</div>
-          <div className="username">@userName</div>
+                  <div className="full-name">{`${user.firstName} ${user.lastName}`}</div>
+                  <div className="username">{user.nickname}</div>
         </div>
         <div className="join-date-container">
           <div className="calender-logo">
@@ -45,7 +45,7 @@ const ProfileUI = () => {
             </svg>
           </div>
           <span>Joined&nbsp;</span>
-          <span>July 2018</span>
+          <span>{user.createdAt}</span>
         </div>
         <div className="follow-count-container">
           <div className="following">

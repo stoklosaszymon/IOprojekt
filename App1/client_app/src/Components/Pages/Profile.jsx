@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 
 const Profile = () => {
     let { userName } = useParams();
-    const [user, setUser] = useState({id: '', email: '', nickname: ''});
+    const [user, setUser] = useState({id: '', email: '', nickname: '', firstName: '', lastName: '', createdAt: ''});
 
     useEffect(() => {
             fetch('graphql', {
@@ -21,7 +21,7 @@ const Profile = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ query: `{ users { getByNickname(nickname: "${userName}") { id, nickname, email }}}` }),
+                body: JSON.stringify({ query: `{ users { getByNickname(nickname: "${userName}") { id nickname email createdAt firstName lastName }}}` }),
             })
                 .then(res => res.json())
                 .then(res => setUser(res.users.getByNickname))
@@ -36,7 +36,7 @@ const Profile = () => {
           subText="0 Tweets"
           logo={<BackButton />}
         />
-           <SectionMiddle data={<ProfileSectionMiddle username={user.nickname}/>} />
+           <SectionMiddle data={<ProfileSectionMiddle user={user}/>} />
            <Stream data={<ProfileStream />} />
       </section>
       <aside>
