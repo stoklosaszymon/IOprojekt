@@ -8,7 +8,6 @@ import HomeStream from "../subComponents/homeComponents/HomeStream";
 
 import Search from "../mainComponents/mainAside/Search";
 import Trends from "../mainComponents/mainAside/Trends";
-import Follow from "../mainComponents/mainAside/Follow";
 import Footer from "../mainComponents/mainAside/Footer";
 
 import HomeLogo from "../assets/HomeLogo";
@@ -27,7 +26,6 @@ const Home = () => {
         <div className="aside-container">
           <Search />
           <Trends />
-          <Follow />
           <Footer />
         </div>
       </aside>

@@ -6,7 +6,6 @@ import NotificationsSectionMiddle from "../subComponents/notificationsComponents
 import NotificationsStream from "../subComponents/notificationsComponents/NotificationsStream";
 import Search from "../mainComponents/mainAside/Search";
 import Trends from "../mainComponents/mainAside/Trends";
-import Follow from "../mainComponents/mainAside/Follow";
 import Footer from "../mainComponents/mainAside/Footer";
 import SettingLogo from "../assets/SettingLogo";
 
@@ -21,7 +20,6 @@ const Notifications = () => {
       <aside>
         <Search />
         <Trends />
-        <Follow />
         <Footer />
       </aside>
     </div>
