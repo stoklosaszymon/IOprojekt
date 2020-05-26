@@ -1,20 +1,18 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import Avatar from "../../assets/img/profile_normal.png";
-import { Component } from "react";
+import { useSelector } from 'react-redux';
 
-class HomeStream extends Component {
-    constructor(props) {
-        super(props);
+const HomeStream = () => {
+    const [posts, setPosts] = useState([]);
 
-        this.state = { posts: [] }
-    }
+    const user = useSelector(state => state.loggedUser);
+
+    useEffect(() => {
+        fetchPosts();     
+    }, [posts]);
 
 
-    componentDidMount() {
-        this.fetchPosts();
-    }
-
-    fetchPosts() {
+    const fetchPosts = () => {
         return fetch('graphql', {
             method: 'POST',
             headers: {
@@ -23,52 +21,50 @@ class HomeStream extends Component {
             body: JSON.stringify({ query: '{ posts { getAll { postId body createdAt userId image}}}' }),
         })
             .then(res => res.json())
-            .then(res => this.setState({ posts: res.posts.getAll }))
+            .then(res => setPosts( res.posts.getAll ))
     }
 
-    render() {
-        return (
-            <div className="stream-container">
-                {
-                    this.state.posts.map(post =>
-                      <div className="stream" key={post.postId}>
+    return (
+        <div className="stream-container">
+            {
+                posts.map(post =>
+                    <div className="stream" key={post.postId}>
                         <div className="content">
                             <div className="stream-header-container">
                                 <a href="/demo">
-                                    <MainAvatar />
+                                    <MainAvatar picture={user.picture}/>
                                     <FullName />
                                 </a>
-                                <TimeStamp time={post.createdAt}/>
+                                <TimeStamp time={post.createdAt} />
                             </div>
-                            <MessageContainer message={post.body}/>
-                                <MediaContainer image={post.image}/>
+                            <MessageContainer message={post.body} />
+                            <MediaContainer image={post.image} />
                             <PostFooter />
                         </div>
                     </div>
                 )}
 
-            </div>
-        );
-    }
+        </div>
+    );
 };
 
-const MainAvatar = () => 
+const MainAvatar = () =>
     <div class="main-avatar">
         <img src={Avatar} alt="SpongeBob" class="main-avatar-img" />
     </div>
 
-const TimeStamp = ({ time }) => 
+const TimeStamp = ({ time }) =>
     <div className="time">
         <span className="timestamp">{time}</span>
     </div>
 
-const MessageContainer = ({ message }) => 
+const MessageContainer = ({ message }) =>
     <div className="tweet-text-container">
         <p>{message}</p>
         <HashTag />
     </div>
 
-const HashTag = () => 
+const HashTag = () =>
     <p>
         <a href="#demo" className="hashtag">
             <s>#</s>
@@ -82,12 +78,12 @@ const HashTag = () =>
               </a>
     </p>
 
-const MediaContainer = ({ image }) => 
+const MediaContainer = ({ image }) =>
     <div className="stream-media-container">
         <img src={image} alt="SpongeBob" className="media-img" />
     </div>
 
-const PostFooter = () => 
+const PostFooter = () =>
     <div className="stream-footer-container">
         <div className="tweet-action-list">
             <div className="tweet-action">
@@ -155,7 +151,7 @@ const PostFooter = () =>
         </div>
     </div>
 
-const FullName = () => 
+const FullName = () =>
     <div className="fullname-container">
         <strong className="fullname">SpongeBob&nbsp;</strong>
     </div>
