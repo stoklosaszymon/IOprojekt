@@ -37,7 +37,7 @@ const HomeSectionMiddle = () => {
           <div className="section-middle">
             <div className="avatar-container">
               <div className="avatar">
-                <Avatar />
+                 <Avatar picture={user.picture} />
               </div>
             </div>
                 <div className="tweet-input">

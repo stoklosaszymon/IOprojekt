@@ -32,7 +32,7 @@ const HomeStream = () => {
                         <div className="content">
                             <div className="stream-header-container">
                                 <a href="/demo">
-                                    <MainAvatar picture={user.picture}/>
+                                    <MainAvatar />
                                     <FullName />
                                 </a>
                                 <TimeStamp time={post.createdAt} />
