@@ -54,7 +54,8 @@ namespace IOprojekt.GraphQLTypes
                         Locale = m.locale,
                         Sub = m.sub,
                         Nickname = m.nickname,
-                        CreatedAt = DateTime.Now   
+                        Picture = m.picture,
+                        CreatedAt = DateTime.Now
                     };
 
                     var builder = Builders<User>.Filter;

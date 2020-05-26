@@ -70,7 +70,7 @@ const Header = () => {
           >
             <div className="a">
               <div className="avatar">
-                <Avatar />
+                <Avatar picture={user.picture} />
               </div>
               <span>Profile</span>
             </div>

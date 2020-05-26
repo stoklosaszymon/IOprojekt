@@ -15,7 +15,7 @@ const ProfileUI = ({ user }) => {
         <div className="userAvatar-container">
           <a href="#avatar" className="avatar-container">
             <div className="avatar">
-              <img src={ProfileLogo} alt="avatar" />
+              <img src={user.picture} alt="avatar" />
             </div>
           </a>
           <div className="edit-profile-btn">

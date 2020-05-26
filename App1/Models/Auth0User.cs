@@ -14,5 +14,6 @@ namespace IOprojekt.Models
         public string email { get; set; }
         public string sub { get; set; }
         public string nickname { get; set; }
+        public string picture { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace IOprojekt.GraphQLTypes
             Field(_ => _.Gender);
             Field(_ => _.Locale);
             Field(_ => _.Sub);
+            Field(_ => _.Picture);
             Field(_ => _.CreatedAt);
         }
     }

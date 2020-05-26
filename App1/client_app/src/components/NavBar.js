@@ -37,6 +37,7 @@ const NavBar = () => {
 
     if (isAuthenticated) {
         addUser();
+        console.log("auth0 user: ", user);
     }
 
     return (
