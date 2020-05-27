@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import FullName from "./../../mainComponents/PostComponents/FullName";
 import HashTag from "./../../mainComponents/PostComponents/HashTag";
+import MainAvatar from "./../../mainComponents/PostComponents/MainAvatar";
 
 const HomeStream = () => {
     const [posts, setPosts] = useState([]);
@@ -62,11 +63,6 @@ const HomeStream = () => {
         </div>
     );
 };
-
-const MainAvatar = ({ picture }) =>
-    <div className="main-avatar">
-        <img src={picture} alt="SpongeBob" className="main-avatar-img" />
-    </div>
 
 const TimeStamp = ({ time }) =>
     <div className="time">

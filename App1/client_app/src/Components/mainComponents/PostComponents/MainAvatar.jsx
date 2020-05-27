@@ -1,14 +1,8 @@
 import React from "react";
 
-const SectionHeader = ({ heading, logo, subText }) => {
-  return (
-    <div className="section-header">
-      <div className="home-refresh">
-        <span>{heading}</span>
-        <span className="subText"> {subText} </span>
-      </div>
-      {logo}
+const MainAvatar = ({ picture }) =>
+    <div className="main-avatar">
+        <img src={picture} alt="SpongeBob" className="main-avatar-img" />
     </div>
-  );
-};
-export default SectionHeader;
+
+export default MainAvatar;
