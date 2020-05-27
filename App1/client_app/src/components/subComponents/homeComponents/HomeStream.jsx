@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import FullName from "./../../mainComponents/PostComponents/FullName";
+
 const HomeStream = () => {
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
@@ -160,11 +162,6 @@ const PostFooter = () =>
                 </div>
             </div>
         </div>
-    </div>
-
-const FullName = ({ firstName, lastName }) =>
-    <div className="fullname-container">
-        <strong className="fullname">{`${firstName} ${lastName}`}</strong>
     </div>
 
 export default HomeStream;

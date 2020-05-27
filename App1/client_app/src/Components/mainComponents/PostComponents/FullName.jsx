@@ -1,14 +1,8 @@
 import React from "react";
 
-const SectionHeader = ({ heading, logo, subText }) => {
-  return (
-    <div className="section-header">
-      <div className="home-refresh">
-        <span>{heading}</span>
-        <span className="subText"> {subText} </span>
-      </div>
-      {logo}
+const FullName = ({ firstName, lastName }) => 
+    <div className="fullname-container">
+        <strong className="fullname">{`${firstName} ${lastName}`}</strong>
     </div>
-  );
-};
-export default SectionHeader;
+
+export default FullName;
