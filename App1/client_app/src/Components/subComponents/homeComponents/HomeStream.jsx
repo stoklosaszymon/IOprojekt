@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const HomeStream = () => {
     const [posts, setPosts] = useState([]);
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([{picture: ''}]);
 
     useEffect(() => {
         fetch('graphql', {
@@ -61,8 +61,8 @@ const HomeStream = () => {
 };
 
 const MainAvatar = ({ picture }) =>
-    <div class="main-avatar">
-        <img src={picture} alt="SpongeBob" class="main-avatar-img" />
+    <div className="main-avatar">
+        <img src={picture} alt="SpongeBob" className="main-avatar-img" />
     </div>
 
 const TimeStamp = ({ time }) =>

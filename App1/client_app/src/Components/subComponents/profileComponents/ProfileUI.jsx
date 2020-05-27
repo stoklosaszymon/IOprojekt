@@ -1,5 +1,4 @@
 import React from "react";
-import ProfileLogo from "../../assets/img/profile_normal.png";
 import BannerImg from "../../assets/img/404-bg-img.jpg";
 import { NavLink } from "react-router-dom";
 

@@ -14,10 +14,9 @@ const Tweets = ({ userId }) => {
         })
             .then(res => res.json())
             .then(res => setPosts(res.posts.getByUserId))
-    }, [posts.postsList]);
+    }, [userId]);
 
     return (
-
         <div className="stream-container">
             {
                 posts.map(post =>
@@ -42,8 +41,8 @@ const Tweets = ({ userId }) => {
 };
 
 const MainAvatar = () =>
-    <div class="main-avatar">
-        <img src={Avatar} alt="SpongeBob" class="main-avatar-img" />
+    <div className="main-avatar">
+        <img src={Avatar} alt="SpongeBob" className="main-avatar-img" />
     </div>
 
 const TimeStamp = ({ time }) =>
