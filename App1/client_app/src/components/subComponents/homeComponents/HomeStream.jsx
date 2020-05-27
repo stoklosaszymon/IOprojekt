@@ -19,7 +19,7 @@ const HomeStream = () => {
                          }
                           users {
                                getAll {
-                                id firstName lastName picture 
+                                id firstName lastName picture nickname 
                             }
                           }
                          }`
@@ -43,7 +43,7 @@ const HomeStream = () => {
                     <div className="stream" key={post.postId}>
                         <div className="content">
                             <div className="stream-header-container">
-                                <a href="/demo">
+                                <a href={`/${post.nickname}`}>
                                     <MainAvatar picture={post.picture} />
                                     <FullName firstName={post.firstName} lastName={post.lastName} />
                                 </a>

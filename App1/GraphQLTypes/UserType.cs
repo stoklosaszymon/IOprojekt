@@ -9,12 +9,12 @@ namespace IOprojekt.GraphQLTypes
         public UserType()
         {
             Field(_ => _.Id);
-            Field(_ => _.FirstName);
-            Field(_ => _.LastName);
+            Field(_ => _.FirstName, nullable: true);
+            Field(_ => _.LastName, nullable: true);
             Field(_ => _.Nickname);
             Field(_ => _.Email);
             Field(_ => _.Gender);
-            Field(_ => _.Locale);
+            Field(_ => _.Locale, nullable: true);
             Field(_ => _.Sub);
             Field(_ => _.Picture);
             Field(_ => _.CreatedAt);
