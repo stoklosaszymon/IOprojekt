@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import FullName from "./../../mainComponents/PostComponents/FullName";
-import HashTag from "./../../mainComponents/PostComponents/HashTag";
 import MainAvatar from "./../../mainComponents/PostComponents/MainAvatar";
 import MediaContainer from "./../../mainComponents/PostComponents/MediaContainer";
 import MessageContainer from "./../../mainComponents/PostComponents/MessageContainer";
 import PostFooter from "./../../mainComponents/PostComponents/PostFooter";
+import TimeStamp from "./../../mainComponents/PostComponents/TimeStamp";
 
 const HomeStream = () => {
     const [posts, setPosts] = useState([]);
@@ -66,10 +66,5 @@ const HomeStream = () => {
         </div>
     );
 };
-
-const TimeStamp = ({ time }) =>
-    <div className="time">
-        <span className="timestamp">{time}</span>
-    </div>
 
 export default HomeStream;

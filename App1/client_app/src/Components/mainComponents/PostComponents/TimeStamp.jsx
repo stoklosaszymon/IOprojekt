@@ -1,14 +1,8 @@
 import React from "react";
 
-const SectionHeader = ({ heading, logo, subText }) => {
-  return (
-    <div className="section-header">
-      <div className="home-refresh">
-        <span>{heading}</span>
-        <span className="subText"> {subText} </span>
-      </div>
-      {logo}
+const TimeStamp = ({ time }) =>
+    <div className="time">
+        <span className="timestamp">{time}</span>
     </div>
-  );
-};
-export default SectionHeader;
+
+export default TimeStamp;
