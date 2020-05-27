@@ -1,39 +1,51 @@
-import React, { useState, useEffect} from "react";
-import Avatar from "../../assets/img/profile_normal.png";
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
 
 const HomeStream = () => {
     const [posts, setPosts] = useState([]);
-
-    const user = useSelector(state => state.loggedUser);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetchPosts();     
-    }, [posts]);
-
-
-    const fetchPosts = () => {
-        return fetch('graphql', {
+        fetch('graphql', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ query: '{ posts { getAll { postId body createdAt userId image}}}' }),
+            body: JSON.stringify({
+                query: `{ 
+                         posts { 
+                            getAll {
+                                postId body createdAt userId image
+                            }
+                         }
+                          users {
+                               getAll {
+                                id firstName lastName picture 
+                            }
+                          }
+                         }`
+            })
         })
             .then(res => res.json())
-            .then(res => setPosts( res.posts.getAll ))
-    }
+            .then(res => {
+                setPosts(res.posts.getAll);
+                setUsers(res.users.getAll);
+            })
+    }, []);
+
+    let newPosts = posts.map(p => {
+        return ( { ...users.find(u => u.id === p.userId), ...p } )
+    });
 
     return (
         <div className="stream-container">
             {
-                posts.map(post =>
+                newPosts.map(post =>
                     <div className="stream" key={post.postId}>
                         <div className="content">
                             <div className="stream-header-container">
                                 <a href="/demo">
-                                    <MainAvatar />
-                                    <FullName />
+                                    <MainAvatar picture={post.picture}/>
+                                    <FullName firstName={post.firstName} lastName={post.lastName} />
                                 </a>
                                 <TimeStamp time={post.createdAt} />
                             </div>
@@ -48,9 +60,9 @@ const HomeStream = () => {
     );
 };
 
-const MainAvatar = () =>
+const MainAvatar = ({ picture }) =>
     <div class="main-avatar">
-        <img src={Avatar} alt="SpongeBob" class="main-avatar-img" />
+        <img src={picture} alt="SpongeBob" class="main-avatar-img" />
     </div>
 
 const TimeStamp = ({ time }) =>
@@ -151,9 +163,9 @@ const PostFooter = () =>
         </div>
     </div>
 
-const FullName = () =>
+const FullName = ({ firstName, lastName }) =>
     <div className="fullname-container">
-        <strong className="fullname">SpongeBob&nbsp;</strong>
+        <strong className="fullname">{`${firstName} ${lastName}`}</strong>
     </div>
 
 export default HomeStream;
