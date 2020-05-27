@@ -3,19 +3,17 @@ import { withRouter, Router, Route, Switch } from "react-router-dom"
 import history from "./utils/history"
 
 
-import NavBar from "./components/NavBar"
-
-
-import Header from "./components/Layouts/Header";
-import Home from "./components/Pages/Home";
-import Notifications from "./components/Pages/Notifications";
-import Messages from "./components/Pages/Messages";
-import Profile from "./components/Pages/Profile";
-import Toast from "./components/subComponents/Toast";
-import TrendsSettingBody from "./components/subComponents/TrendsSetting";
-import Compose from "./components/subComponents/messagesComponents/Compose";
-import ProfileSetting from "./components/subComponents/profileComponents/ProfileSetting";
-import Error404 from "./components/Pages/Error404";
+import NavBar from "./Components/NavBar"
+import Header from "./Components/Layouts/Header";
+import Home from "./Components/Pages/Home";
+import Notifications from "./Components/Pages/Notifications";
+import Messages from "./Components/Pages/Messages";
+import Profile from "./Components/Pages/Profile";
+import Toast from "./Components/subComponents/Toast";
+import TrendsSettingBody from "./Components/subComponents/TrendsSetting";
+import Compose from "./Components/subComponents/messagesComponents/Compose";
+import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
+import Error404 from "./Components/Pages/Error404";
 
 import './data'
 

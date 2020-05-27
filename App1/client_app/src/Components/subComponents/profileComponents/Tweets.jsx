@@ -32,7 +32,7 @@ const Tweets = ({ userId }) => {
             })
     }, [userId]);
 
-    return (
+    return ( 
         <div className="stream-container">
             {
                 posts.map(post =>
