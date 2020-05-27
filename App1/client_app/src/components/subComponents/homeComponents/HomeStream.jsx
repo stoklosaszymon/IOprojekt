@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import FullName from "./../../mainComponents/PostComponents/FullName";
+import HashTag from "./../../mainComponents/PostComponents/HashTag";
 
 const HomeStream = () => {
     const [posts, setPosts] = useState([]);
@@ -78,13 +79,6 @@ const MessageContainer = ({ message }) =>
         <HashTag />
     </div>
 
-const HashTag = () =>
-    <p>
-        <a href="#demo" className="hashtag">
-            <s>#</s>
-            <span>tag</span>
-        </a>
-    </p>
 
 const MediaContainer = ({ image }) => {
 
