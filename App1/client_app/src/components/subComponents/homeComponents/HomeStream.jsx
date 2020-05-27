@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import FullName from "./../../mainComponents/PostComponents/FullName";
 import HashTag from "./../../mainComponents/PostComponents/HashTag";
 import MainAvatar from "./../../mainComponents/PostComponents/MainAvatar";
+import MediaContainer from "./../../mainComponents/PostComponents/MediaContainer";
+import MessageContainer from "./../../mainComponents/PostComponents/MessageContainer";
 
 const HomeStream = () => {
     const [posts, setPosts] = useState([]);
@@ -68,23 +70,6 @@ const TimeStamp = ({ time }) =>
     <div className="time">
         <span className="timestamp">{time}</span>
     </div>
-
-const MessageContainer = ({ message }) =>
-    <div className="tweet-text-container">
-        <p>{message}</p>
-        <HashTag />
-    </div>
-
-
-const MediaContainer = ({ image }) => {
-
-    let render =
-        <div className="stream-media-container">
-            <img src={image} alt="SpongeBob" className="media-img" />
-        </div>;
-
-    return image !== '' ? render : <p></p>
-}
 
 const PostFooter = () =>
     <div className="stream-footer-container">
