@@ -15,8 +15,6 @@ import Compose from "./Components/subComponents/messagesComponents/Compose";
 import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
 import Error404 from "./Components/Pages/Error404";
 
-import './data'
-
 
 function App () {
         return (
