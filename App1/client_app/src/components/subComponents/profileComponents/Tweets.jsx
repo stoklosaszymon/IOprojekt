@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-const HomeStream = () => {
+const Tweets = ({ userId }) => {
     const [posts, setPosts] = useState([]);
-    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         fetch('graphql', {
@@ -12,40 +12,36 @@ const HomeStream = () => {
             },
             body: JSON.stringify({
                 query: `{ 
-                         posts { 
-                            getAll {
-                                postId body createdAt userId image
-                            }
-                         }
-                          users {
-                               getAll {
-                                id firstName lastName picture 
-                            }
-                          }
-                         }`
-            })
+                          posts {
+                                getByUserId(userId: "${userId}") { 
+                                    postId body createdAt userId image
+                                   }
+                                }
+                           users {
+                                getById(id: "${userId}") {
+                                    picture firstName lastName
+                                }
+                           }
+                        }`
+            }),
         })
             .then(res => res.json())
             .then(res => {
-                setPosts(res.posts.getAll);
-                setUsers(res.users.getAll);
+                setPosts(res.posts.getByUserId)
+                setUser(res.users.getById)
             })
-    }, []);
+    }, [userId]);
 
-    let newPosts = posts.map(p => {
-        return ({ ...users.find(u => u.id === p.userId), ...p })
-    });
-
-    return (
+    return ( 
         <div className="stream-container">
             {
-                newPosts.map(post =>
+                posts.map(post =>
                     <div className="stream" key={post.postId}>
                         <div className="content">
                             <div className="stream-header-container">
                                 <a href="/demo">
-                                    <MainAvatar picture={post.picture} />
-                                    <FullName firstName={post.firstName} lastName={post.lastName} />
+                                    <MainAvatar picture={user.picture}/>
+                                    <FullName firstName={user.firstName} lastName={user.lastName}/>
                                 </a>
                                 <TimeStamp time={post.createdAt} />
                             </div>
@@ -56,8 +52,8 @@ const HomeStream = () => {
                     </div>
                 )}
 
-        </div>
-    );
+        </div> 
+  );
 };
 
 const MainAvatar = ({ picture }) =>
@@ -80,19 +76,20 @@ const HashTag = () =>
     <p>
         <a href="#demo" className="hashtag">
             <s>#</s>
-            <span>tag</span>
-        </a>
+            <span>spongebob</span>
+            &nbsp;
+              </a>
+        <a href="#demo" className="hashtag">
+            <s>#</s>
+            <span>twitter</span>
+            &nbsp;
+              </a>
     </p>
 
-const MediaContainer = ({ image }) => {
-
-    let render =
-        <div className="stream-media-container">
-            <img src={image} alt="SpongeBob" className="media-img" />
-        </div>;
-
-    return image !== '' ? render : <p></p>
-}
+const MediaContainer = ({ image }) =>
+    <div className="stream-media-container">
+        <img src={image} alt="SpongeBob" className="media-img" />
+    </div>
 
 const PostFooter = () =>
     <div className="stream-footer-container">
@@ -125,7 +122,7 @@ const PostFooter = () =>
                         </span>
                     </div>
                     <div className="tweet-action-count">
-                        <span>3.5k</span>
+                        <span>35k</span>
                     </div>
                 </div>
             </div>
@@ -161,10 +158,9 @@ const PostFooter = () =>
             </div>
         </div>
     </div>
-
 const FullName = ({ firstName, lastName }) =>
     <div className="fullname-container">
         <strong className="fullname">{`${firstName} ${lastName}`}</strong>
     </div>
 
-export default HomeStream;
+export default Tweets;
