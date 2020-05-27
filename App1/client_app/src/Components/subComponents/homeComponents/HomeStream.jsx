@@ -33,7 +33,7 @@ const HomeStream = () => {
     }, []);
 
     let newPosts = posts.map(p => {
-        return ( { ...users.find(u => u.id === p.userId), ...p } )
+        return ({ ...users.find(u => u.id === p.userId), ...p })
     });
 
     return (
@@ -44,7 +44,7 @@ const HomeStream = () => {
                         <div className="content">
                             <div className="stream-header-container">
                                 <a href="/demo">
-                                    <MainAvatar picture={post.picture}/>
+                                    <MainAvatar picture={post.picture} />
                                     <FullName firstName={post.firstName} lastName={post.lastName} />
                                 </a>
                                 <TimeStamp time={post.createdAt} />
@@ -91,7 +91,7 @@ const MediaContainer = ({ image }) => {
             <img src={image} alt="SpongeBob" className="media-img" />
         </div>;
 
-    return image !== '' ? render : <p></p> 
+    return image !== '' ? render : <p></p>
 }
 
 const PostFooter = () =>
