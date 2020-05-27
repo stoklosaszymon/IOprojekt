@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Avatar from "../../assets/img/profile_normal.png";
 
 const Tweets = ({ userId }) => {
     const [posts, setPosts] = useState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         fetch('graphql', {
@@ -10,10 +10,26 @@ const Tweets = ({ userId }) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ query: `{ posts { getByUserId(userId: "${userId}") { postId body createdAt userId image}}}` }),
+            body: JSON.stringify({
+                query: `{ 
+                          posts {
+                                getByUserId(userId: "${userId}") { 
+                                    postId body createdAt userId image
+                                   }
+                                }
+                           users {
+                                getById(id: "${userId}") {
+                                    picture firstName lastName
+                                }
+                           }
+                        }`
+            }),
         })
             .then(res => res.json())
-            .then(res => setPosts(res.posts.getByUserId))
+            .then(res => {
+                setPosts(res.posts.getByUserId)
+                setUser(res.users.getById)
+            })
     }, [userId]);
 
     return (
@@ -24,8 +40,8 @@ const Tweets = ({ userId }) => {
                         <div className="content">
                             <div className="stream-header-container">
                                 <a href="/demo">
-                                    <MainAvatar />
-                                    <FullName />
+                                    <MainAvatar picture={user.picture}/>
+                                    <FullName firstName={user.firstName} lastName={user.lastName}/>
                                 </a>
                                 <TimeStamp time={post.createdAt} />
                             </div>
@@ -40,9 +56,9 @@ const Tweets = ({ userId }) => {
   );
 };
 
-const MainAvatar = () =>
+const MainAvatar = ({ picture }) =>
     <div className="main-avatar">
-        <img src={Avatar} alt="SpongeBob" className="main-avatar-img" />
+        <img src={picture} alt="SpongeBob" className="main-avatar-img" />
     </div>
 
 const TimeStamp = ({ time }) =>
@@ -106,7 +122,7 @@ const PostFooter = () =>
                         </span>
                     </div>
                     <div className="tweet-action-count">
-                        <span>3.5k</span>
+                        <span>35k</span>
                     </div>
                 </div>
             </div>
@@ -142,9 +158,9 @@ const PostFooter = () =>
             </div>
         </div>
     </div>
-const FullName = () =>
+const FullName = ({ firstName, lastName }) =>
     <div className="fullname-container">
-        <strong className="fullname">SpongeBob&nbsp;</strong>
+        <strong className="fullname">{`${firstName} ${lastName}`}</strong>
     </div>
 
 export default Tweets;

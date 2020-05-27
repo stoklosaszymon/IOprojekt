@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const HomeStream = () => {
     const [posts, setPosts] = useState([]);
-    const [users, setUsers] = useState([{picture: ''}]);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         fetch('graphql', {
@@ -80,20 +80,19 @@ const HashTag = () =>
     <p>
         <a href="#demo" className="hashtag">
             <s>#</s>
-            <span>spongebob</span>
-            &nbsp;
-              </a>
-        <a href="#demo" className="hashtag">
-            <s>#</s>
-            <span>twitter</span>
-            &nbsp;
-              </a>
+            <span>tag</span>
+        </a>
     </p>
 
-const MediaContainer = ({ image }) =>
-    <div className="stream-media-container">
-        <img src={image} alt="SpongeBob" className="media-img" />
-    </div>
+const MediaContainer = ({ image }) => {
+
+    let render =
+        <div className="stream-media-container">
+            <img src={image} alt="SpongeBob" className="media-img" />
+        </div>;
+
+    return image !== '' ? render : <p></p> 
+}
 
 const PostFooter = () =>
     <div className="stream-footer-container">
@@ -128,7 +127,7 @@ const PostFooter = () =>
                     <div className="tweet-action-count">
                         <span>3.5k</span>
                     </div>
-                </div>'
+                </div>
             </div>
             <div className="tweet-action">
                 <div className="tweet-action-btn likes-btn">
