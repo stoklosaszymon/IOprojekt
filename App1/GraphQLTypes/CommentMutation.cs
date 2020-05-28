@@ -17,10 +17,10 @@ namespace IOprojekt.GraphQLTypes
 
             Name = "CommentMutation";
 
-            Field<PostType>("addComment",
+            Field<CommentType>("addComment",
                 arguments: new QueryArguments
                 {
-                    new QueryArgument<InputPostType>() { Name = "comment" }
+                    new QueryArgument<InputCommentType>() { Name = "comment" }
                 },
                 resolve: context =>
                 {
