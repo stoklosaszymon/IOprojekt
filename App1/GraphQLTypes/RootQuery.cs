@@ -10,6 +10,7 @@ namespace IOprojekt.GraphQLTypes
             Field<UserQuery>("users", resolve: context => new { });
             Field<PostQuery>("posts", resolve: context => new { });
             Field<FriendsQuery>("friends", resolve: context => new { });
+            Field<CommentQuery>("comments", resolve: context => new { });
 
         }
     }
