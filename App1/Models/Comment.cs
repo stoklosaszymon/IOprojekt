@@ -12,7 +12,6 @@ namespace IOprojekt.Models
         [BsonElement("commentId")]
         public string CommentId { get; set; }
 
-        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         [BsonElement("postId")]
         public string PostId { get; set; }
 

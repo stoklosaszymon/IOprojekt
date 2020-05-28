@@ -81,6 +81,10 @@ namespace App1
             services.AddScoped<FriendsQuery>();
             services.AddScoped<FriendsMutation>();
 
+            services.AddSingleton<CommentType>();
+            services.AddScoped<CommentQuery>();
+            services.AddSingleton<InputCommentType>();
+            services.AddScoped<CommentMutation>();
 
             services.AddSingleton<IntGraphType>();
 
