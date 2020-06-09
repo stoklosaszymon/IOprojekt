@@ -70,3 +70,29 @@
 .profile .following {
   margin-right: 15px;
 }
+
+.Friends .aside-body {
+    padding: initial;
+    border-bottom: solid var(--primary-border-color) 1px;
+}
+
+.Friends .main-avatar {
+    float: left;
+    position: absolute;
+    margin-top: -4px;
+    margin-left: 0px;
+}
+
+.Friends .fullname-container {
+    margin-left: 50px;
+}
+
+.Friends .main-avatar-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.Friends a {
+    display: block
+}

@@ -43,6 +43,7 @@ const Friend = ({ id }) => {
 
     }, [id]);
 
+    
 
     let listFriend = friends.map(x => {
         return ({ ...users.find(p => p.id === x, ...x) })
