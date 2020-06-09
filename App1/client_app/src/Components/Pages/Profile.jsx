@@ -21,12 +21,11 @@ const Profile = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ query: `{ users { getByNickname(nickname: "${userName}") { id nickname email createdAt firstName lastName }}}` }),
+                body: JSON.stringify({ query: `{ users { getByNickname(nickname: "${userName}") { id nickname email createdAt firstName lastName picture }}}` }),
             })
                 .then(res => res.json())
                 .then(res => setUser(res.users.getByNickname))
-                .then(res => console.log(user))
-    }, [user.nickname]);
+    }, [userName]);
 
     return (
     <div className="main-container profile">

@@ -27,6 +27,10 @@ namespace IOprojekt.Models
         [BsonRepresentation(BsonType.String)]
         public string Gender { get; set; }
 
+        [BsonElement("picture")]
+        [BsonRepresentation(BsonType.String)]
+        public string Picture { get; set; }
+
         [BsonElement("locale")]
         [BsonRepresentation(BsonType.String)]
         public string Locale { get; set; }

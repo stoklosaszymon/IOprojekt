@@ -1,5 +1,4 @@
 import React from "react";
-import ProfileLogo from "../../assets/img/profile_normal.png";
 import BannerImg from "../../assets/img/404-bg-img.jpg";
 import { NavLink } from "react-router-dom";
 
@@ -15,7 +14,7 @@ const ProfileUI = ({ user }) => {
         <div className="userAvatar-container">
           <a href="#avatar" className="avatar-container">
             <div className="avatar">
-              <img src={ProfileLogo} alt="avatar" />
+              <img src={user.picture} alt="avatar" />
             </div>
           </a>
           <div className="edit-profile-btn">
