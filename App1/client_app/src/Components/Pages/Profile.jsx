@@ -4,6 +4,7 @@ import SectionMiddle from "../mainComponents/mainSection/SectionMiddle";
 import Stream from "../mainComponents/mainSection/Stream";
 import Search from "../mainComponents/mainAside/Search";
 import Trends from "../mainComponents/mainAside/Trends";
+import Friend from "../mainComponents/mainAside/Friend";
 import Footer from "../mainComponents/mainAside/Footer";
 import BackButton from "../assets/BackButton";
 import ProfileSectionMiddle from "../subComponents/profileComponents/ProfileSectionMiddle";
@@ -41,6 +42,7 @@ const Profile = () => {
       <aside>
         <Search />
         <Trends />
+        <Friend id={user.id}/>
         <Footer />
       </aside>
     </div>
