@@ -47,10 +47,33 @@ const Friend = ({ id }) => {
     let listFriend = friends.map(x => {
         return ({ ...users.find(p => p.id === x, ...x) })
     });
-    console.log(listFriend);
+
+
     return (
-        <div >
-            <h1>ll</h1>
+        <div className="Friends-container aside-div-container">
+            <div className="Friends aside-div">
+                <div className="Friends-head aside-head">
+                    <div>
+                        <span>Znajomi</span>
+                    </div>
+                </div>
+                <div className="Friends aside-body">
+                    {listFriend.filter((i, idx) => idx < 4).map(x =>
+
+                        <a href={`/${x.nickname}`}>
+                            <div className="Friends main-avatar">
+                                <MainAvatar picture={x.picture} />
+                            </div>
+                            <FullName firstName={x.firstName} lastName={x.lastName} />
+                        </a>
+
+                    )}
+                </div>
+                <div className="aside-foot">
+                    <a href="#Friend">Show more</a>
+                </div>
+            </div>
+
         </div>
     )
 };
