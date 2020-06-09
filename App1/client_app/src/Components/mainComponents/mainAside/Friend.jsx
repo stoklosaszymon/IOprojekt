@@ -46,8 +46,8 @@ const Friend = ({ id }) => {
     
 
     let listFriend = friends.map(x => {
-        return ({ ...users.find(p => p.id === x, ...x) })
-    });
+        return ({ ...users.find(p => p.id === x) })
+    }).slice(0, 4);
 
 
     return (
@@ -59,7 +59,7 @@ const Friend = ({ id }) => {
                     </div>
                 </div>
                 <div className="Friends aside-body">
-                    {listFriend.filter((i, idx) => idx < 4).map(x =>
+                    {listFriend.map(x =>
 
                         <a href={`/${x.nickname}`}>
                             <div className="Friends main-avatar">
