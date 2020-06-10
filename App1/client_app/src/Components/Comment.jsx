@@ -1,9 +1,8 @@
 import React from "react";
-
+import WriteComments from "./WriteComments"
 
 const Comments = ({ userName, idpost }) => {
-    //<AllComments idpost={idpost}/>
-    //<WritComment username={useParams}/>
+
 
     return (
         <div>
@@ -11,7 +10,7 @@ const Comments = ({ userName, idpost }) => {
                 <h1>{idpost}</h1>
             </div>
             <div>
-                {userName}
+                <WriteComments userName={userName} />
             </div>
         </div>
     );

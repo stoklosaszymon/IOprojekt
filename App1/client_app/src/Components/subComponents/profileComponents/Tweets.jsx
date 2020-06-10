@@ -6,7 +6,7 @@ import MediaContainer from "./../../mainComponents/PostComponents/MediaContainer
 import MessageContainer from "./../../mainComponents/PostComponents/MessageContainer";
 import PostFooter from "./../../mainComponents/PostComponents/PostFooter";
 import TimeStamp from "./../../mainComponents/PostComponents/TimeStamp";
-import Comments from "./../../Comments";
+import Comments from "./../../Comment";
 import { useParams } from "react-router-dom";
 
 const Tweets = ({ userId }) => {
