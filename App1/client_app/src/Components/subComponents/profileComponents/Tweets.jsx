@@ -6,9 +6,11 @@ import MediaContainer from "./../../mainComponents/PostComponents/MediaContainer
 import MessageContainer from "./../../mainComponents/PostComponents/MessageContainer";
 import PostFooter from "./../../mainComponents/PostComponents/PostFooter";
 import TimeStamp from "./../../mainComponents/PostComponents/TimeStamp";
-
+import Comments from "./../../Comments";
+import { useParams } from "react-router-dom";
 
 const Tweets = ({ userId }) => {
+    let { userName } = useParams();
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState([]);
 
@@ -56,6 +58,7 @@ const Tweets = ({ userId }) => {
                             <MessageContainer message={post.body} />
                             <MediaContainer image={post.image} />
                             <PostFooter />
+                            <Comments userName={userName} idpost={post.postId} />  
                         </div>
                     </div>
                 )}
