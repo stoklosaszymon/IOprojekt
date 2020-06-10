@@ -5,7 +5,7 @@ const Comments = ({ userName }) => {
 
 
 
-   
+    const [comment, setValue] = useState('');
     const [user, setUser] = useState({ picture: '' });;
     useEffect(() => {
         fetch('graphql', {
@@ -19,6 +19,10 @@ const Comments = ({ userName }) => {
             .then(res => setUser(res.users.getByNickname))
     }, [userName]);
 
+    const Send = () => {
+        console.log(comment);
+        setValue('');
+    };
 
   
 
@@ -31,8 +35,9 @@ const Comments = ({ userName }) => {
                 </div>
                 <input type="text"
                     name="comment"
-                     />
-                <button >Wysliji</button>
+                    value={comment}
+                    onChange={event => setValue(event.target.value)} />
+                <button onClick={Send}>Wysliji</button>
             </div>
         </div>
     );
