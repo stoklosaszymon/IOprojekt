@@ -10,7 +10,7 @@ const Comments = ({ userName, idpost }) => {
                 <h1>{idpost}</h1>
             </div>
             <div>
-                <WriteComments userName={userName} />
+                <WriteComments userName={userName} idpost={idpost} />
             </div>
         </div>
     );
