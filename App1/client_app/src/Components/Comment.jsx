@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import WriteComments from "./WriteComments"
 import DisplayComments from "./DisplayComments"
 const Comments = ({ userName, idpost }) => {
-
+        const [count, setCount] = useState(1);
         const [comment, setValue] = useState([])
         useEffect(() => {
             fetch('graphql', {
@@ -24,17 +24,19 @@ const Comments = ({ userName, idpost }) => {
                 
         }, [idpost]);
 
+    
 
-    console.log(comment);
     return (
         <div>
-            <div>
-                {comment.map(x =>
-                    <div>
-                        <DisplayComments userID={x.userId} body={x.body} />
-                    </div>                  
-                    )}
-            </div>
+            {comment.slice(0,count).map(x =>
+                <div>
+                    <DisplayComments userID={x.userId} body={x.body} />
+                </div>
+            )}
+                <div>
+                <p onClick={() => setCount(count + 1)}> Wiecej komentarzy</p>
+                </div>
+          
             <div>
                 <WriteComments userName={userName} idpost={idpost} />
             </div>

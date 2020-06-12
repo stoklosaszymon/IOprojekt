@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-
+import FullName from "./mainComponents/PostComponents/FullName";
+import MainAvatar from "./mainComponents/PostComponents/MainAvatar";
 const Comments = ({ userID, body }) => {
 
     
@@ -20,7 +21,8 @@ const Comments = ({ userID, body }) => {
     return (
         <div>
             <div>
- 
+                <MainAvatar picture={user.picture} />
+                <FullName firstName={user.firstName} lastName={user.lastName} />
                 {body}
             </div>
         </div>
