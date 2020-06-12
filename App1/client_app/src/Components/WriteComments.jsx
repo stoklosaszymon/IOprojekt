@@ -44,16 +44,17 @@ const Comments = ({ userName, idpost }) => {
  
 
     return (
-        <div>
-            <div>
+        //do zmiany
+        <div className="WriteComments .div-container">
+            <div className="WriteComments">
                 <div className="WriteComments main-avatar">
                     <MainAvatar picture={user.picture} />
                 </div>
                 <input type="text"
-                    name="comment"
                     value={comment}
-                    onChange={event => setValue(event.target.value)} />
-                <button className="btn btn-small btn-solid" onClick={Send}>Wysliji</button>
+                    onChange={event => setValue(event.target.value)}
+                    className="WriteComments input"/>
+                <button className="WriteComments btn btn-small btn-solid" onClick={Send}>Wysliji</button>
             </div>
         </div>
     );

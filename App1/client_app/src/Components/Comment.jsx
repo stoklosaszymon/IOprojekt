@@ -28,16 +28,15 @@ const Comments = ({ userName, idpost }) => {
 
     return (
         <div>
-            {comment.slice(0,count).map(x =>
-                <div>
+            {comment.slice(0, count).map(x =>
+                <div className="DisplayComments">
                     <DisplayComments userID={x.userId} body={x.body} />
                 </div>
             )}
-                <div>
-                <p onClick={() => setCount(count + 1)}> Wiecej komentarzy</p>
-                </div>
-          
             <div>
+                <p  onClick={() => setCount(count + 1)}> Wiecej komentarzy</p>
+            </div>
+            <div className=" WriteComments aside-foot">
                 <WriteComments userName={userName} idpost={idpost} />
             </div>
         </div>
