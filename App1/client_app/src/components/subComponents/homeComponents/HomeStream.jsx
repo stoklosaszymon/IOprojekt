@@ -6,10 +6,14 @@ import MediaContainer from "./../../mainComponents/PostComponents/MediaContainer
 import MessageContainer from "./../../mainComponents/PostComponents/MessageContainer";
 import PostFooter from "./../../mainComponents/PostComponents/PostFooter";
 import TimeStamp from "./../../mainComponents/PostComponents/TimeStamp";
+import Comments from "./../messagesComponents/Comment";
+import { useSelector } from 'react-redux';
 
 const HomeStream = () => {
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
+
+    const user = useSelector(state => state.loggedUser);
 
     useEffect(() => {
         fetch('graphql', {
@@ -59,6 +63,7 @@ const HomeStream = () => {
                             <MessageContainer message={post.body} />
                             <MediaContainer image={post.image} />
                             <PostFooter />
+                            <Comments userName={user.nickname} idpost={post.postId} />
                         </div>
                     </div>
                 )}
