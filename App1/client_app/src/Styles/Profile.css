@@ -96,3 +96,36 @@
 .Friends a {
     display: block
 }
+
+.WriteComments .input {
+    width: 83%;
+    padding: 5px 5px;
+    margin: 2px 0;
+    box-sizing: border-box;
+    background-color: rgb(39, 38, 38);
+    color: rgb(255, 255, 255);
+}
+
+.WriteComments .main-avatar {
+    float: left;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: -25px;
+}
+
+.WriteComments .main-avatar-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+.DisplayComments .main-avatar-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.DisplayComments .main-avatar {
+    float: left;
+    position: absolute;
+    margin-top: 7px;
+    margin-left: -45px;
+}
