@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import FullName from "./mainComponents/PostComponents/FullName";
-import MainAvatar from "./mainComponents/PostComponents/MainAvatar";
-const Comments = ({ userID, body }) => {
+import FullName from "./FullName";
+import MainAvatar from "./MainAvatar";
+const DisplayComments = ({ userID, body }) => {
 
     
     const [user, setUser] = useState({ firstName: '', lastName: '', picture: '' });
@@ -29,4 +29,4 @@ const Comments = ({ userID, body }) => {
     );
 };
 
-export default Comments;
+export default DisplayComments;

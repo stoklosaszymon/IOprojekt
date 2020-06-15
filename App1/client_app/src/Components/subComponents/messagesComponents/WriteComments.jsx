@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import MainAvatar from "./mainComponents/PostComponents/MainAvatar"
-const Comments = ({ userName, idpost }) => {
+import MainAvatar from "./../../mainComponents/PostComponents/MainAvatar"
+const WriteComments = ({ userName, idpost }) => {
 
 
 
@@ -60,4 +60,4 @@ const Comments = ({ userName, idpost }) => {
     );
 };
 
-export default Comments;
+export default WriteComments;

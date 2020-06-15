@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WriteComments from "./WriteComments"
-import DisplayComments from "./DisplayComments"
+import DisplayComments from "./../../mainComponents/PostComponents/DisplayComments"
 const Comments = ({ userName, idpost }) => {
         const [count, setCount] = useState(1);
         const [comment, setValue] = useState([])
