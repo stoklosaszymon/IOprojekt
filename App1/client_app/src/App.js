@@ -3,7 +3,6 @@ import { withRouter, Router, Route, Switch } from "react-router-dom"
 import history from "./utils/history"
 
 
-import NavBar from "./Components/NavBar"
 import Header from "./Components/Layouts/Header";
 import Home from "./Components/Pages/Home";
 import Notifications from "./Components/Pages/Notifications";
@@ -13,7 +12,7 @@ import Toast from "./Components/subComponents/Toast";
 import TrendsSettingBody from "./Components/subComponents/TrendsSetting";
 import Compose from "./Components/subComponents/messagesComponents/Compose";
 import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
-import Error404 from "./Components/Pages/Error404";
+import Start from "./Components/Pages/Start";
 
 
 function App () {
@@ -22,10 +21,10 @@ function App () {
                         <Switch>
                             <div className="container">
                             <Header />
-                            <NavBar />
                             <main>
                             {/* Home */}
                             <Route path="/home" component={Home} />
+                            <Route path="/" component={Start} />
                             {/* Notification */}
                             <Route path="/notifications" component={Notifications} />
                             {/* Messages */}
@@ -42,8 +41,6 @@ function App () {
                             <Route path="/settings/trends" component={() => (
                             <Toast header="Trends" body={<TrendsSettingBody />} />
                             )} />
-                            {/* Error 404 */}
-                            <Route component={Error404} />
                             </main>
                             </div>
                         </Switch>
