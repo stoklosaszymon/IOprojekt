@@ -14,16 +14,20 @@ import TrendsSettingBody from "./Components/subComponents/TrendsSetting";
 import Compose from "./Components/subComponents/messagesComponents/Compose";
 import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
 import Error404 from "./Components/Pages/Error404";
+import Login from "./Components/Pages/Login";
 
 
 function App () {
         return (
-                <div className="container">
                     <Router history={history}>
-                        <Header />
-                        <NavBar />
-                        <main>
                         <Switch>
+                            <Route path="/login" component={Login} />
+                        </Switch>
+                        <Switch>
+                            <div className="container">
+                            <Header />
+                            <NavBar />
+                            <main>
                             {/* Home */}
                             <Route path="/home" component={Home} />
                             {/* Notification */}
@@ -44,10 +48,10 @@ function App () {
                             )} />
                             {/* Error 404 */}
                             <Route component={Error404} />
+                            </main>
+                            </div>
                         </Switch>
-                        </main>
                     </Router>
-                </div>
         );
 }
 
