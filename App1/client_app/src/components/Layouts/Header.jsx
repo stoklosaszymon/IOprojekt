@@ -1,11 +1,50 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Avatar from "../assets/Avatar";
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import { useAuth0 } from "./../../react-auth0-spa";
+import { useDispatch } from 'react-redux';
 
 const Header = () => {
 
-    const user = useSelector(state => state.loggedUser);
+    let dispatch = useDispatch();
+
+    const { isAuthenticated, loginWithPopup, logout, getTokenSilently, user } = useAuth0();
+
+    const userG = useSelector(state => state.loggedUser);
+
+    let user2 = {};
+
+    const addUser = async () => {
+        let token = '';
+        if (user !== undefined && getTokenSilently !== undefined) {
+
+            await getTokenSilently().then(e => token = e)
+
+            await fetch('graphql', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    query: `
+                    mutation {
+                      users {
+                        addUser(token: "${token}")  
+                      }
+                    }`
+                }),
+            }).then(res => res.json())
+                .then(res => user2 = res.users.addUser)
+                .then(res => dispatch({ type: 'LOG_IN', loggedUser: user2 }))
+        }
+    }
+
+    if (isAuthenticated) {
+        addUser();
+        console.log("auth0 user: ", user);
+    }
 
   return (
     <header>
@@ -64,13 +103,13 @@ const Header = () => {
             </div>
           </NavLink>
           <NavLink
-            to={user.nickname}
+            to={userG.nickname}
             className="a-container"
             activeClassName={"active-link"}
           >
             <div className="a">
               <div className="avatar">
-                <Avatar picture={user.picture} />
+                <Avatar picture={userG.picture} />
               </div>
               <span>Profile</span>
             </div>
@@ -88,9 +127,10 @@ const Header = () => {
           </a>
         </div>
         <div>
+          {!isAuthenticated && (
           <div className="btn-container">
-            <a href="#tweet" className="btn btn-large btn-solid">
-              <span className="btn-span-text">Tweet</span>
+            <a href="home" onClick={() => loginWithPopup({})} className="btn btn-large btn-solid">
+              <span className="btn-span-text">Login</span>
               <span className="btn-span-icon">
                 <svg viewBox="0 0 24 24" className="header-img">
                   <g>
@@ -100,7 +140,22 @@ const Header = () => {
               </span>
             </a>
           </div>
+          )}
         </div>
+          {isAuthenticated && 
+          <div className="btn-container">
+            <a onClick={() => loginWithPopup({})} className="btn btn-large btn-solid">
+              <span className="btn-span-text">Login</span>
+              <span className="btn-span-icon">
+                <svg viewBox="0 0 24 24" className="header-img">
+                  <g>
+                    <path d="M8.8 7.2H5.6V3.9c0-.4-.3-.8-.8-.8s-.7.4-.7.8v3.3H.8c-.4 0-.8.3-.8.8s.3.8.8.8h3.3v3.3c0 .4.3.8.8.8s.8-.3.8-.8V8.7H9c.4 0 .8-.3.8-.8s-.5-.7-1-.7zm15-4.9v-.1h-.1c-.1 0-9.2 1.2-14.4 11.7-3.8 7.6-3.6 9.9-3.3 9.9.3.1 3.4-6.5 6.7-9.2 5.2-1.1 6.6-3.6 6.6-3.6s-1.5.2-2.1.2c-.8 0-1.4-.2-1.7-.3 1.3-1.2 2.4-1.5 3.5-1.7.9-.2 1.8-.4 3-1.2 2.2-1.6 1.9-5.5 1.8-5.7z"></path>
+                  </g>
+                </svg>
+              </span>
+            </a>
+          </div>
+          }
       </div>
     </header>
   );
