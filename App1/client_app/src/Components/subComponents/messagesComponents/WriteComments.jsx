@@ -9,7 +9,7 @@ const WriteComments = ({ userName, idpost }) => {
     const [user, setUser] = useState({ id: '', picture: '' });;
 
     useEffect(() => {
-        if (userName != "") {
+        if (userName !== "") {
             fetch('graphql', {
                 method: 'POST',
                 headers: {
@@ -44,7 +44,7 @@ const WriteComments = ({ userName, idpost }) => {
         setValue('');
     };
 
-    if (userName =="") {
+    if (userName ==="") {
         return ( 
             <div>
 

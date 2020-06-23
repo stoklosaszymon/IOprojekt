@@ -21,8 +21,9 @@ function App() {
                 <Header />
                 <main>
                     <Switch>
-                        {/* Home */}
+                        {/* Login */}
                         <Route path="/login" component={Start} />
+                        {/* Home */}
                         <Route path="/home" component={Home} />
                         {/* Notification */}
                         <Route path="/notifications" component={Notifications} />
