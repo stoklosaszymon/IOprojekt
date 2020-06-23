@@ -14,38 +14,37 @@ import Compose from "./Components/subComponents/messagesComponents/Compose";
 import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
 import Start from "./Components/Pages/Start";
 
-
-function App () {
-        return (
-                    <Router history={history}>
-                        <Switch>
-                            <div className="container">
-                            <Header />
-                            <main>
-                            {/* Home */}
-                            <Route path="/home" component={Home} />
-                            <Route path="/" component={Start} />
-                            {/* Notification */}
-                            <Route path="/notifications" component={Notifications} />
-                            {/* Messages */}
-                            <Route path="/messages" exact component={Messages} />
-                            <Route path="/messages/compose" component={() => (
+function App() {
+    return (
+        <div className="container">
+            <Router history={history}>
+                <Header />
+                <main>
+                    <Switch>
+                        {/* Home */}
+                        <Route path="/login" component={Start} />
+                        <Route path="/home" component={Home} />
+                        {/* Notification */}
+                        <Route path="/notifications" component={Notifications} />
+                        {/* Messages */}
+                        <Route path="/messages" exact component={Messages} />
+                        <Route path="/messages/compose" component={() => (
                             <Toast header="New message" btnText="Next" body={<Compose />} />
-                            )} />
-                            {/* Profile */}
-                            <Route path="/:userName" component={Profile} />
-                            <Route path="/settings/profile" component={() => (
+                        )} />
+                        {/* Profile */}
+                        <Route path="/:userName" component={Profile} />
+                        <Route path="/settings/profile" component={() => (
                             <Toast header="Edit Profile" btnText="Save" body={<ProfileSetting />}
-                            /> )} />
-                            {/* Trends */}
-                            <Route path="/settings/trends" component={() => (
+                            />)} />
+                        {/* Trends */}
+                        <Route path="/settings/trends" component={() => (
                             <Toast header="Trends" body={<TrendsSettingBody />} />
-                            )} />
-                            </main>
-                            </div>
-                        </Switch>
-                    </Router>
-        );
+                        )} />
+                    </Switch>
+                </main>
+            </Router>
+        </div>
+    );
 }
 
 export default withRouter(App);
