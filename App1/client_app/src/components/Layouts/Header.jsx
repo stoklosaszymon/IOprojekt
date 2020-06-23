@@ -1,11 +1,50 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Avatar from "../assets/Avatar";
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import { useAuth0 } from "./../../react-auth0-spa";
+import { useDispatch } from 'react-redux';
 
 const Header = () => {
 
-    const user = useSelector(state => state.loggedUser);
+    let dispatch = useDispatch();
+
+    const { isAuthenticated, loginWithPopup, logout, getTokenSilently, user } = useAuth0();
+
+    const userG = useSelector(state => state.loggedUser);
+
+    let user2 = {};
+
+    const addUser = async () => {
+        let token = '';
+        if (user !== undefined && getTokenSilently !== undefined) {
+
+            await getTokenSilently().then(e => token = e)
+
+            await fetch('graphql', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    query: `
+                    mutation {
+                      users {
+                        addUser(token: "${token}")  
+                      }
+                    }`
+                }),
+            }).then(res => res.json())
+                .then(res => user2 = res.users.addUser)
+                .then(res => dispatch({ type: 'LOG_IN', loggedUser: user2 }))
+        }
+    }
+
+    if (isAuthenticated) {
+        addUser();
+        console.log("auth0 user: ", user);
+    }
 
   return (
     <header>
@@ -64,13 +103,13 @@ const Header = () => {
             </div>
           </NavLink>
           <NavLink
-            to={user.nickname}
+            to={userG.nickname}
             className="a-container"
             activeClassName={"active-link"}
           >
             <div className="a">
               <div className="avatar">
-                <Avatar picture={user.picture} />
+                <Avatar picture={userG.picture} />
               </div>
               <span>Profile</span>
             </div>
@@ -89,8 +128,8 @@ const Header = () => {
         </div>
         <div>
           <div className="btn-container">
-            <a href="#tweet" className="btn btn-large btn-solid">
-              <span className="btn-span-text">Tweet</span>
+            <a href="login" className="btn btn-large btn-solid">
+              <span className="btn-span-text">Login</span>
               <span className="btn-span-icon">
                 <svg viewBox="0 0 24 24" className="header-img">
                   <g>
