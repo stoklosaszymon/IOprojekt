@@ -9,7 +9,7 @@ const Header = () => {
 
     let dispatch = useDispatch();
 
-    const { isAuthenticated, loginWithPopup, logout, getTokenSilently, user } = useAuth0();
+    const { isAuthenticated, getTokenSilently, user } = useAuth0();
 
     const userG = useSelector(state => state.loggedUser);
 
