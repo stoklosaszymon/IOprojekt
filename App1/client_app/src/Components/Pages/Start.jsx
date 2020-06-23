@@ -3,10 +3,6 @@ import SectionHeader from "../mainComponents/mainSection/SectionHeader";
 import SectionMiddle from "../mainComponents/mainSection/SectionMiddle";
 import StartMiddle from "../subComponents/StartComponents/StartMiddle";
 
-import Search from "../mainComponents/mainAside/Search";
-import Trends from "../mainComponents/mainAside/Trends";
-import Footer from "../mainComponents/mainAside/Footer";
-
 import HomeLogo from "../assets/HomeLogo";
 import "../../Styles/Home.css";
 
