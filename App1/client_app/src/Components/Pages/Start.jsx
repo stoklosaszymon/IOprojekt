@@ -4,7 +4,7 @@ import SectionMiddle from "../mainComponents/mainSection/SectionMiddle";
 import StartMiddle from "../subComponents/StartComponents/StartMiddle";
 
 import HomeLogo from "../assets/HomeLogo";
-import "../../Styles/Home.css";
+import "../../Styles/Start.css";
 
 const Start = () => {
     return (
