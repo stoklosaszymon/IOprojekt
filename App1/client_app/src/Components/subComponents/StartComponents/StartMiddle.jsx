@@ -2,16 +2,13 @@ import React from 'react'
 import { useAuth0 } from "../../../react-auth0-spa";
 import { useDispatch } from 'react-redux'
 
-import {
-    Button,
-    Col
-} from "reactstrap";
+import { Button } from "reactstrap";
 
 const StartMiddle = () => {
 
     let dispatch = useDispatch();
 
-    const { isAuthenticated, loginWithPopup, logout, getTokenSilently, user } = useAuth0();
+    const { isAuthenticated, loginWithPopup, getTokenSilently, user } = useAuth0();
 
     let user2 = {};
 
