@@ -2,7 +2,6 @@ import React from 'react'
 import { useAuth0 } from "../../../react-auth0-spa";
 import { useDispatch } from 'react-redux'
 
-import { Button } from "reactstrap";
 
 const StartMiddle = () => {
 
@@ -52,7 +51,7 @@ const StartMiddle = () => {
             </div>
             <div className="btn-container text-center">
                 {!isAuthenticated && (
-                    <Button
+                    <button
                         className="btn-neutral btn-icon"
                         color="default"
                         onClick={() => loginWithPopup({})}
@@ -64,10 +63,10 @@ const StartMiddle = () => {
                             />
                         </span>
                         <span className="btn-inner--text">Github</span>
-                    </Button>
+                    </button>
                 )}
                 {!isAuthenticated && (
-                    <Button
+                    <button
                         className="btn-neutral btn-icon"
                         color="default"
                         onClick={() => loginWithPopup({})}
@@ -79,7 +78,7 @@ const StartMiddle = () => {
                             />
                         </span>
                         <span className="btn-inner--text">Google</span>
-                    </Button>
+                    </button>
                 )}
             </div>
 
