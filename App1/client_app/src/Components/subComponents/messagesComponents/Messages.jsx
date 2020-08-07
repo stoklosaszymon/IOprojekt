@@ -26,13 +26,15 @@ const Messages = () => {
     const [messages, setMessages] = useState([]);
    
     //group
+    const [group, setGroup] = useState([]);
     const [messagesGroup, setMessagesGroup] = useState([]);
     const [roomName, setroomName] = useState('');
     //hub
     const [hubConnection, setHubConnection] = useState();
     // bool
     const [check, setcheck] = useState(true);
-
+    const [boolCheckPlus, setboolCheckPlus] = useState(false);
+    const [boolCheckMinus, setboolCheckMinus] = useState(false);
 
     useEffect(() => {
 
@@ -77,6 +79,21 @@ const Messages = () => {
         setcheck(false);
     }
 
+    const SetPrivateroom = (firstName, lastName, nickuser) => {
+        setName(firstName);
+        setLastName(lastName);
+        setNick(nickuser);
+        setroomName('');
+    };
+
+
+    const SetGroup = (Name) => {
+        setroomName(Name);
+        setName('');
+        setLastName('');
+        setNick('');
+    };
+
     //hub
     useEffect(() => {
         const createHubConnection = async () => {
@@ -116,12 +133,7 @@ const Messages = () => {
 
     }, []);
 
-    const SetPrivateroom = (firstName, lastName, nickuser) => {
-        setName(firstName);
-        setLastName(lastName);
-        setNick(nickuser);
-    };
-
+ 
     async function Message() {
         if (roomName == '')
             try {
@@ -150,7 +162,9 @@ const Messages = () => {
     async function createGroup() {
         try {
             await hubConnection.invoke('CreateRoom', roomName)
-             console.log(roomName + 'createGroup');
+            console.log(roomName + 'createGroup');
+            setcheck(true);
+            setGroup(x => [...x, `${roomName}`]);
         }
         catch (err) {
             console.log(err);
@@ -162,7 +176,7 @@ const Messages = () => {
         try {
             await hubConnection.invoke('AddUserRoom', roomName, nick)
             console.log(nick + ' add ->' + roomName);
-            
+            setboolCheckPlus(false);
         }
         catch (err) {
             console.log(err);
@@ -173,7 +187,7 @@ const Messages = () => {
         try {
             await hubConnection.invoke('RemoveUserRoom', roomName, nick)
             console.log(nick + ' remove ->' + roomName);
-         
+            setboolCheckMinus(false);
         }
         catch (err) {
             console.log(err);
@@ -185,27 +199,34 @@ const Messages = () => {
     return (
         <div className="main-container messages">
             <section>
-                <SectionHeader heading="Messages" logo={<MessageLogo/>}/>
-                <SectionMiddle data={<Search/>}/>
+                <SectionHeader heading="Messages" logo={<MessageLogo />}/>
+                <SectionMiddle data={<Search />}/>
+
                 <div className="Friends-container aside-div-container">
                     {listFriend.map((x, index) =>
                         <div className="Friends aside-body" key={index} onClick={(e) => SetPrivateroom(x.firstName, x.lastName, x.nickname)}>
                             <div className="Friends main-avatar">
-                                <MainAvatar picture={x.picture}/>
+                                <MainAvatar picture={x.picture} />
                             </div>
-                            <FullName firstName={x.firstName} lastName={x.lastName}/>
+                            <FullName firstName={x.firstName} lastName={x.lastName} />
                             <div className="aside-foot">
                                 <p>______________________________________</p>
-                            </div>
+                            </div> 
                         </div>)}
+                </div>
+                <div className="Friends-container aside-div-container">
+                    {group.map((x, index) => (
+                        <div className="Friends aside-body" key={index} onClick={(e) => SetGroup(x)}>
+                            {x}
+                        </div>))}
                 </div>
             </section>
             <aside>
-              
-                
-                
-                <span>
-                                <FullName firstName={fName} lastName={lName} />
+                <div>
+                    <div className="section-header">
+                        <div className="home-refresh">
+                            <span>
+                                <FullName firstName={fName} lastName={lName}/>
                                 <div>
                                     <div onClick={(e) => boolCheck()}>
                                         {(check === true) ?
@@ -221,36 +242,85 @@ const Messages = () => {
                                                 <button onClick={createGroup}>Create</button>
                                             </div>
                                         }
-                        </div>
-                    </div>
-                </span>
-
-                <div>
-                    <div className="name">
-                        <div>
-                           { messages.map((message, index) => (
-                            <div style={{ display: 'block' }} key={index}> {message} </div>
-                                ))}
-                              
-                            <br />
-                        </div>
-                    </div>
-                    <div className="section-header">
-                        <div className="home-refresh">
-                            <span>
-                                <input
-                                    type="text"
-                                    value={message}
-                                    onChange={e => setMessage(e.target.value)}
-                                    maxLength={255} />
-                                <button onClick={Message}>Send</button>
+                                    </div>
+                                    {(roomName === '') || (check === false) ?
+                                        <div></div> :
+                                        <div>
+                                            <button onClick={(e) => setboolCheckPlus(true)}>Plus</button>
+                                            <br />
+                                            <button onClick={(e) => setboolCheckMinus(true)}>Minus</button>
+                                        </div>
+                                    }
+                                </div>
                             </span>
                         </div>
                     </div>
+                    {((fName === '' && lName === '') && roomName === '') ?
+                        <div> Z kim  rozmawiac chcesz </div>
+                        :
+                        <div>
+                            {(boolCheckPlus === false && boolCheckMinus === false) ?
+                                <div>
+                                    <div className="name">
+                                        <div>
+                                            {(roomName === '') ?
+                                                messages.map((message, index) => (
+                                                    <div style={{ display: 'block' }} key={index}> {message} </div>
+                                                ))
+                                                :
+                                                messagesGroup.map((message, index) => (
+                                                    <div style={{ display: 'block' }} key={index}> {message} </div>
+                                                ))}
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <div className="section-header">
+
+                                        <div className="home-refresh">
+                                            <span>
+                                                <input
+                                                    type="text"
+                                                    value={message}
+                                                    onChange={e => setMessage(e.target.value)}
+                                                    maxLength={255} />
+                                                <button onClick={Message}>Send</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                : (boolCheckPlus === true && boolCheckMinus === false) ?
+                                    <div className="Friends-container aside-div-container">
+                                        {listFriend.map((x, index) =>
+                                            <div className="Friends aside-body" key={index} onClick={(e) => addUser(x.nickname)}>
+                                                <div className="Friends main-avatar">
+                                                    <MainAvatar picture={x.picture} />
+                                                </div>
+                                                <FullName firstName={x.firstName} lastName={x.lastName} />
+                                                <div className="aside-foot">
+                                                    <p>______________________________________</p>
+                                                </div>
+
+                                            </div>)}
+                                    </div>
+                                    :
+                                    <div className="Friends-container aside-div-container">
+                                        {listFriend.map((x, index) =>
+                                            <div className="Friends aside-body" key={index} onClick={(e) => RemoveUser(x.nickname)}>
+                                                <div className="Friends main-avatar">
+                                                    <MainAvatar picture={x.picture} />
+                                                </div>
+                                                <FullName firstName={x.firstName} lastName={x.lastName} />
+                                                <div className="aside-foot">
+                                                    <p>______________________________________</p>
+                                                </div>
+                                            </div>)}
+                                    </div>
+                            }
+                        </div>
+                    }
                 </div>
             </aside>
         </div>
     );
-}
-
- export default Messages;
+};
+export default Messages;
