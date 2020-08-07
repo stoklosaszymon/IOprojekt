@@ -30,6 +30,9 @@ const Messages = () => {
     const [roomName, setroomName] = useState('');
     //hub
     const [hubConnection, setHubConnection] = useState();
+    // bool
+    const [check, setcheck] = useState(true);
+
 
     useEffect(() => {
 
@@ -69,6 +72,12 @@ const Messages = () => {
         return ({ ...users.find(p => p.id === x) })
     });
 
+    const boolCheck = () => {
+        setroomName('');
+        setcheck(false);
+    }
+
+    //hub
     useEffect(() => {
         const createHubConnection = async () => {
             const hubConnect = new signalR.HubConnectionBuilder()
@@ -192,6 +201,30 @@ const Messages = () => {
                 </div>
             </section>
             <aside>
+              
+                
+                
+                <span>
+                                <FullName firstName={fName} lastName={lName} />
+                                <div>
+                                    <div onClick={(e) => boolCheck()}>
+                                        {(check === true) ?
+                                            <div>Stworz Grupe</div>
+                                            :
+                                            <div>
+                                                <input
+                                                    type="text"
+                                                    value={roomName}
+                                                    onChange={e => setroomName(e.target.value)}
+                                                    maxLength={255}
+                                                />
+                                                <button onClick={createGroup}>Create</button>
+                                            </div>
+                                        }
+                        </div>
+                    </div>
+                </span>
+
                 <div>
                     <div className="name">
                         <div>
