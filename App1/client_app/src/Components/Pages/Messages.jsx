@@ -7,7 +7,7 @@ import Search from "../mainComponents/mainAside/Search";
 import Default from "../subComponents/messagesComponents/MessagesStream";
 import "../../Styles/Messages.css";
 import { useSelector } from 'react-redux'
-
+import Message from "../subComponents/messagesComponents/Messages"
 
 const Messages = () => {
     const user = useSelector(state => state.loggedUser);
@@ -28,7 +28,7 @@ const Messages = () => {
     } else {
         return (
             <div className="main-container messages">
-                test
+                <Message />
             </div>
         );
     }
