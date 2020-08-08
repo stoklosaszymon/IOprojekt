@@ -221,42 +221,44 @@ const Messages = () => {
                             </div> */}
                         </div>)}
                 </div>
-                <div className="Text">Twoje Grupy</div>
+                <div className="Group section-header">Twoje Grupy</div>
                 <div className="Group-container aside-div-container">
                     {group.map((x, index) => (
                         <div className="Group aside-body" key={index} onClick={(e) => SetGroup(x)}>
-                            {x}
+                            <p className="Group name">{x}</p>
                         </div>))}
                 </div>
             </section>
             <aside>
                 <div>
-                    <div className="section-header">
-                        <div className="home-refresh">
+                    <div className="button-place section-header">
+                        <div className="button-place">
                             <span>
-                                <FullName firstName={fName} lastName={lName}/>
+                                <div className="button-place name-selected">
+                                    <FullName firstName={fName} lastName={lName}/>
+                                    <p className="button-place group-selected">{roomName}</p>
+                                </div>
                                 <div>
-                                    <div onClick={(e) => boolCheck()}>
+                                    <div className="button-place create-group" onClick={(e) => boolCheck()}>
                                         {(check === true) ?
-                                            <div>Stworz Grupe</div>
+                                            <p> Stworz Grupe</p>
                                             :
-                                            <div>
+                                            <div className="button-place name-group">
                                                 <input
                                                     type="text"
                                                     value={roomName}
                                                     onChange={e => setroomName(e.target.value)}
                                                     maxLength={255}
                                                 />
-                                                <button onClick={createGroup}>Create</button>
+                                                <button className="button-place btn btn-small btn-solid" onClick={createGroup}>Create</button>
                                             </div>
                                         }
                                     </div>
                                     {(roomName === '') || (check === false) ?
                                         <div></div> :
-                                        <div>
-                                            <button onClick={(e) => setboolCheckPlus(true)}>Plus</button>
-                                            <br />
-                                            <button onClick={(e) => setboolCheckMinus(true)}>Minus</button>
+                                        <div className="button-place position">
+                                            <button className="button-place plus btn btn-small btn-solid" onClick={(e) => setboolCheckPlus(true)}>Plus</button> 
+                                            <button className="button-place minus btn btn-small btn-solid"onClick={(e) => setboolCheckMinus(true)}>Minus</button>
                                         </div>
                                     }
                                 </div>

@@ -44,3 +44,83 @@
     position: absolute;
     margin-top: 18px;
 }
+.Group-container .aside-div-container {
+    width: auto;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 0;
+    background-color: rgba(61, 65, 69, 0.4);
+}
+.Group .aside-body {
+    width: 100%;
+    height: 60px;
+}
+.Group .aside-body:hover {
+    background-color: rgba(61, 65, 69, 0.4);
+}
+.Group .name {
+    margin-left: 15px;
+    position: absolute;
+    margin-top: 18px;
+}
+
+/*Aside*/
+
+.button-place .section-header {
+    height: 90px;
+    width: auto;
+}
+.button-place {
+    height: 69px;
+    width: auto;
+}
+
+
+
+.button-place .fullname-container {
+    margin-left: 64px;
+    position: absolute;
+    margin-top: 14px;
+}
+.button-place .create-group {
+    position: absolute;
+    margin-left: 225px;
+    margin-top: -69px;
+    margin-bottom: auto;
+    margin-right: auto;
+}
+.button-place .name-group {
+    margin-left: -50px;
+}
+
+.button-place .group-selected {
+    margin-left: 64px;
+    margin-top: 14px;
+    position: absolute;
+}
+
+.button-place .position {
+    position: absolute;
+    margin-left: 224px;
+    margin-top: -40px;
+}
+
+.button-place .btn-small {
+    padding: 8px 32px;
+    height: 27px;
+    margin-left: 27px;
+}
+
+.button-place .plus{
+        padding: 8px 12px;
+        height: 27px;
+        margin-left: 64px;
+}
+
+.button-place .minus {
+    padding: 8px 9px;
+    height: 26px;
+    margin-left: -128px;
+    margin-top: 8px;
+    position: absolute;
+}
