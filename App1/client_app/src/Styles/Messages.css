@@ -1,4 +1,46 @@
 .messages .section-middle-container {
-  padding: 10px;
-  border-bottom: solid var(--primary-border-color) 1px;
+    padding: 10px;
+    border-bottom: solid var(--primary-border-color) 1px;
+}
+
+/*Section*/
+
+.main-container messages { }
+
+.messages .aside-div-container {
+    width: auto;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 0;
+    background-color: rgba(61, 65, 69, 0.4);
+}
+
+
+
+.messages .aside-body {
+    width: 100%;
+    height: 60px;    
+}
+
+.messages .aside-body:hover {
+     background-color: rgba(61, 65, 69, 0.4);
+}
+
+.messages .main-avatar {
+    float: left;
+    position: absolute;
+    margin-top: 5.5px;
+    margin-left: 5px;
+}
+
+.messages .main-avatar-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.messages .fullname-container {
+    margin-left: 55px;
+    position: absolute;
+    margin-top: 18px;
 }

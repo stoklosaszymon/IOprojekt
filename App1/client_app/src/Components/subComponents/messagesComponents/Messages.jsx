@@ -140,10 +140,10 @@ const Messages = () => {
             setHubConnection(hubConnect);
         }
         createHubConnection();
-    }, []);
+    }, [user.nickname]);
  
     async function Message() {
-        if (roomName == '')
+        if (roomName === '')
             try {
                 if (hubConnection && message !== '') {
                     await hubConnection.invoke('SendMessageToUser', nick, user.nickname, message, user.firstName, user.lastName)
@@ -207,21 +207,24 @@ const Messages = () => {
                 <SectionHeader heading="Messages" logo={<MessageLogo />}/>
                 <SectionMiddle data={<Search />}/>
 
-                <div className="Friends-container aside-div-container">
+                <div className="messages aside-div-container">
                     {listFriend.map((x, index) =>
-                        <div className="Friends aside-body" key={index} onClick={(e) => SetPrivateroom(x.firstName, x.lastName, x.nickname)}>
-                            <div className="Friends main-avatar">
+                        <div className="messages aside-body" key={index} onClick={(e) => SetPrivateroom(x.firstName, x.lastName, x.nickname)}>
+                            <div className="messages main-avatar">
                                 <MainAvatar picture={x.picture} />
                             </div>
-                            <FullName firstName={x.firstName} lastName={x.lastName} />
-                            <div className="aside-foot">
+                            <div className="messages name">
+                                <FullName firstName={x.firstName} lastName={x.lastName} />
+                            </div>
+                            {/*<div className="aside-foot">
                                 <p>______________________________________</p>
-                            </div> 
+                            </div> */}
                         </div>)}
                 </div>
-                <div className="Friends-container aside-div-container">
+                <div className="Text">Twoje Grupy</div>
+                <div className="Group-container aside-div-container">
                     {group.map((x, index) => (
-                        <div className="Friends aside-body" key={index} onClick={(e) => SetGroup(x)}>
+                        <div className="Group aside-body" key={index} onClick={(e) => SetGroup(x)}>
                             {x}
                         </div>))}
                 </div>
