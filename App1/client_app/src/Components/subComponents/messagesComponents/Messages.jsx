@@ -216,9 +216,6 @@ const Messages = () => {
                             <div className="messages name">
                                 <FullName firstName={x.firstName} lastName={x.lastName} />
                             </div>
-                            {/*<div className="aside-foot">
-                                <p>______________________________________</p>
-                            </div> */}
                         </div>)}
                 </div>
                 <div className="Group section-header">Twoje Grupy</div>
@@ -257,8 +254,8 @@ const Messages = () => {
                                     {(roomName === '') || (check === false) ?
                                         <div></div> :
                                         <div className="button-place position">
-                                            <button className="button-place plus btn btn-small btn-solid" onClick={(e) => setboolCheckPlus(true)}>Plus</button> 
-                                            <button className="button-place minus btn btn-small btn-solid"onClick={(e) => setboolCheckMinus(true)}>Minus</button>
+                                            <button className="button-place plus btn btn-small btn-solid" onClick={(e) => setboolCheckPlus(true)}>Plus</button>
+                                            <button className="button-place minus btn btn-small btn-solid" onClick={(e) => setboolCheckMinus(true)}>Minus</button>
                                         </div>
                                     }
                                 </div>
@@ -271,7 +268,7 @@ const Messages = () => {
                         <div>
                             {(boolCheckPlus === false && boolCheckMinus === false) ?
                                 <div>
-                                    <div className="name">
+                                    <div>
                                         <div>
                                             {(roomName === '') ?
                                                 messages.map((message, index) => (
@@ -284,9 +281,8 @@ const Messages = () => {
                                             <br />
                                         </div>
                                     </div>
-                                    <div className="section-header">
-
-                                        <div className="home-refresh">
+                                    <div>
+                                        <div>
                                             <span>
                                                 <input
                                                     type="text"
@@ -299,29 +295,41 @@ const Messages = () => {
                                     </div>
                                 </div>
                                 : (boolCheckPlus === true && boolCheckMinus === false) ?
-                                    <div className="Friends-container aside-div-container">
+                                    <div className="messages aside-div-container">
+                                        <span className="a" onClick={(e) => setboolCheckPlus(false)}>
+                                            <svg viewBox="0 0 24 24" className="main-img">
+                                                <g>
+                                                    <path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path>
+                                                </g>
+                                            </svg>
+                                        </span>
                                         {listFriend.map((x, index) =>
-                                            <div className="Friends aside-body" key={index} onClick={(e) => addUser(x.nickname)}>
-                                                <div className="Friends main-avatar">
+                                            <div className="messages aside-body" key={index} onClick={(e) => addUser(x.nickname)}>
+                                                <div className="messages main-avatar">
                                                     <MainAvatar picture={x.picture} />
                                                 </div>
-                                                <FullName firstName={x.firstName} lastName={x.lastName} />
-                                                <div className="aside-foot">
-                                                    <p>______________________________________</p>
+                                                <div className="messages">
+                                                    <FullName firstName={x.firstName} lastName={x.lastName} />
                                                 </div>
-
                                             </div>)}
+
                                     </div>
                                     :
-                                    <div className="Friends-container aside-div-container">
+                                    <div className="messages aside-div-container">
+                                        <span className="a" onClick={(e) => setboolCheckMinus(false)}>
+                                            <svg viewBox="0 0 24 24" className="main-img">
+                                                <g>
+                                                    <path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path>
+                                                </g>
+                                            </svg>
+                                        </span>
                                         {listFriend.map((x, index) =>
-                                            <div className="Friends aside-body" key={index} onClick={(e) => RemoveUser(x.nickname)}>
-                                                <div className="Friends main-avatar">
+                                            <div className="messages aside-body" key={index} onClick={(e) => RemoveUser(x.nickname)}>
+                                                <div className="messages main-avatar">
                                                     <MainAvatar picture={x.picture} />
                                                 </div>
-                                                <FullName firstName={x.firstName} lastName={x.lastName} />
-                                                <div className="aside-foot">
-                                                    <p>______________________________________</p>
+                                                <div className="messages">
+                                                    <FullName firstName={x.firstName} lastName={x.lastName} />
                                                 </div>
                                             </div>)}
                                     </div>
