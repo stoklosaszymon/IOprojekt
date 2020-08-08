@@ -24,12 +24,13 @@ const Messages = () => {
     const [message, setMessage] = useState('');
     //private
     const [messages, setMessages] = useState([]);
-   
+    const [listmessage, setlistmessage] = useState([]);
     //group
     const [group, setGroup] = useState([]);
     const [messagesGroup, setMessagesGroup] = useState([]);
     const [roomName, setroomName] = useState('');
-    //hub
+    const [listmessagesGroup, setlistmessagesGroup] = useState([]);
+    //hubConnection
     const [hubConnection, setHubConnection] = useState();
     // bool
     const [check, setcheck] = useState(true);
@@ -84,6 +85,14 @@ const Messages = () => {
         setLastName(lastName);
         setNick(nickuser);
         setroomName('');
+        setMessages(m => []);
+        for (var i = 0, k = 0; i < listmessage.length / 3; i++, k += 3) {
+            if ((listmessage[k] === user.nickname && listmessage[k + 1] === nickuser) ||
+                (listmessage[k] === nickuser && listmessage[k + 1] === user.nickname)) {
+                let y = k + 2;
+                setMessages(x => [...x, listmessage[y]]);
+            }
+        }
     };
 
 
@@ -92,6 +101,13 @@ const Messages = () => {
         setName('');
         setLastName('');
         setNick('');
+        setMessagesGroup(m => []);
+        for (var i = 0, k = 0; i < listmessagesGroup.length / 2; i++, k += 2) {
+            if (listmessagesGroup[k] === roomName) {
+                let y = k + 1;
+                setMessagesGroup(x => [...x, listmessagesGroup[y]]);
+            }
+        }
     };
 
     //hub
@@ -103,25 +119,19 @@ const Messages = () => {
             try {
                 await hubConnect.start()
                 console.log('Connection successful!')
-
                 // Bind event handlers to the hubConnection.
-
                 hubConnect.invoke('Login', user.nickname)
-
-              
-
+                hubConnect.on('SendNameGroup', (roomName) => {
+                    setGroup(x => [...x, `${roomName}`]);
+                })
                 hubConnect.on('SendMessageGroup', (firstName, lastName, receivedMessage, roomName) => {
                     setMessagesGroup(m => [...m, `${firstName} ${lastName} : ${receivedMessage}`]);
-                   
-
+                    setlistmessagesGroup(m => [...m, `${roomName}`, `${firstName} ${lastName} : ${receivedMessage}`]);
                 })
                 hubConnect.on('SendMessageToUser', (firstName, lastName, receivedMessage, yourname, toName) => {
                     setMessages(m => [...m, `${firstName} ${lastName} : ${receivedMessage}`]);
-                   
-
+                    setlistmessage(m => [...m, `${yourname}`, `${toName}`, `${firstName} ${lastName} : ${receivedMessage}`]);
                 })
-
-
             }
             catch (err) {
                 alert(err);
@@ -130,9 +140,7 @@ const Messages = () => {
             setHubConnection(hubConnect);
         }
         createHubConnection();
-
     }, []);
-
  
     async function Message() {
         if (roomName == '')
@@ -155,7 +163,6 @@ const Messages = () => {
             catch (err) {
                 console.log(err);
             }
-
     };
 
 
@@ -193,8 +200,6 @@ const Messages = () => {
             console.log(err);
         }
     }
-
-
 
     return (
         <div className="main-container messages">
