@@ -12,8 +12,9 @@ import * as signalR from "@microsoft/signalr";
 const Messages = () => {
 
     const [users, setUsers] = useState([]);
-    const [friends, setFriend] = useState([]);
     const user = useSelector(state => state.loggedUser);
+    const [friends, setFriend] = useState([]);
+    
 
     const [fName, setName] = useState('');
     const [lName, setLastName] = useState('');
@@ -36,6 +37,7 @@ const Messages = () => {
     const [check, setcheck] = useState(true);
     const [boolCheckPlus, setboolCheckPlus] = useState(false);
     const [boolCheckMinus, setboolCheckMinus] = useState(false);
+
 
     useEffect(() => {
 
@@ -69,16 +71,16 @@ const Messages = () => {
 
     }, [user.id]);
 
-    let tab = ['5f045dae0a775e3df8c4d3e1', '5f04591eacb27238c8b545c1'];//, '5f045dae0a775e3df8c4d3e1', '5f04591eacb27238c8b545c1', '5f045dae0a775e3df8c4d3e1', '5f04591eacb27238c8b545c1'];
+    
 
-    let listFriend = tab.map(x => {
-        return ({ ...users.find(p => p.id === x) })
+    let listFriend = friends.map(x => {
+        return ({ ...users.find(p => p.id === x) });
     });
 
     const boolCheck = () => {
         setroomName('');
         setcheck(false);
-    }
+    };
 
     const SetPrivateroom = (firstName, lastName, nickuser) => {
         setName(firstName);
@@ -117,28 +119,28 @@ const Messages = () => {
                 .withUrl("/chatHub")
                 .build();
             try {
-                await hubConnect.start()
-                console.log('Connection successful!')
+                await hubConnect.start();
+                console.log('Connection successful!');
                 // Bind event handlers to the hubConnection.
-                hubConnect.invoke('Login', user.nickname)
+                hubConnect.invoke('Login', user.nickname);
                 hubConnect.on('SendNameGroup', (roomName) => {
                     setGroup(x => [...x, `${roomName}`]);
-                })
+                });
                 hubConnect.on('SendMessageGroup', (firstName, lastName, receivedMessage, roomName) => {
                     setMessagesGroup(m => [...m, `${firstName} ${lastName} : ${receivedMessage}`]);
                     setlistmessagesGroup(m => [...m, `${roomName}`, `${firstName} ${lastName} : ${receivedMessage}`]);
-                })
+                });
                 hubConnect.on('SendMessageToUser', (firstName, lastName, receivedMessage, yourname, toName) => {
                     setMessages(m => [...m, `${firstName} ${lastName} : ${receivedMessage}`]);
                     setlistmessage(m => [...m, `${yourname}`, `${toName}`, `${firstName} ${lastName} : ${receivedMessage}`]);
-                })
+                });
             }
             catch (err) {
                 alert(err);
-                console.log('Error while establishing connection: ' + { err })
+                console.log('Error while establishing connection: ' + { err });
             }
             setHubConnection(hubConnect);
-        }
+        };
         createHubConnection();
     }, [user.nickname]);
  
@@ -146,7 +148,7 @@ const Messages = () => {
         if (roomName === '')
             try {
                 if (hubConnection && message !== '') {
-                    await hubConnection.invoke('SendMessageToUser', nick, user.nickname, message, user.firstName, user.lastName)
+                    await hubConnection.invoke('SendMessageToUser', nick, user.nickname, message, user.firstName, user.lastName);
                     console.log(message);
                 }
             }
@@ -156,19 +158,20 @@ const Messages = () => {
         else
             try {
                 if (hubConnection && message !== '') {
-                    await hubConnection.invoke('SendMessageGroup', user.nickname, message, roomName, user.firstName, user.lastName)
+                    await hubConnection.invoke('SendMessageGroup', user.nickname, message, roomName, user.firstName, user.lastName);
                     console.log(message);
                 }
             }
             catch (err) {
                 console.log(err);
             }
+        setMessage('');
     };
 
 
     async function createGroup() {
         try {
-            await hubConnection.invoke('CreateRoom', roomName)
+            await hubConnection.invoke('CreateRoom', roomName);
             console.log(roomName + 'createGroup');
             setcheck(true);
             setGroup(x => [...x, `${roomName}`]);
@@ -181,7 +184,7 @@ const Messages = () => {
 
     async function addUser(nick) {
         try {
-            await hubConnection.invoke('AddUserRoom', roomName, nick)
+            await hubConnection.invoke('AddUserRoom', roomName, nick);
             console.log(nick + ' add ->' + roomName);
             setboolCheckPlus(false);
         }
@@ -192,7 +195,7 @@ const Messages = () => {
 
     async function RemoveUser(nick) {
         try {
-            await hubConnection.invoke('RemoveUserRoom', roomName, nick)
+            await hubConnection.invoke('RemoveUserRoom', roomName, nick);
             console.log(nick + ' remove ->' + roomName);
             setboolCheckMinus(false);
         }
@@ -205,7 +208,7 @@ const Messages = () => {
         <div className="main-container messages">
             <section>
                 <SectionHeader heading="Messages" logo={<MessageLogo />}/>
-                <SectionMiddle data={<Search />}/>
+                {/*<SectionMiddle data={<Search />}/>*/}
 
                 <div className="messages aside-div-container">
                     {listFriend.map((x, index) =>
@@ -267,8 +270,8 @@ const Messages = () => {
                         :
                         <div>
                             {(boolCheckPlus === false && boolCheckMinus === false) ?
-                                <div>
-                                    <div>
+                                <div className="chat">
+                                    <div className="chat display">
                                         <div>
                                             {(roomName === '') ?
                                                 messages.map((message, index) => (
@@ -281,15 +284,16 @@ const Messages = () => {
                                             <br />
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className="chat">
                                         <div>
                                             <span>
                                                 <input
+                                                    className="chat write"
                                                     type="text"
                                                     value={message}
                                                     onChange={e => setMessage(e.target.value)}
                                                     maxLength={255} />
-                                                <button onClick={Message}>Send</button>
+                                                <button className="chat btn btn-small btn-solid"onClick={Message}>Send</button>
                                             </span>
                                         </div>
                                     </div>
