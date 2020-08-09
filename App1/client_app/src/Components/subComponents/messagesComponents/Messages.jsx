@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import SectionHeader from "../../mainComponents/mainSection/SectionHeader";
-import SectionMiddle from "../../mainComponents/mainSection/SectionMiddle";
+//import SectionMiddle from "../../mainComponents/mainSection/SectionMiddle";
 import MessageLogo from "../../assets/MessageLogo";
-import Search from "../../mainComponents/mainAside/Search";
+//import Search from "../../mainComponents/mainAside/Search";
 import "../../../../../client_app/src/Styles/Messages.css";
 import MainAvatar from "../../../Components/mainComponents/PostComponents/MainAvatar"
 import FullName from "../../../Components/mainComponents/PostComponents/FullName"
@@ -12,15 +12,12 @@ import * as signalR from "@microsoft/signalr";
 const Messages = () => {
 
     const [users, setUsers] = useState([]);
-    const user = useSelector(state => state.loggedUser);
     const [friends, setFriend] = useState([]);
-    
-
+    const user = useSelector(state => state.loggedUser);
     const [fName, setName] = useState('');
     const [lName, setLastName] = useState('');
     const [nick, setNick] = useState('');
     //hub
-
     //mesage
     const [message, setMessage] = useState('');
     //private
@@ -33,14 +30,13 @@ const Messages = () => {
     const [listmessagesGroup, setlistmessagesGroup] = useState([]);
     //hubConnection
     const [hubConnection, setHubConnection] = useState();
-    // bool
+    //bool
     const [check, setcheck] = useState(true);
     const [boolCheckPlus, setboolCheckPlus] = useState(false);
     const [boolCheckMinus, setboolCheckMinus] = useState(false);
 
 
     useEffect(() => {
-
         fetch('../graphql', {
                 method: 'POST',
                 headers: {
@@ -68,10 +64,7 @@ const Messages = () => {
                 setUsers(res.users.getAll);
             })
             .catch(err => console.error(err));
-
     }, [user.id]);
-
-    
 
     let listFriend = friends.map(x => {
         return ({ ...users.find(p => p.id === x) });
@@ -82,7 +75,7 @@ const Messages = () => {
         setcheck(false);
     };
 
-    const SetPrivateroom = (firstName, lastName, nickuser) => {
+    const setPrivateroom = (firstName, lastName, nickuser) => {
         setName(firstName);
         setLastName(lastName);
         setNick(nickuser);
@@ -97,8 +90,7 @@ const Messages = () => {
         }
     };
 
-
-    const SetGroup = (Name) => {
+    const setGroup1 = (Name) => {
         setroomName(Name);
         setName('');
         setLastName('');
@@ -144,12 +136,12 @@ const Messages = () => {
         createHubConnection();
     }, [user.nickname]);
  
-    async function Message() {
+    async function message1() {
         if (roomName === '')
             try {
                 if (hubConnection && message !== '') {
                     await hubConnection.invoke('SendMessageToUser', nick, user.nickname, message, user.firstName, user.lastName);
-                    console.log(message);
+                    //console.log(message);
                 }
             }
             catch (err) {
@@ -159,7 +151,7 @@ const Messages = () => {
             try {
                 if (hubConnection && message !== '') {
                     await hubConnection.invoke('SendMessageGroup', user.nickname, message, roomName, user.firstName, user.lastName);
-                    console.log(message);
+                    //console.log(message);
                 }
             }
             catch (err) {
@@ -168,11 +160,10 @@ const Messages = () => {
         setMessage('');
     };
 
-
     async function createGroup() {
         try {
             await hubConnection.invoke('CreateRoom', roomName);
-            console.log(roomName + 'createGroup');
+            //console.log(roomName + 'createGroup');
             setcheck(true);
             setGroup(x => [...x, `${roomName}`]);
         }
@@ -181,11 +172,10 @@ const Messages = () => {
         }
     };
 
-
     async function addUser(nick) {
         try {
             await hubConnection.invoke('AddUserRoom', roomName, nick);
-            console.log(nick + ' add ->' + roomName);
+           // console.log(nick + ' add ->' + roomName);
             setboolCheckPlus(false);
         }
         catch (err) {
@@ -193,10 +183,10 @@ const Messages = () => {
         }
     };
 
-    async function RemoveUser(nick) {
+    async function removeUser(nick) {
         try {
             await hubConnection.invoke('RemoveUserRoom', roomName, nick);
-            console.log(nick + ' remove ->' + roomName);
+            //console.log(nick + ' remove ->' + roomName);
             setboolCheckMinus(false);
         }
         catch (err) {
@@ -209,10 +199,9 @@ const Messages = () => {
             <section>
                 <SectionHeader heading="Messages" logo={<MessageLogo />}/>
                 {/*<SectionMiddle data={<Search />}/>*/}
-
                 <div className="messages aside-div-container">
                     {listFriend.map((x, index) =>
-                        <div className="messages aside-body" key={index} onClick={(e) => SetPrivateroom(x.firstName, x.lastName, x.nickname)}>
+                        <div className="messages aside-body" key={index} onClick={(e) => setPrivateroom(x.firstName, x.lastName, x.nickname)}>
                             <div className="messages main-avatar">
                                 <MainAvatar picture={x.picture} />
                             </div>
@@ -221,11 +210,11 @@ const Messages = () => {
                             </div>
                         </div>)}
                 </div>
-                <div className="Group section-header">Twoje Grupy</div>
-                <div className="Group-container aside-div-container">
+                <div className="group section-header">Twoje Grupy</div>
+                <div className="group-container aside-div-container">
                     {group.map((x, index) => (
-                        <div className="Group aside-body" key={index} onClick={(e) => SetGroup(x)}>
-                            <p className="Group name">{x}</p>
+                        <div className="group aside-body" key={index} onClick={(e) => setGroup1(x)}>
+                            <p className="group name">{x}</p>
                         </div>))}
                 </div>
             </section>
@@ -266,7 +255,7 @@ const Messages = () => {
                         </div>
                     </div>
                     {((fName === '' && lName === '') && roomName === '') ?
-                        <div> Z kim  rozmawiac chcesz </div>
+                        <div> <p>Wybierz Rozmowce </p></div>
                         :
                         <div>
                             {(boolCheckPlus === false && boolCheckMinus === false) ?
@@ -293,7 +282,7 @@ const Messages = () => {
                                                     value={message}
                                                     onChange={e => setMessage(e.target.value)}
                                                     maxLength={255} />
-                                                <button className="chat btn btn-small btn-solid"onClick={Message}>Send</button>
+                                                <button className="chat btn btn-small btn-solid"onClick={message1}>Send</button>
                                             </span>
                                         </div>
                                     </div>
@@ -328,7 +317,7 @@ const Messages = () => {
                                             </svg>
                                         </span>
                                         {listFriend.map((x, index) =>
-                                            <div className="messages aside-body" key={index} onClick={(e) => RemoveUser(x.nickname)}>
+                                            <div className="messages aside-body" key={index} onClick={(e) => removeUser(x.nickname)}>
                                                 <div className="messages main-avatar">
                                                     <MainAvatar picture={x.picture} />
                                                 </div>
