@@ -18,7 +18,7 @@ const ProfileUI = ({ user }) => {
                           <img src={user.picture} alt="avatar" />
                       </div>
                   </a>
-                  <div className="friendsAddRemove">
+                  <div className="addRemove-profile-btn">
                       <AddRemove />
                   </div>
                   <div className="edit-profile-btn">
