@@ -71,6 +71,13 @@
   margin-right: 15px;
 }
 
+.profile .addRemove {
+    position: relative;
+    left: 39px;
+}
+
+
+
 .Friends .aside-body {
     padding: initial;
     border-bottom: solid var(--primary-border-color) 1px;

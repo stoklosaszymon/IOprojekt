@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import "../../../../../client_app/src/Styles/Profile.css";
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
 
 const FirendsAddRemove = () => {
     const loginUser = useSelector(state => state.loggedUser);
@@ -10,10 +12,8 @@ const FirendsAddRemove = () => {
     const [user, setUser] = useState({ id: '' });
     const [friends, setFriend] = useState([]);
     //Delete
-    //userName = "ricoss123";
-    let tab = [
-        /*'5f045dae0a775e3df8c4d3e1', */'5f04591eacb27238c8b545c2'
-    ];
+    userName = "ricoss123";
+    const [tab, settab] = useState([]);
     //
     useEffect(() => {
         if (userName !== loginUser.nickname) {
@@ -45,30 +45,34 @@ const FirendsAddRemove = () => {
 
         });
         element === user.id ? setboolCheck(false) : setboolCheck(true);
-        console.log("+++++");
-        console.log(user.id);
+        console.log("+++++");//
+        console.log(user.id);//
         }});
 
-        const addFriendf = () => {
-      //Api 2
- 
+    const addFriendf = () => {
+        settab(x => [...x, user.id]);
+        setboolCheck(false);
+        //Api 2
+
     }
 
     const removeFriend = () => {
+        tab.splice(user.id);
+        setboolCheck(true);
         //Api3
 
     }
     return ( 
-        <div>
+        <div className="addRemove">
             {(userName === loginUser.nickname) ?
                 <div></div>
                 :
                 (boolCheck === true) ?
-                <button onClick={(e) => addFriendf()}>
+                    <button className="addRemove btn btn-small btn-solid" onClick={(e) => addFriendf()}>
                     Dodaj Znajomego
                 </button>
                 :
-                <button onClick={(e) => removeFriend()}>
+                    <button className="addRemove btn btn-small btn-solid"  onClick={(e) => removeFriend()}>
                     Usun znajomego
                 </button>
             }
