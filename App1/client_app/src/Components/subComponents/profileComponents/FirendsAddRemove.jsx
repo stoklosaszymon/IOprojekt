@@ -17,7 +17,7 @@ const FirendsAddRemove = () => {
     //
     useEffect(() => {
         if (userName !== loginUser.nickname) {
-            fetch('graphql', {
+            fetch('../graphql', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -50,16 +50,33 @@ const FirendsAddRemove = () => {
         }});
 
     const addFriendf = () => {
-        settab(x => [...x, user.id]);
-        setboolCheck(false);
-        //Api 2
 
+        fetch('graphql',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        query: `
+                    mutation {
+                      friends {
+                        addFriend(userId: "${loginUser.id}", friendId:"${user.id}")
+                        {friendsList}
+                      }
+                    }`
+                    }),
+                })
+            .then(res => res.json())
+            .then(res => console.log(res));
+        setboolCheck(false);
     }
 
     const removeFriend = () => {
+        //Api3
         tab.splice(user.id);
         setboolCheck(true);
-        //Api3
+        
 
     }
     return ( 
