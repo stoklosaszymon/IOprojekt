@@ -12,8 +12,7 @@ const FirendsAddRemove = () => {
     const [user, setUser] = useState({ id: '' });
     const [friends, setFriend] = useState([]);
     //Delete
-    userName = "ricoss123";
-    const [tab, settab] = useState([]);
+    //userName = "ricoss123";
     //
     useEffect(() => {
         if (userName !== loginUser.nickname) {
@@ -40,13 +39,11 @@ const FirendsAddRemove = () => {
 
     useEffect(() => {
         if (userName !== loginUser.nickname) {
-        let element = tab.find((element) => {
+            let element = friends.find((element) => {
             return element === user.id;
 
         });
         element === user.id ? setboolCheck(false) : setboolCheck(true);
-        console.log("+++++");//
-        console.log(user.id);//
         }});
 
     const addFriendf = () => {
@@ -73,11 +70,27 @@ const FirendsAddRemove = () => {
     }
 
     const removeFriend = () => {
-        //Api3
-        tab.splice(user.id);
+        //Api dla usuwanie znajomego Brak
+        //fetch('graphql',
+        //        {
+        //            method: 'POST',
+        //            headers: {
+        //                'Content-Type': 'application/json'
+        //            },
+        //            body: JSON.stringify({
+        //                query: `
+        //            mutation {
+        //              friends {
+        //                romoveFriend(userId: "${loginUser.id}", friendId:"${user.id}")
+        //                {friendsList}
+        //              }
+        //            }`
+        //            }),
+        //        })
+        //    .then(res => res.json())
+        //    .then(res => console.log(res));
+        friends.splice(user.id);
         setboolCheck(true);
-        
-
     }
     return ( 
         <div className="addRemove">
