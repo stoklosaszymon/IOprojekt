@@ -4,6 +4,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace IOprojekt.Hubs
@@ -12,10 +13,23 @@ namespace IOprojekt.Hubs
     {
         private static ConcurrentDictionary<string, User> chatClients = new ConcurrentDictionary<string, User>();
         private static ConcurrentDictionary<string, string> chatRoom = new ConcurrentDictionary<string, string>();
+
         public ConcurrentDictionary<string, User> Login(string name)
         {
-            User newUser = new User { FirstName = name, IdChat = Context.ConnectionId };
-            chatClients.TryAdd(name, newUser);
+            try
+            {
+                var nameID = chatClients.Where(s => s.Key == name).Select(s => s.Key).First();
+                User oldValue = chatClients.Where(s => s.Key == name).Select(x => x.Value).First();
+                User UbdateUser = new User {FirstName = nameID, IdChat = Context.ConnectionId};
+
+                chatClients.TryUpdate(nameID, UbdateUser, oldValue);
+            }
+            catch (Exception e)
+            {
+                User newUser = new User {FirstName = name, IdChat = Context.ConnectionId};
+                chatClients.TryAdd(name, newUser);
+            }
+
             return chatClients;
         }
 

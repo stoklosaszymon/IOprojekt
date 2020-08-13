@@ -38,7 +38,7 @@ const FirendsAddRemove = () => {
 
 
     useEffect(() => {
-        if (userName !== loginUser.nickname) {
+        if ((userName !== loginUser.nickname) && (userName !== "settings")) {
             let element = friends.find((element) => {
             return element === user.id;
 
@@ -94,7 +94,7 @@ const FirendsAddRemove = () => {
     }
     return ( 
         <div className="addRemove">
-            {(userName === loginUser.nickname) ?
+            {((userName === loginUser.nickname) || userName === "settings") ?
                 <div></div>
                 :
                 (boolCheck === true) ?

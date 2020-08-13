@@ -16,36 +16,36 @@ import Start from "./Components/Pages/Start";
 
 function App() {
     return (
-        <div className="container">
+            <div className="container">
             <Router history={history}>
                 <Header />
                 <main>
                     <Switch>
                         {/* Login */}
-                        <Route path="/login" component={Start} />
+                            <Route path="/login" component={Start} />
                         {/* Home */}
                         <Route path="/home" component={Home} />
                         {/* Notification */}
                         <Route path="/notifications" component={Notifications} />
                         {/* Messages */}
-                        <Route path="/messages" exact component={Messages} />
+                        <Route path="/messages" exact={true} component={Messages} />
                         <Route path="/messages/compose" component={() => (
-                            <Toast header="New message" btnText="Next" body={<Compose />} />
+                            <Toast header="New message" btnText="Next" body={<Compose />} link="/messages" />
                         )} />
                         {/* Profile */}
                         <Route path="/:userName" component={Profile} />
-                        <Route path="/settings/profile" component={() => (
-                            <Toast header="Edit Profile" btnText="Save" body={<ProfileSetting />}
-                            />)} />
+                        { /*}<Route path="/settings/profile" component={() => (
+                                <Toast header="Edit Profile" btnText="Save" body={<ProfileSetting />} link="/:userName" />)} />*/ }
                         {/* Trends */}
                         <Route path="/settings/trends" component={() => (
-                            <Toast header="Trends" body={<TrendsSettingBody />} />
+                            <Toast header="Trends" body={<TrendsSettingBody />} link="/settings/trends" />
                         )} />
                     </Switch>
                 </main>
             </Router>
-        </div>
-    );
-}
+        </div> 
+   );
+};
 
 export default withRouter(App);
+
