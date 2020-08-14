@@ -142,3 +142,41 @@
   color: var(--primary-color);
   border-bottom-color: var(--primary-color);
 }
+
+/*Edit Profile*/
+
+.edit-profile-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.edit-profile-container .section {
+        width: 210px;
+        min-height: 83vh;
+        border-left: none;
+        border-right: solid var(--primary-border-color) 1px;
+    }
+.edit-profile-container .asaid {
+        width: 350px;
+        height: 83vh;
+    }
+
+    .edit-profile-container .display-list {
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        background-color: rgba(61, 65, 69, 0.4);
+    }
+    .div {
+        display: block
+    }
+.display-list .point {
+    height: 40px;
+    pointer-events: all;
+}
+.display-list .point:hover {
+        background-color: rgba(61, 65, 69, 0.4);
+    }
