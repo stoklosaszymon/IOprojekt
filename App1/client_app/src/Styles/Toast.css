@@ -184,3 +184,57 @@
 .display-list .point:hover {
     background-color: rgba(61, 65, 69, 0.4);
 }
+.edit-profile-container .updateFirstName-Container {
+    position: absolute;
+    left: 40px;
+    margin-left: 10px;
+}
+
+
+.edit-profile-container .writeFirstName {
+    left: 82px;
+    position: absolute;
+}
+
+.edit-profile-container .writelastName {
+    left: 82px;
+    position: absolute;
+}
+
+.edit-profile-container .writeemail {
+    left: 82px;
+    position: absolute;
+}
+
+.edit-profile-container .mGender {
+    position: absolute;
+    left: 100px;
+    top: 60px;
+    width: 70px;
+}
+.edit-profile-container .kGender {
+    position: absolute;
+    left: 170px;
+    top: 60px;
+    width: 70px;
+}
+.edit-profile-container .writelocale {
+    left: 82px;
+    position: absolute;
+}
+.edit-profile-container .save {
+    pointer-events: all;
+    position: absolute;
+    top: 100px;
+    left: 35px;
+    height: 30px;
+    width: 80px;
+}
+.edit-profile-container .cancel {
+    pointer-events: all;
+    position: absolute;
+    top: 100px;
+    left: 150px;
+    height: 30px;
+    width: 80px;
+}

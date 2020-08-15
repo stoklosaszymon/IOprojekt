@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { NavLink } from "react-router-dom";
 
 const PersonalData = () => {
 
@@ -7,14 +8,19 @@ const PersonalData = () => {
     const [firstName, setfirstName] = useState(`${user.firstName}`);
     const [lastName, setlastName] = useState(`${user.lastName}`);
     const [email, setemail] = useState(`${user.email}`);
-    const [gender, setgender] = useState('');
+    const [gender, setGender] = useState({gender: "" });
     const [locale, setlocale] = useState(`${user.locale}`);
+
+
+    const save = () => {
+
+    };
 
     return (
         <div className="updateFirstName-Container">
             <div>
-                <strong>First Name</strong>
-                <input
+                <strong className="firstName">First Name: </strong>
+                <input className="writeFirstName"
                     type="text"
                     value={firstName}
                     onChange={(
@@ -23,8 +29,9 @@ const PersonalData = () => {
                 />
             </div>
             <div>
-                <strong>Last Name</strong>
+                <strong className="lastName">Last Name: </strong>
                 <input
+                    className="writelastName"
                     type="text"
                     value={lastName}
                     onChange={(
@@ -33,8 +40,8 @@ const PersonalData = () => {
                 />
             </div>
             <div>
-                <strong>Email</strong>
-                <input
+                <strong className="email">Email: </strong>
+                <input className="writeemail"
                     type="text"
                     value={email}
                     onChange={(
@@ -42,26 +49,24 @@ const PersonalData = () => {
                     ): void => { setemail(ev.target.value) }}
                 />
             </div>
-            <div>
-                <strong>Gender</strong>
-                <input
+            <div onChange={(event) => setGender({ ...gender, gender: event.target.value })}>
+                <strong className="gender">Gender: </strong>
+                <p className="mGender">
+                <input 
                     type="radio"
-                    id="genderM"
                     name="gender"
-                    value="M"
-                />
-                <label for="genderM">M</label>
-                <input
+                    value="M"/>
+                Male </p>
+                <p className="kGender">
+                    <input
                     type="radio"
-                    id="genderK"
                     name="gender"
-                    value="K"
-                />
-                <label for="genderK">K</label>
-            </div>
+                    value="K"/>
+                    Female </p>
+                </div>
             <div>
-                <strong>Locale</strong>
-                <input
+                <strong className="locale">Locale: </strong>
+                <input className="writelocale"
                     type="text"
                     value={locale}
                     onChange={(
@@ -69,8 +74,10 @@ const PersonalData = () => {
                     ): void => { setlocale(ev.target.value) }}
                 />
             </div>
-            <button>Save</button>
-            <button>Cancel</button>
+            <button className="save btn btn-small btn-solid" onClick={(e) => save()}>Save</button>
+            <NavLink to={`/${user.nickname}`}>
+                <button className="cancel btn btn-small btn-solid">Cancel</button>
+            </NavLink>
         </div>
     );
 };
