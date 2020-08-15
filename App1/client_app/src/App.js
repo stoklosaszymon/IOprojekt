@@ -11,7 +11,7 @@ import Profile from "./Components/Pages/Profile";
 import Toast from "./Components/subComponents/Toast";
 import TrendsSettingBody from "./Components/subComponents/TrendsSetting";
 import Compose from "./Components/subComponents/messagesComponents/Compose";
-import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
+//import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
 import Start from "./Components/Pages/Start";
 
 function App() {

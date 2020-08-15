@@ -8,8 +8,7 @@ const FirendsAddRemove = () => {
     const loginUser = useSelector(state => state.loggedUser);
     let { userName } = useParams();
     const [boolCheck, setboolCheck] = useState(true);
-    const [found, setfound] = useState('');
-    const [user, setUser] = useState({ id: '' });
+    const [user, setUser] = useState('');
     const [friends, setFriend] = useState([]);
     //Delete
     //userName = "ricoss123";
@@ -34,20 +33,19 @@ const FirendsAddRemove = () => {
                     setFriend(res.friends.getFriendsByUserId.friendsList);
                 })
                 .catch(err => console.error(err));
-        }}, [userName, loginUser.id]);
-
+        }
+    }, [userName, loginUser.id, loginUser.nickname]);
 
     useEffect(() => {
         if ((userName !== loginUser.nickname) && (userName !== "settings")) {
-            let element = friends.find((element) => {
-            return element === user.id;
-
-        });
-        element === user.id ? setboolCheck(false) : setboolCheck(true);
-        }});
+            friends.find((element)=>{
+                element === user.id ? setboolCheck(false) : setboolCheck(true)
+                    return null;
+            });
+        }
+    });
 
     const addFriendf = () => {
-
         fetch('graphql',
                 {
                     method: 'POST',
@@ -58,7 +56,7 @@ const FirendsAddRemove = () => {
                         query: `
                     mutation {
                       friends {
-                        addFriend(userId: "${loginUser.id}", friendId:"${user.id}")
+                        addFriend(userId: "${loginUser.id}", friendId:"${user}")
                         {friendsList}
                       }
                     }`
@@ -89,9 +87,10 @@ const FirendsAddRemove = () => {
         //        })
         //    .then(res => res.json())
         //    .then(res => console.log(res));
-        friends.splice(user.id);
+        friends.splice(user);
         setboolCheck(true);
     }
+
     return ( 
         <div className="addRemove">
             {((userName === loginUser.nickname) || userName === "settings") ?

@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState} from 'react';
 import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const PersonalData = () => {
-
     const user = useSelector(state => state.loggedUser);
-    const [updateUser, setUpdateUser] = useState({ firstName: `${user.firstName}`, lastName: `${user.lastName}`, email: `${user.email}`, gender: `${user.gender}` , locale: `${user.locale}` });
-    
-    const save = () => {
+    const [updateUser, setUpdateUser] = useState({ firstName: `${user.firstName}`, lastName: `${user.lastName}`, email: `${user.email}`, gender: `${user.gender}`, locale: `${user.locale}` });
 
-        console.log([updateUser]);
+    const save = () => {
         fetch('../graphql',
                 {
                     method: 'POST',
@@ -21,7 +18,7 @@ const PersonalData = () => {
                     mutation {
                       users{
                         updateUser(user: {id:"${user.id}", firstName:"${updateUser.firstName}", lastName:"${updateUser.lastName}", gender:"${updateUser.gender}", locale:"${updateUser.locale}"} ){
-                        firstName,lastName,gender,locale
+                        firstName, lastName, gender, locale
                          }
                       }
                     }`
@@ -29,8 +26,8 @@ const PersonalData = () => {
                 })
             .then(res => res.json())
             .then(res => console.log(res));
+        
     }
-
 
     return (
         <div className="updateFirstName-Container">
@@ -65,7 +62,7 @@ const PersonalData = () => {
                     <input
                         type="radio"
                         name="gender"
-                        checked={updateUser.gender === "M"}
+                        defaultChecked={updateUser.gender === "M"}
                         value="M" />
                     Male
                 </p>
@@ -73,7 +70,7 @@ const PersonalData = () => {
                     <input
                         type="radio"
                         name="gender"
-                        checked={updateUser.gender === "K"}
+                        defaultChecked={updateUser.gender === "K"}
                         value="K" />
                     Female
                 </p>
