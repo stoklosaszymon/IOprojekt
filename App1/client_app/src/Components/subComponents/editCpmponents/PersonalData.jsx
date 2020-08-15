@@ -5,16 +5,32 @@ import { NavLink } from "react-router-dom";
 const PersonalData = () => {
 
     const user = useSelector(state => state.loggedUser);
-    const [firstName, setfirstName] = useState(`${user.firstName}`);
-    const [lastName, setlastName] = useState(`${user.lastName}`);
-    const [email, setemail] = useState(`${user.email}`);
-    const [gender, setGender] = useState({gender: "" });
-    const [locale, setlocale] = useState(`${user.locale}`);
-
-
+    const [updateUser, setUpdateUser] = useState({ firstName: `${user.firstName}`, lastName: `${user.lastName}`, email: `${user.email}`, gender: `${user.gender}` , locale: `${user.locale}` });
+    
     const save = () => {
 
-    };
+        console.log([updateUser]);
+        fetch('../graphql',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        query: `
+                    mutation {
+                      users{
+                        updateUser(user: {id:"${user.id}", firstName:"${updateUser.firstName}", lastName:"${updateUser.lastName}", gender:"${updateUser.gender}", locale:"${updateUser.locale}"} ){
+                        firstName,lastName,gender,locale
+                         }
+                      }
+                    }`
+                    }),
+                })
+            .then(res => res.json())
+            .then(res => console.log(res));
+    }
+
 
     return (
         <div className="updateFirstName-Container">
@@ -22,10 +38,8 @@ const PersonalData = () => {
                 <strong className="firstName">First Name: </strong>
                 <input className="writeFirstName"
                     type="text"
-                    value={firstName}
-                    onChange={(
-                        ev: React.ChangeEvent<HTMLInputElement>,
-                    ): void => { setfirstName(ev.target.value) }}
+                    value={updateUser.firstName}
+                    onChange={(event) => setUpdateUser({ ...updateUser, firstName: event.target.value })}
                 />
             </div>
             <div>
@@ -33,45 +47,43 @@ const PersonalData = () => {
                 <input
                     className="writelastName"
                     type="text"
-                    value={lastName}
-                    onChange={(
-                        ev: React.ChangeEvent<HTMLInputElement>,
-                    ): void => { setlastName(ev.target.value) }}
+                    value={updateUser.lastName}
+                    onChange={(event) => setUpdateUser({ ...updateUser, lastName: event.target.value })}
                 />
             </div>
             <div>
                 <strong className="email">Email: </strong>
                 <input className="writeemail"
                     type="text"
-                    value={email}
-                    onChange={(
-                        ev: React.ChangeEvent<HTMLInputElement>,
-                    ): void => { setemail(ev.target.value) }}
+                    value={updateUser.email}
+                    onChange={(event) => setUpdateUser({ ...updateUser, email: event.target.value })}
                 />
             </div>
-            <div onChange={(event) => setGender({ ...gender, gender: event.target.value })}>
+            <div onChange={(event) => setUpdateUser({ ...updateUser, gender: event.target.value })}>
                 <strong className="gender">Gender: </strong>
                 <p className="mGender">
-                <input 
-                    type="radio"
-                    name="gender"
-                    value="M"/>
-                Male </p>
+                    <input
+                        type="radio"
+                        name="gender"
+                        checked={updateUser.gender === "M"}
+                        value="M" />
+                    Male
+                </p>
                 <p className="kGender">
                     <input
-                    type="radio"
-                    name="gender"
-                    value="K"/>
-                    Female </p>
-                </div>
+                        type="radio"
+                        name="gender"
+                        checked={updateUser.gender === "K"}
+                        value="K" />
+                    Female
+                </p>
+            </div>
             <div>
                 <strong className="locale">Locale: </strong>
                 <input className="writelocale"
                     type="text"
-                    value={locale}
-                    onChange={(
-                        ev: React.ChangeEvent<HTMLInputElement>,
-                    ): void => { setlocale(ev.target.value) }}
+                    value={updateUser.locale}
+                    onChange={(event) => setUpdateUser({ ...updateUser, locale: event.target.value })}
                 />
             </div>
             <button className="save btn btn-small btn-solid" onClick={(e) => save()}>Save</button>
