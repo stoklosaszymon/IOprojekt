@@ -42,7 +42,7 @@ const EditAvatar = () => {
         <div className="updateAvatar-Container">
             <MainAvatar picture={picture} />
             <strong className="Opis"> Optimal avatar size: 132x132 </strong>
-            <label className="load  btn btn-small btn-solid "for="image_uploads">Choose images to upload</label>
+            <label className="load  btn btn-small btn-solid " id="image_uploads">Choose images to upload</label>
             <input className="loadInput"
                 type="file"
                 id="image_uploads"
