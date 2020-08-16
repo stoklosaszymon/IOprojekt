@@ -105,12 +105,10 @@ namespace IOprojekt.GraphQLTypes
                    var builder = Builders<User>.Filter;
                    var filter = builder.Eq(user => user.Id, user.Id);
                    var update = Builders<User>.Update
-                                        .Set("firstName", user.FirstName)
-                                        .Set("lastName", user.LastName)
-                                        .Set("gender", user.Gender)
-                                        .Set("locale", user.Locale);
-                       
-
+                                    .Set("firstName", user.FirstName)
+                                    .Set("lastName", user.LastName)
+                                    .Set("gender", user.Gender);
+  
                    return _context.Users.Update(filter, update);
                }
             );

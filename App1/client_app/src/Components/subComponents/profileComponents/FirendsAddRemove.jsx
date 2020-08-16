@@ -98,11 +98,11 @@ const FirendsAddRemove = () => {
                 :
                 (boolCheck === true) ?
                     <button className="addRemove btn btn-small btn-solid" onClick={(e) => addFriendf()}>
-                    Dodaj Znajomego
-                </button>
+                        Add friend
+                    </button>
                 :
                     <button className="addRemove btn btn-small btn-solid"  onClick={(e) => removeFriend()}>
-                    Usun znajomego
+                        Remove a friend
                 </button>
             }
         </div> 

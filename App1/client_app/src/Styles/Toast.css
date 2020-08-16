@@ -142,7 +142,6 @@
   color: var(--primary-color);
   border-bottom-color: var(--primary-color);
 }
-
 /*Edit Profile*/
 .edit-profile-container {
     width: 100%;
@@ -151,80 +150,62 @@
     align-items: flex-start;
     justify-content: space-between;
 }
-
 .edit-profile-container .section {
     width: 210px;
     min-height: 83vh;
     border-left: none;
     border-right: solid var(--primary-border-color) 1px;
 }
-
 .edit-profile-container .asaid {
-    width: 450px;
+    width: 360px;
     height: 83vh;
 }
-
 .edit-profile-container .display-list {
     width: auto;
     height: auto;
     border-radius: 0;
     background-color: rgba(61, 65, 69, 0.4);
 }
-
 .div {
     display: block
 }
-
 .display-list .point {
     height: 40px;
     pointer-events: all;
 }
-
 .display-list .point:hover {
     background-color: rgba(61, 65, 69, 0.4);
 }
-
 .edit-profile-container .updateFirstName-Container {
     position: absolute;
     left: 40px;
     margin-left: 10px;
+    top: 35px;
 }
-
-
 .edit-profile-container .writeFirstName {
     left: 82px;
     position: absolute;
 }
-
 .edit-profile-container .writelastName {
     left: 82px;
     position: absolute;
 }
-
 .edit-profile-container .writeemail {
     left: 82px;
     position: absolute;
 }
-
 .edit-profile-container .mGender {
     position: absolute;
     left: 100px;
     top: 60px;
     width: 70px;
 }
-
 .edit-profile-container .kGender {
     position: absolute;
     left: 170px;
     top: 60px;
     width: 70px;
 }
-
-.edit-profile-container .writelocale {
-    left: 82px;
-    position: absolute;
-}
-
 .updateFirstName-Container .save {
     pointer-events: all;
     position: absolute;
@@ -233,7 +214,6 @@
     height: 30px;
     width: 80px;
 }
-
 .updateFirstName-Container .cancel {
     pointer-events: all;
     position: absolute;
@@ -242,13 +222,11 @@
     height: 30px;
     width: 80px;
 }
-
 .edit-profile-container .updateAvatar-Container {
     position: absolute;
     left: 40px;
     margin-left: 10px;
 }
-
 .edit-profile-container .load {
     pointer-events: all;
     position: absolute;
@@ -257,7 +235,6 @@
     height: 30px;
     width: 220px;
 }
-
 .edit-profile-container .loadInput {
     pointer-events: all;
     position: absolute;
@@ -267,14 +244,12 @@
     width: 200px;
     opacity: 0;
 }
-
 .edit-profile-container .main-avatar img {
     position: absolute;
     width: 132px;
     height: 132px;
     left: 125px;
 }
-
 .updateAvatar-Container .save {
     pointer-events: all;
     position: absolute;
@@ -283,7 +258,6 @@
     height: 30px;
     width: 80px;
 }
-
 .updateAvatar-Container .cancel {
     pointer-events: all;
     position: absolute;
@@ -292,22 +266,19 @@
     height: 30px;
     width: 80px;
 }
-
 .edit-profile-container .Opis {
     position: absolute;
     width: 210px;
     top: 140px;
     left: 35px;
 }
-
 .edit-profile-container .updateBanner-Container {
     position: absolute;
     left: 40px;
     margin-left: 10px;
 }
-
 .updateBanner-Container .main-Banner img {
-    width: 90.5%;
+    width: 118%;
     height: 130px;
     background-position: center center;
     border-radius: 0;
@@ -321,7 +292,6 @@
     height: 30px;
     width: 80px;
 }
-
 .updateBanner-Container .cancel {
     pointer-events: all;
     position: absolute;

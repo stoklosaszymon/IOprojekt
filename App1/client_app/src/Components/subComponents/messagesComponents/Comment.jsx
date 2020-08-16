@@ -34,7 +34,7 @@ const Comments = ({ userName, idpost }) => {
                 </div>
             )}
             <div>
-                <p  onClick={() => setCount(count + 1)}> Wiecej komentarzy</p>
+                <p onClick={() => setCount(count + 1)}> More comments</p>
             </div>
             <div className=" WriteComments aside-foot">
                 <WriteComments userName={userName} idpost={idpost} />

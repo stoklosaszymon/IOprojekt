@@ -37,8 +37,7 @@ const Friend = ({ id }) => {
                 setFriend(res.friends.getFriendsByUserId.friendsList);
                 setUsers(res.users.getAll);
             })
-            .catch(err => console.error(err));
-
+            .catch(err => console.error());
     }, [id]);
 
     
@@ -53,7 +52,7 @@ const Friend = ({ id }) => {
             <div className="Friends aside-div">
                 <div className="Friends-head aside-head">
                     <div>
-                        <span>Znajomi</span>
+                        <span>Friends</span>
                     </div>
                 </div>
                 <div className="Friends aside-body">

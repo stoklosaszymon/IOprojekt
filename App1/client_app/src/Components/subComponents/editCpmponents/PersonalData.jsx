@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 const PersonalData = () => {
     const user = useSelector(state => state.loggedUser);
-    const [updateUser, setUpdateUser] = useState({ firstName: `${user.firstName}`, lastName: `${user.lastName}`, email: `${user.email}`, gender: `${user.gender}`, locale: `${user.locale}` });
+    const [updateUser, setUpdateUser] = useState({ firstName: `${user.firstName}`, lastName: `${user.lastName}`, email: `${user.email}`, gender: `${user.gender}`});
 
     const save = () => {
         fetch('../graphql',
@@ -17,8 +17,8 @@ const PersonalData = () => {
                         query: `
                     mutation {
                       users{
-                        updateUser(user: {id:"${user.id}", firstName:"${updateUser.firstName}", lastName:"${updateUser.lastName}", gender:"${updateUser.gender}", locale:"${updateUser.locale}"} ){
-                        firstName, lastName, gender, locale
+                        updateUser(user: {id:"${user.id}", firstName:"${updateUser.firstName}", lastName:"${updateUser.lastName}", gender:"${updateUser.gender}"} ){
+                        firstName, lastName, gender
                          }
                       }
                     }`
@@ -26,7 +26,6 @@ const PersonalData = () => {
                 })
             .then(res => res.json())
             .then(res => console.log(res));
-        
     }
 
     return (
@@ -74,14 +73,6 @@ const PersonalData = () => {
                         value="K" />
                     Female
                 </p>
-            </div>
-            <div>
-                <strong className="locale">Locale: </strong>
-                <input className="writelocale"
-                    type="text"
-                    value={updateUser.locale}
-                    onChange={(event) => setUpdateUser({ ...updateUser, locale: event.target.value })}
-                />
             </div>
             <button className="save btn btn-small btn-solid" onClick={(e) => save()}>Save</button>
             <NavLink to={`/${user.nickname}`}>

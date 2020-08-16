@@ -62,7 +62,7 @@ const WriteComments = ({ userName, idpost }) => {
                         value={comment}
                         onChange={event => setValue(event.target.value)}
                         className="WriteComments input" />
-                    <button className="WriteComments btn btn-small btn-solid" onClick={Send}>Wysliji</button>
+                    <button className="WriteComments btn btn-small btn-solid" onClick={Send}>Send</button>
                 </div>
             </div>
         );
