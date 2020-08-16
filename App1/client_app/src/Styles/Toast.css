@@ -250,13 +250,23 @@
     margin-left: 10px;
 }
 
-.edit-profile-container .Load {
+.edit-profile-container .load {
+    pointer-events: all;
+    position: absolute;
+    top: 160px;
+    left: 26px;
+    height: 30px;
+    width: 220px;
+}
+
+.edit-profile-container .loadInput {
     pointer-events: all;
     position: absolute;
     top: 160px;
     left: 35px;
     height: 30px;
     width: 200px;
+    opacity: 0;
 }
 
 .edit-profile-container .main-avatar img {
@@ -270,7 +280,7 @@
     pointer-events: all;
     position: absolute;
     top: 200px;
-    left: 20px;
+    left: 26px;
     height: 30px;
     width: 80px;
 }
@@ -279,7 +289,7 @@
     pointer-events: all;
     position: absolute;
     top: 200px;
-    left: 170px;
+    left: 168px;
     height: 30px;
     width: 80px;
 }
