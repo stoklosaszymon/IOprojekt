@@ -7,14 +7,40 @@ const EditBackground = () => {
     const user = useSelector(state => state.loggedUser);
     const [picture, setPicture] = useState('/static/media/404-bg-img.cb1865c2.jpg');
 
-    const save = () => {}
+    const save = () => {
+        //Api
+        //fetch('../graphql',
+        //        {
+        //            method: 'POST',
+        //            headers: {
+        //                'Content-Type': 'application/json'
+        //            },
+        //            body: JSON.stringify({
+        //                query: `
+        //            ... {
+        //              ...{
+        //                updateUserBanner(user: {id:"${user.id}",banner:"${picture}"} ){
+        //                banner
+        //                 }
+        //              }
+        //            }`
+        //            }),
+        //        })
+        //    .then(res => res.json())
+        //    .then(res => console.log(res));
+    } 
 
-    const load = () => {}
+    const load = (e) => {
+        const image = e.target.files[0];
+        let reader = new FileReader();
+        reader.onloadend = () => { setPicture(reader.result) };
+        reader.readAsDataURL(image);
+    }
 
     return (
         <div className="updateBanner-Container">
             <Banner picture={picture} />
-            <strong className="Opis"> Optimal avatar size: 132x132 </strong>
+            <strong className="Opis"> Optimal avatar size: 600x200 </strong>
             <label className="load  btn btn-small btn-solid " id="image_uploads">Choose images to upload</label>
             <input className="loadInput"
                    type="file"
