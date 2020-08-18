@@ -210,7 +210,7 @@ const Messages = () => {
                             </div>
                         </div>)}
                 </div>
-                <div className="group section-header">Twoje Grupy</div>
+                <div className="group section-header">Your Groups</div>
                 <div className="group-container aside-div-container">
                     {group.map((x, index) => (
                         <div className="group aside-body" key={index} onClick={(e) => setGroup1(x)}>
@@ -230,7 +230,7 @@ const Messages = () => {
                                 <div>
                                     <div className="button-place create-group" onClick={(e) => boolCheck()}>
                                         {(check === true) ?
-                                            <p> Stworz Grupe</p>
+                                            <p>Create Group</p>
                                             :
                                             <div className="button-place name-group">
                                                 <input
@@ -255,7 +255,7 @@ const Messages = () => {
                         </div>
                     </div>
                     {((fName === '' && lName === '') && roomName === '') ?
-                        <div> <p>Wybierz Rozmowce </p></div>
+                        <div> <p>Select a conversation</p></div>
                         :
                         <div>
                             {(boolCheckPlus === false && boolCheckMinus === false) ?

@@ -12,14 +12,14 @@ import Message from "../subComponents/messagesComponents/Messages"
 const Messages = () => {
     const user = useSelector(state => state.loggedUser);
 
-    if (user.nickname == '') {
+    if (user.nickname === '') {
         return (
             <div className="main-container messages">
                 <section>
-                    <SectionHeader heading="Messages" logo={<MessageLogo/>}/>
+                    <SectionHeader heading="Messages" />{/*logo={<MessageLogo/>}/>*/}
                     <SectionMiddle data={<Search/>}/>
                     {/*<Stream data={<Default />} />*/}
-                    <p> Zaloguj sie i Rozmawiaj </p> 
+                    <p> Log in and Chat </p> 
                 </section>
                 <aside>
                 </aside>

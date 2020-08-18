@@ -11,7 +11,7 @@ const Friend = ({ id }) => {
 
     useEffect(() => {
 
-        fetch('../graphql', {
+        fetch('/graphql', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -37,8 +37,7 @@ const Friend = ({ id }) => {
                 setFriend(res.friends.getFriendsByUserId.friendsList);
                 setUsers(res.users.getAll);
             })
-            .catch(err => console.error(err));
-
+            .catch(err => console.error());
     }, [id]);
 
     
@@ -53,14 +52,14 @@ const Friend = ({ id }) => {
             <div className="Friends aside-div">
                 <div className="Friends-head aside-head">
                     <div>
-                        <span>Znajomi</span>
+                        <span>Friends</span>
                     </div>
                 </div>
                 <div className="Friends aside-body">
-                    {listFriend.map(x =>
+                    {listFriend.map((x, index) =>
 
-                        <a href={`/${x.nickname}`}>
-                            <div className="Friends main-avatar">
+                        <a key={index} href={`/${x.nickname}`}>
+                            <div  className="Friends main-avatar">
                                 <MainAvatar picture={x.picture} />
                             </div>
                             <FullName firstName={x.firstName} lastName={x.lastName} />
