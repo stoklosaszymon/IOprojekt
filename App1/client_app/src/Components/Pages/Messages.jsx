@@ -19,7 +19,7 @@ const Messages = () => {
                     <SectionHeader heading="Messages" />{/*logo={<MessageLogo/>}/>*/}
                     <SectionMiddle data={<Search/>}/>
                     {/*<Stream data={<Default />} />*/}
-                    <p> Zaloguj sie i Rozmawiaj </p> 
+                    <p> Log in and Chat </p> 
                 </section>
                 <aside>
                 </aside>

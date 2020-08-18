@@ -19,11 +19,11 @@ const ProfileSetting = () => {
                 {(() => {
                     switch (Check) {
                     case "avatar":
-                        return <EditAvatar firstName="avatar" />;
+                        return <EditAvatar/>;
                     case "background":
-                        return <EditBackground firstName="background" />;
+                        return <EditBackground/>;
                     case "data":
-                        return <PersonalData firstName="data" />;
+                        return <PersonalData/>;
                     default:
                         return <h1>What your soul desires </h1>;
                     }
