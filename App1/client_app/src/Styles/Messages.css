@@ -1,4 +1,139 @@
 .messages .section-middle-container {
-  padding: 10px;
-  border-bottom: solid var(--primary-border-color) 1px;
+    padding: 10px;
+    border-bottom: solid var(--primary-border-color) 1px;
 }
+
+/*Section*/
+
+.messages .aside-div-container {
+    width: auto;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 0;
+    background-color: rgba(61, 65, 69, 0.4);
+}
+
+.messages .aside-body {
+    width: 100%;
+    height: 60px;
+}
+
+.messages .aside-body:hover { background-color: rgba(61, 65, 69, 0.4); }
+
+.messages .main-avatar {
+    float: left;
+    position: absolute;
+    margin-top: 5.5px;
+    margin-left: 5px;
+}
+
+.messages .main-avatar-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.messages .fullname-container {
+    margin-left: 55px;
+    position: absolute;
+    margin-top: 18px;
+}
+
+.group-container .aside-div-container {
+    width: auto;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 0;
+    background-color: rgba(61, 65, 69, 0.4);
+}
+
+.group .aside-body {
+    width: 100%;
+    height: 60px;
+}
+
+.group .aside-body:hover { background-color: rgba(61, 65, 69, 0.4); }
+
+.group .name {
+    margin-left: 15px;
+    position: absolute;
+    margin-top: 18px;
+}
+
+/*Aside*/
+
+.button-place .section-header {
+    height: 90px;
+    width: auto;
+}
+
+.button-place {
+    height: 69px;
+    width: auto;
+}
+
+.button-place .fullname-container {
+    margin-left: 64px;
+    position: absolute;
+    margin-top: 14px;
+}
+
+.button-place .create-group {
+    position: absolute;
+    margin-left: 225px;
+    margin-top: -69px;
+    margin-bottom: auto;
+    margin-right: auto;
+}
+
+.button-place .name-group { margin-left: -50px; }
+
+.button-place .group-selected {
+    margin-left: 64px;
+    margin-top: 14px;
+    position: absolute;
+}
+
+.button-place .position {
+    position: absolute;
+    margin-left: 224px;
+    margin-top: -40px;
+}
+
+.button-place .btn-small {
+    padding: 8px 32px;
+    height: 27px;
+    margin-left: 27px;
+}
+
+.button-place .plus {
+    padding: 8px 12px;
+    height: 27px;
+    margin-left: 64px;
+}
+
+.button-place .minus {
+    padding: 8px 9px;
+    height: 26px;
+    margin-left: -128px;
+    margin-top: 8px;
+    position: absolute;
+}
+
+.chat .display {
+    max-height: 600px;
+    min-height: 600px;
+    overflow-y: auto;
+    background-color: rgba(61, 65, 69, 0.4);
+    ;
+}
+
+.chat .display > div > div:last-child { scroll-snap-align: start; }
+
+.chat .display > div > div { height: 3rem; }
+
+.chat .display > div > div:nth-child(2n) { background: gray; }
+
+.chat .write { width: 80%; }
+
+.chat .btn-small { height: 30px; }
