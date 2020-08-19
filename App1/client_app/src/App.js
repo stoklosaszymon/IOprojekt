@@ -11,8 +11,9 @@ import Profile from "./Components/Pages/Profile";
 import Toast from "./Components/subComponents/Toast";
 import TrendsSettingBody from "./Components/subComponents/TrendsSetting";
 import Compose from "./Components/subComponents/messagesComponents/Compose";
-//import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
+import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
 import Start from "./Components/Pages/Start";
+import more from "./Components/Pages/More";
 
 function App() {
     return (
@@ -32,10 +33,12 @@ function App() {
                         <Route path="/messages/compose" component={() => (
                             <Toast header="New message" btnText="Next" body={<Compose />} link="/messages" />
                         )} />
+                        {/* settings */}
+                        <Route path="/more" component={more} />
                         {/* Profile */}
                         <Route path="/:userName" component={Profile} />
-                        { /*}<Route path="/settings/profile" component={() => (
-                                <Toast header="Edit Profile" btnText="Save" body={<ProfileSetting />} link="/:userName" />)} />*/ }
+                        <Route path="/settings/profile" component={() => (
+                                <Toast header="Edit Profile" btnText="Save" body={<ProfileSetting />} link="/:userName" />)} />                   
                         {/* Trends */}
                         <Route path="/settings/trends" component={() => (
                             <Toast header="Trends" body={<TrendsSettingBody />} link="/settings/trends" />
