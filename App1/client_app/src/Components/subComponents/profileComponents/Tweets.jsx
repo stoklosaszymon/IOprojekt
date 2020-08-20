@@ -8,6 +8,8 @@ import PostFooter from "./../../mainComponents/PostComponents/PostFooter";
 import TimeStamp from "./../../mainComponents/PostComponents/TimeStamp";
 import Comments from "./../../subComponents/messagesComponents/Comment";
 import { useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 
 const Tweets = ({ userId }) => {
     let { userName } = useParams();
@@ -29,7 +31,7 @@ const Tweets = ({ userId }) => {
                                 }
                            users {
                                 getById(id: "${userId}") {
-                                    picture firstName lastName
+                                    picture firstName lastName nickname
                                 }
                            }
                         }`
@@ -49,10 +51,10 @@ const Tweets = ({ userId }) => {
                     <div className="stream" key={post.postId}>
                         <div className="content">
                             <div className="stream-header-container">
-                                <a href="/demo">
+                                <NavLink to={`/${user.nickname}`}>                               
                                     <MainAvatar picture={user.picture}/>
                                     <FullName firstName={user.firstName} lastName={user.lastName}/>
-                                </a>
+                                </NavLink>
                                 <TimeStamp time={post.createdAt} />
                             </div>
                             <MessageContainer message={post.body} />

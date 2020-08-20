@@ -35,10 +35,15 @@ function App() {
                         )} />
                         {/* settings */}
                         <Route path="/more" component={more} />
+                        {/*Tosa*/}
+                        <Route path="/friend" component={() => (
+                            <Toast header="Friend List" body={<ProfileSetting />} link="/home" exact={true} />)} />
+                        <Route path="/trends" component={() => (
+                            <Toast header="The most popular Hashtags" body={<ProfileSetting />} link="/home" exact={true} />)} />
                         {/* Profile */}
                         <Route path="/:userName" component={Profile} />
                         <Route path="/settings/profile" component={() => (
-                                <Toast header="Edit Profile" btnText="Save" body={<ProfileSetting />} link="/:userName" />)} />                   
+                            <Toast header="Edit Profile" btnText="Save" body={<ProfileSetting />} link="/:userName" />)} /> 
                         {/* Trends */}
                         <Route path="/settings/trends" component={() => (
                             <Toast header="Trends" body={<TrendsSettingBody />} link="/settings/trends" />

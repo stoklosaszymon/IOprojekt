@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FullName from "./../PostComponents/FullName";
 import MainAvatar from "./../PostComponents/MainAvatar";
-
+import { NavLink } from "react-router-dom";
 
 const Friend = ({ id }) => {
 
@@ -57,18 +57,19 @@ const Friend = ({ id }) => {
                 </div>
                 <div className="Friends aside-body">
                     {listFriend.map((x, index) =>
-
-                        <a key={index} href={`/${x.nickname}`}>
+                        <NavLink key={index} to={`/${x.nickname}`}>
+                            {/*<a key={index} href={`/${x.nickname}`}>*/}
                             <div  className="Friends main-avatar">
                                 <MainAvatar picture={x.picture} />
                             </div>
                             <FullName firstName={x.firstName} lastName={x.lastName} />
-                        </a>
-
+                        </NavLink>
                     )}
                 </div>
-                <div className="aside-foot">
-                    <a href="#Friend">Show more</a>
+                <div className="aside-foot"> 
+                    <NavLink to="/friend" className="a">
+                        <p>Show more</p>
+                    </NavLink>
                 </div>
             </div>
 

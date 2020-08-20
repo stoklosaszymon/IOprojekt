@@ -7,7 +7,7 @@ const Account = () => {
     return (
     <div>
         {(user.nickname === '')? 
-            <divclassName= "account-container" >
+            <div className= "account-container" >
                 <strong> when you log in you will see your details </strong>
             </div>
             :
