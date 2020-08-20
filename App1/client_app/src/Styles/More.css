@@ -22,8 +22,34 @@ more-container {
     background-color: rgba(61, 65, 69, 0.4);
 }
 /*Account Css*/
-.Account-container {
+.account-container {
     top: 55px;
     position: absolute;
 }
-
+/*About Css*/
+.about-container {
+    top: 55px;
+    position: absolute;
+}
+.about-container .text {
+    text-align: justify;
+    text-indent: 10px;
+}
+/*Cookies Css*/
+.cookies-container {
+    top: 55px;
+    position: absolute;
+}
+.cookies-container .text {
+    text-align: justify;
+    text-indent: 10px;
+}
+/*privacy Css*/
+.privacy-container {
+    top: 55px;
+    position: absolute;
+}
+.privacy-container .text {
+    text-align: justify;
+    text-indent: 10px;
+}
