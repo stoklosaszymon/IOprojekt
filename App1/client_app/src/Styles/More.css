@@ -21,4 +21,9 @@ more-container {
 .display-list .point:hover {
     background-color: rgba(61, 65, 69, 0.4);
 }
+/*Account Css*/
+.Account-container {
+    top: 55px;
+    position: absolute;
+}
 
