@@ -13,7 +13,7 @@ const FriendList = () => {
     const user = useSelector(state => state.loggedUser);
 
     useEffect(() => {
-        fetch('../graphql', {
+        fetch('graphql', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -41,8 +41,6 @@ const FriendList = () => {
             })
             .catch(err => console.error(err));
     }, [user.id]);
-
-   
 
     let listFriend = friends.map(x => {
         return ({ ...users.find(p => p.id === x) });

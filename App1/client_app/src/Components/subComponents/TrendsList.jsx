@@ -6,7 +6,7 @@ const TrendsList = () => {
       <label>
         <div className="label-text">Trends for you</div>
         <div className="label-input">
-          <input type="checkbox" name="check" checked />
+                  <input type="checkbox" name="check" defaultChecked="true" />
         </div>
       </label>
     </div>
