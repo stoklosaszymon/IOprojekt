@@ -42,20 +42,21 @@ const FriendList = () => {
             .catch(err => console.error(err));
     }, [user.id]);
 
+   
 
     let listFriend = friends.map(x => {
         return ({ ...users.find(p => p.id === x) });
     });
 
     return (
-      <div>
+        <div className="Friend-List">
         <div className="body compose">
          <SearchLogo />
          <input type="text" autoFocus />
-      </div>
+        </div>
             <div className="Friend-List aside-div-container">
                 {listFriend.map((x, index) =>
-                    <NavLink className="Friend-List aside-body" key={index} to="/friend"> 
+                    <NavLink className="Friend-List aside-body" key={index} to={`/${x.nickname}`}>
                         <div className="Friend-List main-avatar">
                           <MainAvatar picture={x.picture} />
                       </div>

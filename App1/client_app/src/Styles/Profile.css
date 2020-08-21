@@ -137,3 +137,39 @@
     margin-left: -45px;
 }
 /*Friend List*/
+
+.Friend-List .aside-div-container {
+    width: auto;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 0;
+    background-color: rgba(61, 65, 69, 0.4);
+    max-height: 800px;
+    overflow-y: auto;
+    pointer-events: all
+}
+
+.Friend-List .aside-body {
+    width: 100%;
+    height: 60px;
+    pointer-events: all
+}
+.Friend-List .aside-body:hover {
+    background-color: rgba(61, 65, 69, 0.4);
+}
+.Friend-List .main-avatar {
+    float: left;
+    position: absolute;
+    margin-top: 5.5px;
+    margin-left: 5px;
+}
+.Friend-List .main-avatar-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.Friend-List .fullname-container {
+    margin-left: 55px;
+    position: absolute;
+    margin-top: 18px;
+}
