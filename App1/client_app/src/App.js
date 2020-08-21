@@ -12,6 +12,8 @@ import Toast from "./Components/subComponents/Toast";
 import TrendsSettingBody from "./Components/subComponents/TrendsSetting";
 import Compose from "./Components/subComponents/messagesComponents/Compose";
 import ProfileSetting from "./Components/subComponents/profileComponents/ProfileSetting";
+import TrendsList from "./Components/subComponents/TrendsList"
+import FriendList from "./Components/subComponents/listsComponents/FriendList"
 import Start from "./Components/Pages/Start";
 import more from "./Components/Pages/More";
 
@@ -37,16 +39,16 @@ function App() {
                         <Route path="/more" component={more} />
                         {/*Tosa*/}
                         <Route path="/friend" component={() => (
-                            <Toast header="Friend List" body={<ProfileSetting />} link="/home" exact={true} />)} />
+                            <Toast header="Friend List" body={<FriendList />} link="/home" exact={true} />)} />
                         <Route path="/trends" component={() => (
-                            <Toast header="The most popular Hashtags" body={<ProfileSetting />} link="/home" exact={true} />)} />
+                            <Toast header="The most popular Hashtags" body={<TrendsList />} link="/home" exact={true} />)} />
                         {/* Profile */}
                         <Route path="/:userName" component={Profile} />
                         <Route path="/settings/profile" component={() => (
                             <Toast header="Edit Profile" btnText="Save" body={<ProfileSetting />} link="/:userName" />)} /> 
                         {/* Trends */}
                         <Route path="/settings/trends" component={() => (
-                            <Toast header="Trends" body={<TrendsSettingBody />} link="/settings/trends" />
+                            <Toast header="Trends" body={<TrendsSettingBody />} link="/home" />
                         )} />
                     </Switch>
                 </main>
