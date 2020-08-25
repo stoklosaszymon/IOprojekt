@@ -1,9 +1,7 @@
-
-import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import FullName from "./../PostComponents/FullName";
 import MainAvatar from "./../PostComponents/MainAvatar";
-
+import { NavLink } from "react-router-dom";
 
 const Friend = ({ id }) => {
 
@@ -13,7 +11,7 @@ const Friend = ({ id }) => {
 
     useEffect(() => {
 
-        fetch('../graphql', {
+        fetch('/graphql', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,8 +37,7 @@ const Friend = ({ id }) => {
                 setFriend(res.friends.getFriendsByUserId.friendsList);
                 setUsers(res.users.getAll);
             })
-            .catch(err => console.error(err));
-
+            .catch(err => console.error());
     }, [id]);
 
     
@@ -55,23 +52,24 @@ const Friend = ({ id }) => {
             <div className="Friends aside-div">
                 <div className="Friends-head aside-head">
                     <div>
-                        <span>Znajomi</span>
+                        <span>Friends</span>
                     </div>
                 </div>
                 <div className="Friends aside-body">
-                    {listFriend.map(x =>
-
-                        <a href={`/${x.nickname}`}>
-                            <div className="Friends main-avatar">
+                    {listFriend.map((x, index) =>
+                        <NavLink key={index} to={`/${x.nickname}`}>
+                            {/*<a key={index} href={`/${x.nickname}`}>*/}
+                            <div  className="Friends main-avatar">
                                 <MainAvatar picture={x.picture} />
                             </div>
                             <FullName firstName={x.firstName} lastName={x.lastName} />
-                        </a>
-
+                        </NavLink>
                     )}
                 </div>
-                <div className="aside-foot">
-                    <a href="#Friend">Show more</a>
+                <div className="aside-foot"> 
+                    <NavLink to="/friend" className="a">
+                        <p>Show more</p>
+                    </NavLink>
                 </div>
             </div>
 

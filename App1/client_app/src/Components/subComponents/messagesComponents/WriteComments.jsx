@@ -9,7 +9,7 @@ const WriteComments = ({ userName, idpost }) => {
     const [user, setUser] = useState({ id: '', picture: '' });;
 
     useEffect(() => {
-        if (userName != "") {
+        if (userName !== "") {
             fetch('graphql', {
                 method: 'POST',
                 headers: {
@@ -44,7 +44,7 @@ const WriteComments = ({ userName, idpost }) => {
         setValue('');
     };
 
-    if (userName =="") {
+    if (userName ==="") {
         return ( 
             <div>
 
@@ -62,7 +62,7 @@ const WriteComments = ({ userName, idpost }) => {
                         value={comment}
                         onChange={event => setValue(event.target.value)}
                         className="WriteComments input" />
-                    <button className="WriteComments btn btn-small btn-solid" onClick={Send}>Wysliji</button>
+                    <button className="WriteComments btn btn-small btn-solid" onClick={Send}>Send</button>
                 </div>
             </div>
         );

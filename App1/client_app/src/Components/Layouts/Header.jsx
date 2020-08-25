@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Avatar from "../assets/Avatar";
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 const Header = () => {
 
@@ -75,7 +75,11 @@ const Header = () => {
               <span>Profile</span>
             </div>
           </NavLink>
-          <a href="#More" className="a-container">
+                  <NavLink
+                      to="/more"
+                      className="a-container"
+                      activeClassName={"active-link"}
+                  >
             <div className="a">
               <svg viewBox="0 0 24 24" className="header-img">
                 <g>
@@ -85,12 +89,12 @@ const Header = () => {
               </svg>
               <span>More</span>
             </div>
-          </a>
+                  </NavLink>
         </div>
         <div>
           <div className="btn-container">
-            <a href="#tweet" className="btn btn-large btn-solid">
-              <span className="btn-span-text">Tweet</span>
+            <a href="login" className="btn btn-large btn-solid">
+              <span className="btn-span-text">Login</span>
               <span className="btn-span-icon">
                 <svg viewBox="0 0 24 24" className="header-img">
                   <g>

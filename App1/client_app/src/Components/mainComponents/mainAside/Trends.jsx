@@ -23,7 +23,9 @@ const Trends = () => {
           <a href="#trends">#trendingTopic4</a>
         </div>
         <div className="aside-foot">
-          <a href="#trends">Show more</a>
+          <NavLink to="/trends" className="a">
+            <p>Show more</p>
+          </NavLink>
         </div>
       </div>
     </div>

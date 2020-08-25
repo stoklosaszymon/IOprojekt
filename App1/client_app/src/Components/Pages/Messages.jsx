@@ -6,21 +6,31 @@ import MessageLogo from "../assets/MessageLogo";
 import Search from "../mainComponents/mainAside/Search";
 import Default from "../subComponents/messagesComponents/MessagesStream";
 import "../../Styles/Messages.css";
-import Chat from "../Chat";
+import { useSelector } from 'react-redux'
+import Message from "../subComponents/messagesComponents/Messages"
 
 const Messages = () => {
-  return (
-    <div className="main-container messages">
-      <section>
-        <SectionHeader heading="Messages" logo={<MessageLogo />} />
-        <SectionMiddle data={<Search />} />
-        <Stream data={<Default />} />
-      </section>
-          <aside>
-              <Chat />
-          </aside>
-    </div>
-  );
-};
+    const user = useSelector(state => state.loggedUser);
 
+    if (user.nickname === '') {
+        return (
+            <div className="main-container messages">
+                <section>
+                    <SectionHeader heading="Messages" />{/*logo={<MessageLogo/>}/>*/}
+                    <SectionMiddle data={<Search/>}/>
+                    {/*<Stream data={<Default />} />*/}
+                    <p> Log in and Chat </p> 
+                </section>
+                <aside>
+                </aside>
+            </div>
+        );
+    } else {
+        return (
+            <div className="main-container messages">
+                <Message />
+            </div>
+        );
+    }
+};
 export default Messages;

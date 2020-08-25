@@ -1,27 +1,31 @@
 import React from "react";
 import BannerImg from "../../assets/img/404-bg-img.jpg";
+import AddRemove from "./FirendsAddRemove";
 import { NavLink } from "react-router-dom";
 
 const ProfileUI = ({ user }) => {
   return (
-    <div className="profile-ui">
-      <div className="userBanner">
-        <div className="banner">
-          <div className="banner-img" style={bannerStyle}></div>
-        </div>
-      </div>
-      <div className="userData">
-        <div className="userAvatar-container">
-          <a href="#avatar" className="avatar-container">
-            <div className="avatar">
-              <img src={user.picture} alt="avatar" />
-            </div>
-          </a>
-          <div className="edit-profile-btn">
-            <NavLink to="/settings/profile" className="a">
-              Edit profile
-            </NavLink>
+      <div className="profile-ui">
+          <div className="userBanner">
+              <div className="banner">
+                  <div className="banner-img" style={bannerStyle}></div>
+              </div>
           </div>
+          <div className="userData">
+              <div className="userAvatar-container">
+                  <a href="#avatar" className="avatar-container">
+                      <div className="avatar">
+                          <img src={user.picture} alt="avatar" />
+                      </div>
+                  </a>
+                  <div>
+                      <AddRemove />
+                  </div>
+                  <div className="edit-profile-btn">
+                      <NavLink to="/settings/profile" className="a">
+                          Edit profile
+                      </NavLink>
+                  </div>
         </div>
         <div className="user-name-container">
                   <div className="full-name">{`${user.firstName} ${user.lastName}`}</div>

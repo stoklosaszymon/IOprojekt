@@ -1,0 +1,55 @@
+more-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.more-container .point {
+    height: 40px;
+    pointer-events: all;
+}
+.more-container .display-list {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background-color: rgba(61, 65, 69, 0.4);
+}
+.div {
+    display: block
+}
+.display-list .point:hover {
+    background-color: rgba(61, 65, 69, 0.4);
+}
+/*Account Css*/
+.account-container {
+    top: 55px;
+    position: absolute;
+}
+/*About Css*/
+.about-container {
+    top: 55px;
+    position: absolute;
+}
+.about-container .text {
+    text-align: justify;
+    text-indent: 10px;
+}
+/*Cookies Css*/
+.cookies-container {
+    top: 55px;
+    position: absolute;
+}
+.cookies-container .text {
+    text-align: justify;
+    text-indent: 10px;
+}
+/*privacy Css*/
+.privacy-container {
+    top: 55px;
+    position: absolute;
+}
+.privacy-container .text {
+    text-align: justify;
+    text-indent: 10px;
+}

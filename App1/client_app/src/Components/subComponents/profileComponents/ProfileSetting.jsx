@@ -1,8 +1,36 @@
-import React from "react";
-import ProfileUI from "./ProfileUI";
-
+import React, { useState } from 'react';
+import PersonalData from "../../subComponents/editCpmponents/PersonalData"
+import EditBackground from "../../subComponents/editCpmponents/EditBackground"
+import EditAvatar from "../../subComponents/editCpmponents/EditAvatar"
 const ProfileSetting = () => {
-  return <ProfileUI />;
+
+    const [Check, setCheck] = useState("");
+
+    return (
+        <div className="edit-profile-container">
+            <section className="section">
+                <div className="display-list">
+                    <div className="point" key="avatar" onClick={(e) => setCheck('avatar')} > Edit profile picture</div>
+                    <div className="point" key="background" onClick={(e) => setCheck('background')}> Edit background picture</div>
+                    <div className="point" key="data" onClick={(e) => setCheck('data')}> edit personal details</div>
+                </div>
+            </section>
+            <aside className="asaid">
+                {(() => {
+                    switch (Check) {
+                    case "avatar":
+                        return <EditAvatar/>;
+                    case "background":
+                        return <EditBackground/>;
+                    case "data":
+                        return <PersonalData/>;
+                    default:
+                        return <h1>What your soul desires </h1>;
+                    }
+                })()}
+            </aside>
+        </div>
+    );
 };
 
 export default ProfileSetting;
