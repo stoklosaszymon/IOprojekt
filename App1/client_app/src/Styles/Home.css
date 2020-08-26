@@ -154,7 +154,8 @@
 }
 .userame,
 .time {
-  font-weight: 100;
+    font-weight: 100;
+    margin-right: 300px;
 }
 .userame {
   margin-left: 5px;
