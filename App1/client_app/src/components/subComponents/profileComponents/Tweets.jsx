@@ -7,8 +7,10 @@ import MessageContainer from "./../../mainComponents/PostComponents/MessageConta
 import PostFooter from "./../../mainComponents/PostComponents/PostFooter";
 import TimeStamp from "./../../mainComponents/PostComponents/TimeStamp";
 import Comments from "./../../subComponents/messagesComponents/Comment";
+import Option from "./../../subComponents/messagesComponents/OptionPost"
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+
 
 
 const Tweets = ({ userId }) => {
@@ -56,6 +58,7 @@ const Tweets = ({ userId }) => {
                                     <FullName firstName={user.firstName} lastName={user.lastName}/>
                                 </NavLink>
                                 <TimeStamp time={post.createdAt} />
+                                <Option idpost={post.postId} />
                             </div>
                             <MessageContainer message={post.body} />
                             <MediaContainer image={post.image} />
