@@ -75,7 +75,11 @@ const Header = () => {
               <span>Profile</span>
             </div>
           </NavLink>
-          <a href="#More" className="a-container">
+                  <NavLink
+                      to="/more"
+                      className="a-container"
+                      activeClassName={"active-link"}
+                  >
             <div className="a">
               <svg viewBox="0 0 24 24" className="header-img">
                 <g>
@@ -85,7 +89,7 @@ const Header = () => {
               </svg>
               <span>More</span>
             </div>
-          </a>
+                  </NavLink>
         </div>
         <div>
           <div className="btn-container">

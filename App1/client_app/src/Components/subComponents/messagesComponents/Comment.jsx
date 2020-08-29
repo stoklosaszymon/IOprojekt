@@ -28,8 +28,8 @@ const Comments = ({ userName, idpost }) => {
 
     return (
         <div>
-            {comment.slice(0, count).map(x =>
-                <div className="DisplayComments">
+            {comment.slice(0, count).map((x, index) =>
+                <div className="DisplayComments" key={index}>
                     <DisplayComments userID={x.userId} body={x.body} />
                 </div>
             )}

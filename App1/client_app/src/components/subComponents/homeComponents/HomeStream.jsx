@@ -8,6 +8,7 @@ import PostFooter from "./../../mainComponents/PostComponents/PostFooter";
 import TimeStamp from "./../../mainComponents/PostComponents/TimeStamp";
 import Comments from "./../messagesComponents/Comment";
 import { useSelector } from 'react-redux';
+import { NavLink } from "react-router-dom";
 
 const HomeStream = () => {
     const [posts, setPosts] = useState([]);
@@ -54,10 +55,10 @@ const HomeStream = () => {
                     <div className="stream" key={post.postId}>
                         <div className="content">
                             <div className="stream-header-container">
-                                <a href={`/${post.nickname}`}>
+                                <NavLink to={`/${post.nickname}`}>
                                     <MainAvatar picture={post.picture} />
                                     <FullName firstName={post.firstName} lastName={post.lastName} />
-                                </a>
+                                </NavLink>
                                 <TimeStamp time={post.createdAt} />
                             </div>
                             <MessageContainer message={post.body} />
