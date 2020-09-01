@@ -47,15 +47,17 @@ namespace IOprojekt.GraphQLTypes
             Field<PostType>("updatePost",
                arguments: new QueryArguments
                {
-                     new QueryArgument<InputPostType>() { Name = "post" }
+                     new QueryArgument<StringGraphType>() { Name = "post" },
+                     new QueryArgument<StringGraphType>() { Name = "body" }
                },
                resolve: context =>
                {
-                   var post = context.GetArgument<Post>("post");
+                   var postId = context.GetArgument<string>("post");
+                   var body = context.GetArgument<string>("body");
                    var builder = Builders<Post>.Filter;
-                   var filter = builder.Eq(p => p.PostId, post.PostId);
+                   var filter = builder.Eq(p => p.PostId, postId);
                    var update = Builders<Post>.Update
-                                        .Set("body", post.Body);
+                                        .Set("body", body);
 
                    return _context.Posts.Update(filter, update);
                }

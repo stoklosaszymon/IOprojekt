@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-const Option = ({ idpost }) => {
+const Option = ({ idpost, body }) => {
 
     const [chose, setChose] = useState(false);
-
 
     const del = (postId) => {
         fetch('../graphql', {
@@ -25,9 +24,32 @@ const Option = ({ idpost }) => {
         setChose(false)
     }
 
+    const update = (postId, newBody) => {
+        fetch('graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                query: `
+                    mutation {
+                       posts {
+                        updatePost(post: "${postId}", body:"${newBody}"){ body }
+                 }
+            }`
+            }),
+        })
+            .then(res => res.json())
+            .then(res => console.log(res));
+
+    }
+
     const edit = (postId) => {
         setChose(false)
-    }
+            const enteredName = prompt('Edit')
+            update(postId, enteredName);
+        }
+    
 
     return (
         <div className="option">
@@ -41,6 +63,6 @@ const Option = ({ idpost }) => {
             }
         </div>
     );
-};
+}
 
 export default Option;

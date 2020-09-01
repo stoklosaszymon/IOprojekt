@@ -58,7 +58,7 @@ const Tweets = ({ userId }) => {
                                     <FullName firstName={user.firstName} lastName={user.lastName}/>
                                 </NavLink>
                                 <TimeStamp time={post.createdAt} />
-                                <Option idpost={post.postId} />
+                                <Option idpost={post.postId} body={post.body} />
                             </div>
                             <MessageContainer message={post.body} />
                             <MediaContainer image={post.image} />
